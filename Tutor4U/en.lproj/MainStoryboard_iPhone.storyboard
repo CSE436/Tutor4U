@@ -114,7 +114,7 @@
         <scene sceneID="UcL-RU-Q6V">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eqA-ow-I4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="eYG-6S-9fD" sceneMemberID="viewController">
+                <viewController id="eYG-6S-9fD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ijq-9d-w4o">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -384,6 +384,13 @@
         </class>
         <class className="TutorControlViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TutorControlViewController.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logOutButtonTapAction:"/>
+                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
