@@ -36,14 +36,9 @@
 	// Do any additional setup after loading the view.
     PFUser *currentUser = [PFUser currentUser];
     
-    // temporary
-    if ( currentUser ) {
-        [PFUser logOut];
-        currentUser = nil;
-    }
-    
     if ( currentUser ) {
         NSLog(@"current User Exists");
+        [self gotoTabbedView:0];
     } else {
         NSLog(@"Create Parse Login");
         // Create the log in view controller
@@ -75,6 +70,18 @@
 }
 
 
+
+-(void)gotoTabbedView:(NSUInteger)tabNumber {
+    myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
+    [self dismissViewControllerAnimated:NO completion:NULL];
+    NSMutableArray *vcOnNavStack = [[NSMutableArray alloc] initWithCapacity:1];
+    [vcOnNavStack addObject:myTabBarController];
+    myTabBarController.selectedIndex = tabNumber;
+    [self.navigationController setViewControllers:[vcOnNavStack copy]];
+}
+
+
+
 #pragma mark - PFLogInViewControllerDelegate
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
@@ -92,12 +99,7 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     NSLog(@"did Log In - Change this so it doesn't goto profile creation");
-    myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    NSMutableArray *vcOnNavStack = [[NSMutableArray alloc] initWithCapacity:1];
-    [vcOnNavStack addObject:myTabBarController];
-    myTabBarController.selectedIndex = 2;
-    [self.navigationController setViewControllers:[vcOnNavStack copy]];
+    [self gotoTabbedView:2];
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -137,12 +139,7 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     //ProfileViewController* nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
-    myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    NSMutableArray *vcOnNavStack = [[NSMutableArray alloc] initWithCapacity:1];
-    [vcOnNavStack addObject:myTabBarController];
-    myTabBarController.selectedIndex = 2;
-    [self.navigationController setViewControllers:[vcOnNavStack copy]];
+    [self gotoTabbedView:2];
 }
 
 // Sent to the delegate when the sign up attempt fails.

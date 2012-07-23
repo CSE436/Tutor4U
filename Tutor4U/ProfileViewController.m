@@ -162,7 +162,7 @@
     
     CGFloat oldHeight = textField.frame.origin.y;
     CGRect frame = self.view.frame;
-    frame.origin.y = 48-oldHeight;//(oldHeight - 50);
+    frame.origin.y = 48-oldHeight;
     self.view.frame = frame;
     
     [UIView commitAnimations];
