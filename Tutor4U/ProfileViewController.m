@@ -22,7 +22,7 @@
 @synthesize apartment;
 @synthesize city;
 @synthesize state;
-@synthesize zipCode;
+@synthesize zipCode, email;
 
 @synthesize myTabBarController;
 
@@ -32,9 +32,11 @@
 
 -(IBAction)updateUserProfile
 {
+    
     NSLog(@"-------updateUserProfile-------");
     //PFUser *currentUser = [PFUser currentUser];
     if (currentUser) { // No user logged in
+        [currentUser refresh];
         //Create UserInfo entry on Parse - 
         if(userProfile) {
             NSLog(@"     updating user [ %@'s ]  profile..........", lastName.text);
@@ -42,21 +44,18 @@
             NSLog(@"     Creating user [ %@ 's]  profile..........", lastName.text);
         }
         //update profile
-        NSInteger ret = [parseTransport setUserProfile:currentUser.email :firstName.text :lastName.text :phone.text];
+        NSInteger ret = [parseTransport setUserProfile:email.text :firstName.text :lastName.text :phone.text];
         if(ret != T4U_SUCCESS) {
             //throw error and act accordingly - 
             return;
         }
         
         //update user address
-        ret = [parseTransport setUserAddress:currentUser.email :streetAddr.text :apartment.text :city.text :state.text :zipCode.text];
+        ret = [parseTransport setUserAddress:email.text :streetAddr.text :apartment.text :city.text :state.text :zipCode.text];
         if(ret != T4U_SUCCESS) {
             //throw error and act accordingly - 
             return;
         }
-        
-        // revert back to the main screen - 
-//        [self endUserProfileEdits];
         return;
     }
     NSLog(@"UpdateUserProfile: Error - User not authorized to change this profile - ");
@@ -99,6 +98,7 @@
     city.delegate = self;
     state.delegate = self;
     zipCode.delegate = self;
+    email.delegate = self;
     
     phoneNumberFormatter = [[PhoneNumberFormatter alloc] init];
     
@@ -120,6 +120,8 @@
         } else {
             self.navigationItem.title = @"Update Your Profile";
         }
+        
+        self.email.text = currentUser.email;
         
         userProfile = [parseTransport getUserProfile:currentUser.email];
         if(userProfile) {
@@ -156,7 +158,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView  setAnimationDelegate:self];
+    [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(finishedAnimation)];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     

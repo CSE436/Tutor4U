@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *firstName;
 @property (strong, nonatomic) IBOutlet UITextField *lastName;
 @property (strong, nonatomic) IBOutlet UITextField *phone;
+@property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *streetAddr;
 @property (strong, nonatomic) IBOutlet UITextField *apartment;
 @property (strong, nonatomic) IBOutlet UITextField *city;

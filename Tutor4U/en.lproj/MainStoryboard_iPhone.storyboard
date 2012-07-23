@@ -148,7 +148,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="18p-gZ-mFC">
-                                <rect key="frame" x="86" y="196" width="148" height="37"/>
+                                <rect key="frame" x="86" y="234" width="148" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Update Profile">
@@ -162,6 +162,19 @@
                                     <action selector="updateUserProfile" destination="AH4-yk-NLC" eventType="touchUpInside" id="nVk-pe-8L4"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="E-Mail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="oEK-OD-J1H">
+                                <rect key="frame" x="0.0" y="177" width="93" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="( required )" textAlignment="center" minimumFontSize="17" id="UAm-gZ-RAQ">
+                                <rect key="frame" x="108" y="177" width="202" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -171,6 +184,7 @@
                     <connections>
                         <outlet property="apartment" destination="UXv-M2-Ffq" id="9I3-PG-rgh"/>
                         <outlet property="city" destination="B13-vO-jeQ" id="wGX-iI-bzq"/>
+                        <outlet property="email" destination="UAm-gZ-RAQ" id="ZB5-5L-Ssk"/>
                         <outlet property="firstName" destination="gIs-oz-GG7" id="P0t-MY-rud"/>
                         <outlet property="lastName" destination="TGX-D5-4rQ" id="puI-Mr-kQJ"/>
                         <outlet property="phone" destination="4KV-ZY-3X6" id="oB7-Pj-uRn"/>
@@ -519,6 +533,7 @@
                 <relationship kind="action" name="updateUserProfile"/>
                 <relationship kind="outlet" name="apartment" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="city" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="myTabBarController" candidateClass="UITabBarController"/>
