@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface TutorControlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    
+@interface TutorControlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate> {
     NSMutableArray *studentRequests;
 }
+
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

@@ -16,9 +16,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    // Override point for customization after application launch.
-    [Parse setApplicationId:@"L3GKKPnT92eesNyRmNogzui9N0IjPhtzirk9eo7z"
-                  clientKey:@"N3CSuNZPqDfSnNJDKwWq6yMd6mRS2U4lb1Y1uDpa"];
+    //[Parse setApplicationId:@"L3GKKPnT92eesNyRmNogzui9N0IjPhtzirk9eo7z"
+     //             clientKey:@"N3CSuNZPqDfSnNJDKwWq6yMd6mRS2U4lb1Y1uDpa"];
+    [Parse setApplicationId:@"rjO7gBUIiH3uBhPbjwMcBQcRMJdlKZY791waH8I5"
+                  clientKey:@"05OlySxlGXm3GEZhUrmprz970fb9MoIFoQmmeqho"];
     
     // Set defualt ACLs
     PFACL *defaultACL = [PFACL ACL];

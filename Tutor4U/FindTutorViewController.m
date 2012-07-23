@@ -15,15 +15,41 @@
 
 @implementation FindTutorViewController
 
+
+@synthesize parseTransport;
+@synthesize addSessionButton;
+@synthesize myTutorSession;
+
+
+
+
 - (void)viewWillAppear:(BOOL)animated {
-    availableTutors = [[NSMutableArray alloc] initWithCapacity:5];
+    availableTutors = [[NSMutableArray alloc] init];
     [availableTutors addObject:@"Tutor 1"];
     [availableTutors addObject:@"Tutor 2"];
     [availableTutors addObject:@"Tutor 3"];
     [availableTutors addObject:@"Tutor 4"];
     
+    //---
+    [availableTutors removeAllObjects];
+    //PFObject *currentTutors = [parseTransport downloadTutor:@"zeddy.chirombe@gmail.com"];
+    //NSLog(@"Showing Tutor[ %@ ] ",[currentTutors objectForKey:@"Tutor4uID"]);
+    availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
+    
+    /*
+    for(int i=0; i < availableTutors.count; i++) {
+        PFObject *pfObj = [availableTutors objectAtIndex:i];
+        NSString *my_tutor_id = [pfObj objectForKey:@"Tutor4uID"];
+        NSLog(@"Showing Tutor[ %i ] %@ ",i,my_tutor_id);
+    }
+    */
+    NSLog(@"FindTutorTabBar : Found [ %i ] Active Tutors", availableTutors.count);
 }
-
+-(void)createSession
+{
+    NSLog(@"Add Session ");
+    [self.navigationController pushViewController:myTutorSession animated:YES];
+}
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
 }
@@ -45,7 +71,18 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    parseTransport = [[ParseTransport alloc] init];
+    myTutorSession = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
+    
+    addSessionButton = [[UIBarButtonItem alloc] initWithTitle:@"Add Sesson" style:UIBarButtonItemStylePlain target:self action:@selector(createSession)];  
+    self.navigationController.topViewController.navigationItem.rightBarButtonItem = addSessionButton;
+    [self.navigationController.topViewController setTitle:@"ActiveTutors"]; 
+
+     
+    NSLog(@"FindTutorViewController - viewDidLoad() ---");
+    
 }
 
 - (void)viewDidUnload
@@ -85,7 +122,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TutorInformationCell"];
     }
     // Configure the cell...
-    [[cell textLabel] setText:[availableTutors objectAtIndex:indexPath.row]];
+    [[cell textLabel] setText:[[availableTutors objectAtIndex:indexPath.row] objectForKey:@"Tutor4uID"]];
     
     return cell;
 }
@@ -142,10 +179,21 @@
      */
     
     DetailedTutorInfoViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailedTutorInfo"];
+    if(availableTutors.count > 0) {
+        NSLog(@"FindTutorTable : row [ %i ] of [ %i ] - %@",indexPath.row, availableTutors.count, [availableTutors objectAtIndex:indexPath.row]);
+    }
+    //[nextView setTutorIDString:[availableTutors objectAtIndex:indexPath.row]];
+    PFObject *myPfObject = [availableTutors objectAtIndex:indexPath.row];
+    NSString *_tutor_id = [myPfObject objectForKey:@"Tutor4uID"];
+    NSString *_subject = [myPfObject objectForKey:@"Subject"];
+    [nextView setTutorIDString:_tutor_id];
+    [nextView setSubjectString:_subject];
     
-    [nextView setTutorIDString:[availableTutors objectAtIndex:indexPath.row]];
+    NSLog(@" Tutor4uID [ %@ ] - Subject[ %@ ]",_tutor_id,_subject);
     [nextView setConnectAcceptButtonText:@"Connect"];
     [self.navigationController pushViewController:nextView animated:YES];
+    
+    NSLog(@"FindTutorTable : row [ %i ] of [ %i ] - %@",indexPath.row, availableTutors.count, [[availableTutors objectAtIndex:indexPath.row] objectForKey:@"Tutor4uID"]);
     
 }
 

@@ -9,13 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailedTutorInfoViewController : UIViewController {
-    IBOutlet UILabel* tutorID;
     IBOutlet UIButton* connectAccept;
-    //IBOutlet UITableView* studentRequestTable;
+    IBOutlet UITextField *tutorIDField;
+    IBOutlet UITextField *subjectField;
     
     NSMutableArray *studentRequests;
 }
 @property (retain,nonatomic) IBOutlet NSString* tutorIDString;
+@property (strong, nonatomic) IBOutlet NSString *subjectString;
 @property (retain,nonatomic) IBOutlet NSString* connectAcceptButtonText;
+@property (strong, nonatomic) IBOutlet UIButton *connectButton;
+
+-(void)connectRequest;
+
 
 @end

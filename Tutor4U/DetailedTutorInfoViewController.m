@@ -14,15 +14,25 @@
 
 @implementation DetailedTutorInfoViewController
 
-@synthesize tutorIDString, connectAcceptButtonText;
+
+@synthesize connectButton;
+
+
+@synthesize tutorIDString, subjectString, connectAcceptButtonText;
+
+
+
+-(void)connectRequest
+{
+    NSLog(@"-----Implement a push/point-2-point message to this Tutor------");
+    
+}
 
 
 -(void)viewWillAppear:(BOOL)animated {
-    [tutorID setText:tutorIDString];
+    tutorIDField.text = tutorIDString;
+    subjectField.text = subjectString;
     [[connectAccept titleLabel] setText:connectAcceptButtonText];
-    
-    //studentRequestTable.delegate = self;
-    //studentRequestTable.dataSource = self;
     
 
 }
@@ -40,10 +50,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [connectButton addTarget:self action:@selector(connectRequest) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewDidUnload
 {
+    subjectField = nil;
+    tutorIDField = nil;
+    [self setConnectButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

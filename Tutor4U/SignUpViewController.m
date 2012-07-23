@@ -55,6 +55,7 @@
     // Change "Additional" to match our use
     [self.signUpView.additionalField setPlaceholder:@"Phone number"];
     
+    
 }
 
 - (void)viewDidLayoutSubviews {

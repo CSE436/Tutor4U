@@ -15,6 +15,8 @@
 
 @implementation TutorControlViewController
 
+@synthesize mapView;
+
 -(void)viewWillAppear:(BOOL)animated {
     
     studentRequests = [[NSMutableArray alloc] initWithCapacity:5];
@@ -38,12 +40,26 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+    mapView.mapType = MKMapTypeHybrid;
+    
+    CLLocationCoordinate2D coord = {61.2180556, -149.9002778};
+    MKCoordinateSpan span = {0.2, 0.2};
+    MKCoordinateRegion region = {coord, span};
+    
+    [mapView setRegion:region];
+    [self.view addSubview:mapView];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (void)didReceiveMemoryWarning 
+{
+    [super didReceiveMemoryWarning];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301C602015BC83370057CDB9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301C601F15BC83370057CDB9 /* MapKit.framework */; };
+		301C602715BC98E10057CDB9 /* AddTutorSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 301C602615BC98E10057CDB9 /* AddTutorSession.m */; };
+		3039483415B5123500477265 /* ParseTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039483315B5123500477265 /* ParseTransport.m */; };
+		309AAED915B9251C00A372C7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309AAED815B9251C00A372C7 /* ProfileViewController.m */; };
 		30F9E1D815B2553F00D3F000 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D715B2553F00D3F000 /* SystemConfiguration.framework */; };
 		30F9E1DE15B255B300D3F000 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D915B255B300D3F000 /* AudioToolbox.framework */; };
 		30F9E1DF15B255B300D3F000 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1DA15B255B300D3F000 /* CFNetwork.framework */; };
@@ -25,7 +29,6 @@
 		A9847EAE15B09B86003087DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9847EAD15B09B86003087DB /* AppDelegate.m */; };
 		A9847EB115B09B86003087DB /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9847EAF15B09B86003087DB /* MainStoryboard_iPhone.storyboard */; };
 		A9847EB415B09B86003087DB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9847EB215B09B86003087DB /* MainStoryboard_iPad.storyboard */; };
-		A9847EB715B09B86003087DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9847EB615B09B86003087DB /* ViewController.m */; };
 		A9847EBF15B09EA4003087DB /* CreateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9847EBE15B09EA4003087DB /* CreateUserViewController.m */; };
 		A99E0EFC15B0A54F00C8A3EE /* FindTutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */; };
 		A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */; };
@@ -33,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		301C601F15BC83370057CDB9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		301C602515BC98E10057CDB9 /* AddTutorSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTutorSession.h; sourceTree = "<group>"; };
+		301C602615BC98E10057CDB9 /* AddTutorSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTutorSession.m; sourceTree = "<group>"; };
+		3039483215B5123500477265 /* ParseTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseTransport.h; sourceTree = "<group>"; };
+		3039483315B5123500477265 /* ParseTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseTransport.m; sourceTree = "<group>"; };
+		309AAED715B9251C00A372C7 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		309AAED815B9251C00A372C7 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		30F9E1D415B2552B00D3F000 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		30F9E1D715B2553F00D3F000 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		30F9E1D915B255B300D3F000 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -57,8 +67,6 @@
 		A9847EAD15B09B86003087DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A9847EB015B09B86003087DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		A9847EB315B09B86003087DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		A9847EB515B09B86003087DB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A9847EB615B09B86003087DB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A9847EBD15B09EA4003087DB /* CreateUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUserViewController.h; sourceTree = "<group>"; };
 		A9847EBE15B09EA4003087DB /* CreateUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUserViewController.m; sourceTree = "<group>"; };
 		A99E0EFA15B0A54F00C8A3EE /* FindTutorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindTutorViewController.h; sourceTree = "<group>"; };
@@ -74,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				301C602015BC83370057CDB9 /* MapKit.framework in Frameworks */,
 				30F9E1E415B255D600D3F000 /* Parse.framework in Frameworks */,
 				30F9E1DE15B255B300D3F000 /* AudioToolbox.framework in Frameworks */,
 				30F9E1DF15B255B300D3F000 /* CFNetwork.framework in Frameworks */,
@@ -98,6 +107,8 @@
 				30F9E1EA15B257B400D3F000 /* LoginViewController.m */,
 				30F9E1EB15B257B400D3F000 /* SignUpViewController.h */,
 				30F9E1EC15B257B400D3F000 /* SignUpViewController.m */,
+				3039483215B5123500477265 /* ParseTransport.h */,
+				3039483315B5123500477265 /* ParseTransport.m */,
 			);
 			name = ParseGateway;
 			sourceTree = "<group>";
@@ -105,6 +116,7 @@
 		A9847E8E15B09B86003087DB = {
 			isa = PBXGroup;
 			children = (
+				301C601F15BC83370057CDB9 /* MapKit.framework */,
 				A9847EA315B09B86003087DB /* Tutor4U */,
 				A9847E9C15B09B86003087DB /* Frameworks */,
 				A9847E9A15B09B86003087DB /* Products */,
@@ -144,18 +156,20 @@
 				A9847EAD15B09B86003087DB /* AppDelegate.m */,
 				A9847EAF15B09B86003087DB /* MainStoryboard_iPhone.storyboard */,
 				A9847EB215B09B86003087DB /* MainStoryboard_iPad.storyboard */,
-				A9847EB515B09B86003087DB /* ViewController.h */,
-				A9847EB615B09B86003087DB /* ViewController.m */,
 				30F9E1F015B257D800D3F000 /* ParseGateway */,
 				A9847EA415B09B86003087DB /* Supporting Files */,
 				A9847EBD15B09EA4003087DB /* CreateUserViewController.h */,
 				A9847EBE15B09EA4003087DB /* CreateUserViewController.m */,
+				301C602515BC98E10057CDB9 /* AddTutorSession.h */,
+				301C602615BC98E10057CDB9 /* AddTutorSession.m */,
 				A99E0EFA15B0A54F00C8A3EE /* FindTutorViewController.h */,
 				A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */,
 				A99E0F0215B0A76600C8A3EE /* DetailedTutorInfoViewController.h */,
 				A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */,
 				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
 				A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */,
+				309AAED715B9251C00A372C7 /* ProfileViewController.h */,
+				309AAED815B9251C00A372C7 /* ProfileViewController.m */,
 			);
 			path = Tutor4U;
 			sourceTree = "<group>";
@@ -236,13 +250,15 @@
 			files = (
 				A9847EAA15B09B86003087DB /* main.m in Sources */,
 				A9847EAE15B09B86003087DB /* AppDelegate.m in Sources */,
-				A9847EB715B09B86003087DB /* ViewController.m in Sources */,
 				A9847EBF15B09EA4003087DB /* CreateUserViewController.m in Sources */,
 				A99E0EFC15B0A54F00C8A3EE /* FindTutorViewController.m in Sources */,
 				A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */,
 				A99E0F0F15B0B12700C8A3EE /* TutorControlViewController.m in Sources */,
 				30F9E1EE15B257B400D3F000 /* LoginViewController.m in Sources */,
 				30F9E1EF15B257B400D3F000 /* SignUpViewController.m in Sources */,
+				3039483415B5123500477265 /* ParseTransport.m in Sources */,
+				309AAED915B9251C00A372C7 /* ProfileViewController.m in Sources */,
+				301C602715BC98E10057CDB9 /* AddTutorSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
