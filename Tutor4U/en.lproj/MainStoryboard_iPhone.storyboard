@@ -491,12 +491,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailedTutorInfoViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="connectAccept" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="connectAcceptButtonText" candidateClass="NSString"/>
                 <relationship kind="outlet" name="connectButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="subjectField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="subjectString" candidateClass="NSString"/>
                 <relationship kind="outlet" name="tutorIDField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tutorIDString" candidateClass="NSString"/>
             </relationships>
         </class>
         <class className="FindTutorViewController" superclassName="UITableViewController">

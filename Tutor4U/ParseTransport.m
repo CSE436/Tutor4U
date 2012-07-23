@@ -20,7 +20,9 @@
 
 -(int)setUserProfile:(NSString *)_tutor4u_id :(NSString *)_firstName :(NSString *)_lastName :(NSString *)_phoneNumber
 {
-    userProfile = [PFObject objectWithClassName:@"userProfile"];
+    userProfile =  [self getUserProfile:[PFUser currentUser].email];   
+    if ( userProfile == nil )
+        userProfile = [PFObject objectWithClassName:@"userProfile"];
     [userProfile setObject:_tutor4u_id forKey:@"Tutor4uID"];
     [userProfile setObject:_firstName forKey:@"FirstName"];
     [userProfile setObject:_lastName forKey:@"LastName"];
@@ -36,7 +38,9 @@
 
 -(int)setUserAddress:(NSString *)_tutor4u_id :(NSString *)_streetAddr :(NSString *)_apt :(NSString *)_city :(NSString *)_state :(NSString *)_zipCode
 {
-    userAddress = [PFObject objectWithClassName:@"userAddress"];
+    userAddress =  [self getUserAddress:[PFUser currentUser].email];
+    if ( userAddress == nil )
+        userAddress = [PFObject objectWithClassName:@"userAddress"];
     [userAddress setObject:_tutor4u_id forKey:@"Tutor4uID"];
     if ( _streetAddr )
         [userAddress setObject:_streetAddr forKey:@"StreetAddress"];

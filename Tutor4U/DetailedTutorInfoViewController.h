@@ -15,9 +15,9 @@
     
     NSMutableArray *studentRequests;
 }
-@property (retain,nonatomic) IBOutlet NSString* tutorIDString;
-@property (strong, nonatomic) IBOutlet NSString *subjectString;
-@property (retain,nonatomic) IBOutlet NSString* connectAcceptButtonText;
+@property (retain,nonatomic) NSString* tutorIDString;
+@property (strong, nonatomic) NSString *subjectString;
+@property (retain,nonatomic) NSString* connectAcceptButtonText;
 @property (strong, nonatomic) IBOutlet UIButton *connectButton;
 
 -(void)connectRequest;
