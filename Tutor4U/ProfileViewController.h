@@ -8,44 +8,29 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailedTutorInfoViewController.h"
-#import "LogInViewController.h"
-#import "SignUpViewController.h"
+#import "LoginViewController.h"
 #import "ParseTransport.h"
+#import "PhoneNumberFormatter.h"
 
-
-@interface ProfileViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate> {
-    PFObject *userProfile;
-    PFObject *userAddress;
-    PFObject *tutorSession;
-    PFObject *studentSession;
-    BOOL userInfoEditable;
-    BOOL userInfoLoaded;
-    ParseTransport *parseTransport;    
+@interface ProfileViewController : UIViewController <UITextFieldDelegate> {
+    PFUser *currentUser;
+    PFObject *userProfile, *userAddress;
+    ParseTransport *parseTransport;
+    PhoneNumberFormatter *phoneNumberFormatter;
 }
-
 
 @property (strong, nonatomic) IBOutlet UITextField *tutor4uID;
 @property (strong, nonatomic) IBOutlet UITextField *firstName;
 @property (strong, nonatomic) IBOutlet UITextField *lastName;
 @property (strong, nonatomic) IBOutlet UITextField *phone;
 @property (strong, nonatomic) IBOutlet UITextField *streetAddr;
-@property (strong, nonatomic) IBOutlet UITextField *appartment;
+@property (strong, nonatomic) IBOutlet UITextField *apartment;
 @property (strong, nonatomic) IBOutlet UITextField *city;
 @property (strong, nonatomic) IBOutlet UITextField *state;
 @property (strong, nonatomic) IBOutlet UITextField *zipCode;
-@property (strong, nonatomic) IBOutlet ParseTransport *parseTransport; 
 
-
-@property (strong, nonatomic) IBOutlet UIButton *updateUInfoButton;
-@property (strong, nonatomic) IBOutlet UIButton *cancelUInfoButton;
 @property (strong, nonatomic) IBOutlet UITabBarController *myTabBarController;
 
-
 -(IBAction)updateUserProfile;
--(IBAction)cancelUserProfile;
--(int)loadUserInfo:(NSString *)_tutor4u_id;
--(void)skipUserProfileEdits;
--(id)init;
-
 
 @end

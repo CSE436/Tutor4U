@@ -8,6 +8,7 @@
 
 #import "ParseTransport.h"
 
+
 @implementation ParseTransport
 
 
@@ -22,8 +23,12 @@
     userProfile = [PFObject objectWithClassName:@"userProfile"];
     [userProfile setObject:_tutor4u_id forKey:@"Tutor4uID"];
     [userProfile setObject:_firstName forKey:@"FirstName"];
-    [userProfile setObject:_lastName forKey:@"LasttName"];
-    [userProfile setObject:_phoneNumber forKey:@"PhoneNumber"];
+    [userProfile setObject:_lastName forKey:@"LastName"];
+    if ( _phoneNumber )
+        [userProfile setObject:_phoneNumber forKey:@"PhoneNumber"];
+    else 
+        [userProfile setObject:[NSNull null] forKey:@"PhoneNUmber"];
+    
     [userProfile save];
     
     return T4U_SUCCESS;
@@ -33,15 +38,31 @@
 {
     userAddress = [PFObject objectWithClassName:@"userAddress"];
     [userAddress setObject:_tutor4u_id forKey:@"Tutor4uID"];
-    [userAddress setObject:_streetAddr forKey:@"StreetAddress"];
-    [userAddress setObject:_apt forKey:@"Appartment"];
-    [userAddress setObject:_city forKey:@"City"];
-    [userAddress setObject:_state forKey:@"State"];
-    [userAddress setObject:_zipCode forKey:@"ZipCode"];
+    if ( _streetAddr )
+        [userAddress setObject:_streetAddr forKey:@"StreetAddress"];
+    else 
+        [userProfile setObject:[NSNull null] forKey:@"StreetAddress"];
+    if ( _apt ) 
+        [userAddress setObject:_apt forKey:@"Apartment"];
+    else 
+        [userProfile setObject:[NSNull null] forKey:@"Apartment"];
+    if ( _city )
+        [userAddress setObject:_city forKey:@"City"];
+    else 
+        [userProfile setObject:[NSNull null] forKey:@"City"];
+    if ( _state )
+        [userAddress setObject:_state forKey:@"State"];
+    else 
+        [userProfile setObject:[NSNull null] forKey:@"State"];
+    if ( _zipCode )
+        [userAddress setObject:_zipCode forKey:@"ZipCode"];
+    else 
+        [userProfile setObject:[NSNull null] forKey:@"ZipCode"];
     [userAddress save];
     
     return T4U_SUCCESS;
 }
+
 -(int)uploadTutor:(NSString *)_tutor4u_id :(NSString *)_subject :(NSString *)_hourlyRate :(NSString *)_location :(NSString *)_rating
 {
     tutorSession = [PFObject objectWithClassName:@"activeTutors"];
@@ -57,6 +78,8 @@
 -(int)uploadStudent:(NSString *)_tutor4u_id :(NSString *)_subject :(NSString *)_hourlyRate :(NSString *)_location :(NSString *)_rating
 {
     studentSession = [PFObject objectWithClassName:@"activeStudents"];
+    if ( [PFUser currentUser] )
+        [userProfile setObjectId:[PFUser currentUser].objectId];
     [studentSession setObject:_tutor4u_id forKey:@"Tutor4uID"];
     [studentSession setObject:_subject forKey:@"Subject"];
     [studentSession setObject:_hourlyRate forKey:@"HourlyRate"];

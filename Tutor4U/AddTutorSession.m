@@ -23,7 +23,9 @@
 @synthesize addSessionButton;
 @synthesize parseTransport;
 
-
+-(IBAction)addSession {
+    
+}
 
 
 
