@@ -20,7 +20,8 @@
 
 -(int)setUserProfile:(NSString *)_tutor4u_id :(NSString *)_firstName :(NSString *)_lastName :(NSString *)_phoneNumber
 {
-    userProfile =  [self getUserProfile:[PFUser currentUser].email];   
+    userProfile =  [self getUserProfile:[PFUser currentUser].username];   
+    
     if ( userProfile == nil )
         userProfile = [PFObject objectWithClassName:@"userProfile"];
     [userProfile setObject:_tutor4u_id forKey:@"Tutor4uID"];
@@ -29,7 +30,7 @@
     if ( _phoneNumber )
         [userProfile setObject:_phoneNumber forKey:@"PhoneNumber"];
     else 
-        [userProfile setObject:[NSNull null] forKey:@"PhoneNUmber"];
+        [userProfile setObject:[NSNull null] forKey:@"PhoneNumber"];
     
     [userProfile save];
     
@@ -38,7 +39,7 @@
 
 -(int)setUserAddress:(NSString *)_tutor4u_id :(NSString *)_streetAddr :(NSString *)_apt :(NSString *)_city :(NSString *)_state :(NSString *)_zipCode
 {
-    userAddress =  [self getUserAddress:[PFUser currentUser].email];
+    userAddress =  [self getUserAddress:[PFUser currentUser].username];
     if ( userAddress == nil )
         userAddress = [PFObject objectWithClassName:@"userAddress"];
     [userAddress setObject:_tutor4u_id forKey:@"Tutor4uID"];
@@ -145,8 +146,6 @@
     [query orderByDescending:@"Rating"];
     return [query findObjects];
 }
-
-
 
 -(int)dropProfile
 {

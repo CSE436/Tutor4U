@@ -30,8 +30,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *state;
 @property (strong, nonatomic) IBOutlet UITextField *zipCode;
 
-@property (strong, nonatomic) IBOutlet UITabBarController *myTabBarController;
-
 -(IBAction)updateUserProfile;
 
 @end

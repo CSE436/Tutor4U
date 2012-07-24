@@ -42,7 +42,9 @@
             [self gotoTabbedView:2];
         } else if (![[currentUser objectForKey:@"emailVerified"] boolValue] ) {
             NSLog(@"Error: E-mail not verified\nYou must verify your email");
-            
+            UIAlertView *emailAlert = [[UIAlertView alloc] initWithTitle:@"E-Mail Verification" message:@"You Have not Verified Your E-Mail Address Yet.  You Must do so Before Using this Application." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [emailAlert show];
+            [self gotoTabbedView:2];
         } else {
             [self gotoTabbedView:0];
         }

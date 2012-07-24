@@ -24,19 +24,19 @@
 @synthesize state;
 @synthesize zipCode, email;
 
-@synthesize myTabBarController;
-
 -(void)skipUserProfileEdits {
     
 }
 
 -(IBAction)updateUserProfile
 {
-    
     NSLog(@"-------updateUserProfile-------");
     //PFUser *currentUser = [PFUser currentUser];
     if (currentUser) { // No user logged in
         [currentUser refresh];
+        currentUser.email = email.text;
+        [currentUser save];
+        
         //Create UserInfo entry on Parse - 
         if(userProfile) {
             NSLog(@"     updating user [ %@'s ]  profile..........", lastName.text);
@@ -44,18 +44,19 @@
             NSLog(@"     Creating user [ %@ 's]  profile..........", lastName.text);
         }
         //update profile
-        NSInteger ret = [parseTransport setUserProfile:email.text :firstName.text :lastName.text :phone.text];
+        NSInteger ret = [parseTransport setUserProfile:currentUser.username :firstName.text :lastName.text :phone.text];
         if(ret != T4U_SUCCESS) {
             //throw error and act accordingly - 
             return;
         }
         
         //update user address
-        ret = [parseTransport setUserAddress:email.text :streetAddr.text :apartment.text :city.text :state.text :zipCode.text];
+        ret = [parseTransport setUserAddress:currentUser.username :streetAddr.text :apartment.text :city.text :state.text :zipCode.text];
         if(ret != T4U_SUCCESS) {
             //throw error and act accordingly - 
             return;
         }
+        [self checkEnableTabBar];
         return;
     }
     NSLog(@"UpdateUserProfile: Error - User not authorized to change this profile - ");
@@ -74,8 +75,10 @@
     [self setTutor4uID:nil];
     [self setApartment:nil];
     [super viewDidUnload];
+    
+    
     // Release any retained subviews of the main view.
-    NSLog(@"ViewController - Loging Out");
+    NSLog(@"ViewController - Logging Out");
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -84,6 +87,15 @@
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     } else {
         return YES;
+    }
+}
+
+-(void)checkEnableTabBar {
+    id result = [[PFUser currentUser] objectForKey:@"emailVerified"];
+    if ( result == nil || [result boolValue] == false ) {
+        self.tabBarController.tabBar.userInteractionEnabled = NO;
+    } else {
+        self.tabBarController.tabBar.userInteractionEnabled = YES;
     }
 }
 
@@ -101,6 +113,8 @@
     email.delegate = self;
     
     phoneNumberFormatter = [[PhoneNumberFormatter alloc] init];
+    
+    [self checkEnableTabBar];
     
     [phone addTarget:self
               action:@selector(autoFormatTextField:)
@@ -123,7 +137,7 @@
         
         self.email.text = currentUser.email;
         
-        userProfile = [parseTransport getUserProfile:currentUser.email];
+        userProfile = [parseTransport getUserProfile:currentUser.username];
         if(userProfile) {
             self.firstName.text = [userProfile objectForKey:@"FirstName"];
             self.lastName.text = [userProfile objectForKey:@"LastName"];
@@ -131,7 +145,7 @@
         } else {
             NSLog(@"No User Profile");
         }
-        userAddress = [parseTransport getUserAddress:currentUser.email];
+        userAddress = [parseTransport getUserAddress:currentUser.username];
         if ( userAddress ) {
             self.streetAddr.text = [userAddress objectForKey:@"StreetAddress"];
             self.apartment.text = [userAddress objectForKey:@"Apartment"];
@@ -148,9 +162,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"view will dissappear");
-	[super viewWillDisappear:animated];
-    [self updateUserProfile];
+    [super viewWillDisappear:animated];
+    //[self updateUserProfile];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {

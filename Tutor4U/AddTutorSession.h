@@ -17,11 +17,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *meetingPlace;
 @property (strong, nonatomic) IBOutlet UITextField *myRating;
 
-@property (strong, nonatomic) IBOutlet UIButton *addSessionButton;
-@property (strong, nonatomic) IBOutlet ParseTransport *parseTransport;
+@property (strong, nonatomic) ParseTransport *parseTransport;
 
 
 -(IBAction)addSession;
-//-(void)showTutorSession:(PFObject *)session;
 
 @end

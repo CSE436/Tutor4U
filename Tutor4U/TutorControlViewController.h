@@ -15,4 +15,6 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
+-(IBAction)updateTutorProfile:(id)sender;
+
 @end

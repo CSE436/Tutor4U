@@ -20,7 +20,6 @@
 @synthesize meetingPlace;
 @synthesize myRating;
 
-@synthesize addSessionButton;
 @synthesize parseTransport;
 
 -(IBAction)addSession {
@@ -56,9 +55,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    parseTransport = [[ParseTransport alloc] init];
-    [addSessionButton addTarget:self action:@selector(addMySession) forControlEvents:UIControlEventTouchUpInside];
-    
+    parseTransport = [[ParseTransport alloc] init];    
 }
 
 - (void)viewDidUnload
@@ -67,7 +64,6 @@
     [self setSubject:nil];
     [self setHourlyRate:nil];
     [self setMeetingPlace:nil];
-    [self setAddSessionButton:nil];
     [self setMyRating:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.

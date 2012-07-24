@@ -39,16 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
-    mapView.mapType = MKMapTypeHybrid;
-    
-    CLLocationCoordinate2D coord = {61.2180556, -149.9002778};
-    MKCoordinateSpan span = {0.2, 0.2};
-    MKCoordinateRegion region = {coord, span};
-    
-    [mapView setRegion:region];
-    [self.view addSubview:mapView];
 }
 
 - (void)viewDidUnload
@@ -96,16 +86,18 @@
     
 }
 
+-(IBAction)updateTutorProfile:(id)sender {
+    
+}
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailedTutorInfoViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailedTutorInfo"];
-    
-    [nextView setTutorIDString:[studentRequests objectAtIndex:indexPath.row]];
-    [nextView setConnectAcceptButtonText:@"Accept"];
-    [self.navigationController pushViewController:nextView animated:YES];
+//    DetailedTutorInfoViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailedTutorInfo"];
+//    [nextView setTutorIDString:[studentRequests objectAtIndex:indexPath.row]];
+//    [nextView setConnectAcceptButtonText:@"Accept"];
+//    [self.navigationController pushViewController:nextView animated:YES];
 }
 
 @end
