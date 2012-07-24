@@ -25,7 +25,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
-    
+    [myTableView reloadData];    // Allows all table view items to be updated to current items
     /*
     for(int i=0; i < availableTutors.count; i++) {
         PFObject *pfObj = [availableTutors objectAtIndex:i];

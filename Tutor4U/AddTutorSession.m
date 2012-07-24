@@ -23,14 +23,13 @@
 @synthesize parseTransport;
 
 -(IBAction)addSession {
-    
-}
+    NSInteger ret = [parseTransport uploadTutor:[PFUser currentUser].username :subject.text :hourlyRate.text :meetingPlace.text :myRating.text];
 
+    NSUserDefaults *std = [NSUserDefaults standardUserDefaults];
+    [std setValue:subject.text forKey:@"lastSubject"];
+    [std setValue:hourlyRate.text forKey:@"hourlyRate"];
+    [std setValue:meetingPlace.text forKey:@"location"];
 
-
--(void)addMySession
-{
-    NSInteger ret = [parseTransport uploadTutor:tutor4uID.text :subject.text :hourlyRate.text :meetingPlace.text :myRating.text];
     if(ret != T4U_SUCCESS) {
         //Notify user of this problem - 
         NSLog(@"Error: addMySession() : Failed to add TutorSession to Parse....");
@@ -38,7 +37,6 @@
         NSLog(@"Info: addMySession() : Uploaded your Tutor Session to Parse....");
     }
 }
-
 
 //----------
 
@@ -55,7 +53,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    parseTransport = [[ParseTransport alloc] init];    
+    parseTransport = [[ParseTransport alloc] init];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.subject.delegate = self;
+    self.hourlyRate.delegate = self;
+    self.meetingPlace.delegate = self;
+    self.myRating.delegate = self;
+    self.myRating.enabled = NO;
+    
+    NSUserDefaults *std = [NSUserDefaults standardUserDefaults];
+    subject.text = (NSString*)[std objectForKey:@"lastSubject"];
+    hourlyRate.text = (NSString*)[std objectForKey:@"hourlyRate"];
+    meetingPlace.text = (NSString*)[std objectForKey:@"location"];
 }
 
 - (void)viewDidUnload
@@ -73,5 +84,44 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView setAnimationsEnabled:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(finishedAnimation)];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    CGFloat oldHeight = textField.frame.origin.y;
+    CGRect frame = self.view.frame;
+    frame.origin.y = 48-oldHeight;
+    self.view.frame = frame;
+    
+    [UIView commitAnimations];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView setAnimationsEnabled:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView  setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(finishedAnimation)];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0;
+    self.view.frame = frame;
+    
+    [UIView commitAnimations];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 
 @end

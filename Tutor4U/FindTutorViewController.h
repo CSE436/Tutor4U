@@ -13,9 +13,10 @@
 @interface FindTutorViewController : UITableViewController <UISearchBarDelegate> {
     NSMutableArray *availableTutors;
     BOOL outstandingSession;
+    IBOutlet UITableView* myTableView;
 }
 
-@property (strong, atomic) IBOutlet ParseTransport *parseTransport;
+@property (strong, atomic) ParseTransport *parseTransport;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addSessionButton;
 @property (strong, nonatomic) IBOutlet AddTutorSession *myTutorSession;
 

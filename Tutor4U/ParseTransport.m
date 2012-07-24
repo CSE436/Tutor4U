@@ -70,12 +70,31 @@
 
 -(int)uploadTutor:(NSString *)_tutor4u_id :(NSString *)_subject :(NSString *)_hourlyRate :(NSString *)_location :(NSString *)_rating
 {
-    tutorSession = [PFObject objectWithClassName:@"activeTutors"];
+    if ( !tutorSession) 
+        tutorSession = [PFObject objectWithClassName:@"activeTutors"];
+    
     [tutorSession setObject:_tutor4u_id forKey:@"Tutor4uID"];
-    [tutorSession setObject:_subject forKey:@"Subject"];
-    [tutorSession setObject:_hourlyRate forKey:@"HourlyRate"];
-    [tutorSession setObject:_location forKey:@"Location"];
-    [tutorSession setObject:_rating forKey:@"Rating"];
+    if ( _rating )
+        [tutorSession setObject:_subject forKey:@"Subject"];
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"ERROR:  You must state what subject you wish to tutor for" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        return 1;
+    }
+    if ( _rating ) {
+        [tutorSession setObject:_hourlyRate forKey:@"HourlyRate"];
+    } else {
+        [tutorSession setObject:[NSNull null] forKey:@"HourlyRate"];
+    }
+    if ( _rating )
+        [tutorSession setObject:_location forKey:@"Location"];
+    else 
+        [tutorSession setObject:[NSNull null] forKey:@"Location"];
+    if ( _rating )
+        [tutorSession setObject:_rating forKey:@"Rating"];
+    else {
+        [tutorSession setObject:[NSNull null] forKey:@"Rating"];
+    }
     [tutorSession save];
     
     return T4U_SUCCESS;

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ParseTransport.h"
 
-@interface AddTutorSession : UIViewController
+@interface AddTutorSession : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *tutor4uID;
 @property (strong, nonatomic) IBOutlet UITextField *subject;
