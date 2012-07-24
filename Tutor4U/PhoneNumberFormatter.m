@@ -15,53 +15,35 @@
 - (id)init {
     
     NSArray *usPhoneFormats = [NSArray arrayWithObjects:
-                               
                                @"+1 (###) ###-####",
-                               
                                @"1 (###) ###-####",
-                               
                                @"011 $",
-                               
                                @"###-####",
-                               
                                @"(###) ###-####", nil];
     
     
     
     NSArray *ukPhoneFormats = [NSArray arrayWithObjects:
-                               
                                @"+44 ##########",
-                               
                                @"00 $",
-                               
                                @"0### - ### ####",
-                               
                                @"0## - #### ####",
-                               
                                @"0#### - ######", nil];
     
     
     
     NSArray *jpPhoneFormats = [NSArray arrayWithObjects:
-                               
                                @"+81 ############",
-                               
                                @"001 $",
-                               
                                @"(0#) #######",
-                               
                                @"(0#) #### ####", nil];
     
     
     
     predefinedFormats = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         
                          usPhoneFormats, @"us",
-                         
                          ukPhoneFormats, @"uk",
-                         
                          jpPhoneFormats, @"jp",
-                         
                          nil];
     
     return self;
