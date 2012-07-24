@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ParseTransport.h"
+#import "PhoneNumberFormatter.h"
 
-@interface AddTutorSession : UIViewController <UITextFieldDelegate>
+@interface AddTutorSession : UIViewController <UITextFieldDelegate> {
+    PhoneNumberFormatter *phoneNumberFormatter;
+}
 
 @property (strong, nonatomic) IBOutlet UITextField *tutor4uID;
 @property (strong, nonatomic) IBOutlet UITextField *subject;

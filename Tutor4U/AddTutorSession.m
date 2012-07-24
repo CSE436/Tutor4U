@@ -47,7 +47,7 @@
     
     NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
     // Add the global channel
-    [channels addObject:@""];
+//    [channels addObject:@""];
     
     [push setChannels:channels];
     [push setPushToAndroid:false];
@@ -87,6 +87,11 @@
     subject.text = (NSString*)[std objectForKey:@"lastSubject"];
     hourlyRate.text = (NSString*)[std objectForKey:@"hourlyRate"];
     meetingPlace.text = (NSString*)[std objectForKey:@"location"];
+    
+    phoneNumberFormatter = [[PhoneNumberFormatter alloc] init];
+    [self.hourlyRate addTarget:self
+              action:@selector(autoFormatTextField:)
+    forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)viewDidUnload
@@ -143,5 +148,19 @@
     [self.view endEditing:YES];
 }
 
+
+- (void)autoFormatTextField:(id)sender {
+    
+    static BOOL myTextFieldSemaphore = NO;
+    if(myTextFieldSemaphore) return;
+    
+    myTextFieldSemaphore = YES;
+    if ( [hourlyRate.text rangeOfString:@"$"].location == NSNotFound ) {
+        hourlyRate.text = [NSString stringWithFormat:@"$%@",hourlyRate.text];
+    }
+    //hourlyRate.text = [phoneNumberFormatter format:hourlyRate.text withLocale:@"usDollar"];
+    myTextFieldSemaphore = NO;
+    
+}
 
 @end

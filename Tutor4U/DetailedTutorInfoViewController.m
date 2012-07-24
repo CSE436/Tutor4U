@@ -18,7 +18,7 @@
 @synthesize connectButton;
 
 
-@synthesize tutorIDString, subjectString, connectAcceptButtonText;
+@synthesize tutorIDString, subjectString, connectAcceptButtonText, hourlyRateString, locationString;
 
 
 
@@ -32,9 +32,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     tutorIDField.text = tutorIDString;
     subjectField.text = subjectString;
+    hourlyRate.text = hourlyRateString;
     [[connectAccept titleLabel] setText:connectAcceptButtonText];
-    
-
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

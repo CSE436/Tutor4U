@@ -35,12 +35,23 @@
 }
 
 -(void)subscribeOnlyTo:(NSString*)newChannel {
-    NSSet *channels = [PFPush getSubscribedChannels:nil];
-    for ( NSString *channel in [channels allObjects] ) {
-        [PFPush unsubscribeFromChannelInBackground:channel];
+
+    NSLog(@"subscribeOnlyTo");
+    if ( ![newChannel compare:currentChannel] && currentChannel != nil ) {
+        NSLog(@"Already Subscribed");
+        return;
+    } else {
+        if ( currentChannel != nil ) {
+            NSLog(@"Unsubcribing from %@",currentChannel);
+            currentChannel = @"";
+            [PFPush unsubscribeFromChannelInBackground:currentChannel];
+        }
+        if ( [newChannel length] > 0 ) {
+            currentChannel = newChannel;
+            NSLog(@"Subscribing to %@",newChannel);
+            [PFPush subscribeToChannelInBackground:newChannel];
+        }
     }
-    [PFPush subscribeToChannelInBackground:newChannel];
-    NSLog(@"Subscribing to %@",newChannel);
 }
 
 -(void)doneSearching {
@@ -54,7 +65,8 @@
     availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
     [myTableView reloadData];    // Allows all table view items to be updated to current items
     NSLog(@"FindTutorTabBar : Found [ %i ] Active Tutors", availableTutors.count);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"refreshData" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"refreshData" object:nil];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneSearching)];
     gestureRecognizer.cancelsTouchesInView = NO;
@@ -63,17 +75,11 @@
 
 -(void)createSession
 {
-    NSLog(@"Add Session ");
     [self.navigationController pushViewController:myTutorSession animated:YES];
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    NSLog(@"End Editing");
     [self refreshData];
-}
-
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"Cancel Pushed");
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
@@ -83,11 +89,10 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"search clicked");
-    if ( [searchBar.text length] > 0 ) {
-        filterSubject = [searchBar.text lowercaseString];
-        [self subscribeOnlyTo:filterSubject];
-    }
+//    if ( [searchBar.text length] > 0 ) {
+//        filterSubject = [searchBar.text lowercaseString];
+//        [self subscribeOnlyTo:filterSubject];
+//    }
     [subjectFilter resignFirstResponder];
 }
 
@@ -103,12 +108,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     parseTransport = [[ParseTransport alloc] init];
     myTutorSession = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
@@ -116,10 +115,6 @@
     addSessionButton = [[UIBarButtonItem alloc] initWithTitle:@"Add Sesson" style:UIBarButtonItemStylePlain target:self action:@selector(createSession)];  
     self.navigationController.topViewController.navigationItem.rightBarButtonItem = addSessionButton;
     [self.navigationController.topViewController setTitle:@"ActiveTutors"]; 
-
-     
-    NSLog(@"FindTutorViewController - viewDidLoad() ---");
-    
 }
 
 - (void)viewDidUnload

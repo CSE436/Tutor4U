@@ -14,6 +14,12 @@
 
 - (id)init {
     
+    NSArray *usDollarFormats = [NSArray arrayWithObjects:
+                                @"$.##",
+                                @"$#.##",
+                                @"$##.##",
+                                @"$###.##", nil];
+    
     NSArray *usPhoneFormats = [NSArray arrayWithObjects:
                                @"+1 (###) ###-####",
                                @"1 (###) ###-####",
@@ -41,6 +47,7 @@
     
     
     predefinedFormats = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         usDollarFormats, @"usDollar",
                          usPhoneFormats, @"us",
                          ukPhoneFormats, @"uk",
                          jpPhoneFormats, @"jp",

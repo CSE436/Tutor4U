@@ -34,7 +34,9 @@
     PFUser *currentUser = [PFUser currentUser];
     
     if ( currentUser ) {
-        NSLog(@"current User Exists");
+        // Subscribe to my personal username
+        [PFPush subscribeToChannelInBackground:currentUser.username];
+        
         if ( [currentUser objectForKey:@"emailVerified"] == nil ) {
             NSLog(@"Account Created Prior to Verification Enabled");
             UIAlertView *emailAlert = [[UIAlertView alloc] initWithTitle:@"E-Mail Verification" message:@"Please Check That Your E-Mail Address is valid.  A verification E-Mail will be sent." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -141,7 +143,7 @@
 // Sent to the delegate to determine whether the sign up request should be submitted to the server.
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
     BOOL informationComplete = YES;
-    NSLog(@"shouldBeginSignUp");
+    
     // loop through all of the submitted data
     for (id key in info) {
         NSString *field = [info objectForKey:key];

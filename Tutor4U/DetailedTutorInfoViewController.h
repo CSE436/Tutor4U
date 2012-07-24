@@ -10,13 +10,17 @@
 
 @interface DetailedTutorInfoViewController : UIViewController {
     IBOutlet UIButton* connectAccept;
-    IBOutlet UITextField *tutorIDField;
-    IBOutlet UITextField *subjectField;
+    IBOutlet UILabel *tutorIDField;
+    IBOutlet UILabel *subjectField;
+    IBOutlet UILabel *hourlyRate;
+    IBOutlet UILabel *location;
     
     NSMutableArray *studentRequests;
 }
 @property (retain,nonatomic) NSString* tutorIDString;
 @property (strong, nonatomic) NSString *subjectString;
+@property (retain, nonatomic) NSString* hourlyRateString;
+@property (retain, nonatomic) NSString* locationString;
 @property (retain,nonatomic) NSString* connectAcceptButtonText;
 @property (strong, nonatomic) IBOutlet UIButton *connectButton;
 

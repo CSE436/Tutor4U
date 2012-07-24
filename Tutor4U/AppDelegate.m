@@ -34,12 +34,22 @@
     // Tell Parse about the device token.
     [PFPush storeDeviceToken:newDeviceToken];
     // Subscribe to the global broadcast channel.
-    [PFPush subscribeToChannelInBackground:@""];
+    //   No global channel.  We want specific channels
+    //[PFPush subscribeToChannelInBackground:@""];
 }
 		
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    //NSLog(@"Push Notification Recieved");
-    [PFPush handlePush:userInfo];
+    NSLog(@"Push Notification Recieved");
+//    
+//    for ( NSString* key in userInfo ) {
+//        NSLog(@"%@:\t%@",key,[userInfo objectForKey:key]);
+//    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil userInfo:userInfo];
+    if ( [[userInfo objectForKey:@"alert"] rangeOfString:@"New Tutor Available"].location != NSNotFound ) {
+        NSLog(@"New Tutor Found Matching Your Filter");
+    }
+    //[PFPush handlePush:userInfo];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

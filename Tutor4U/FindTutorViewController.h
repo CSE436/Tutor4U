@@ -17,6 +17,7 @@
     IBOutlet UISearchBar *subjectFilter;
     
     NSString *filterSubject;
+    NSString *currentChannel;
 }
 
 @property (strong, atomic) ParseTransport *parseTransport;
