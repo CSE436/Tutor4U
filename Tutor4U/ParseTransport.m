@@ -70,6 +70,7 @@
 
 -(int)uploadTutor:(NSString *)_tutor4u_id :(NSString *)_subject :(NSString *)_hourlyRate :(NSString *)_location :(NSString *)_rating
 {
+    tutorSession = [self downloadTutor:_tutor4u_id];
     if ( !tutorSession) 
         tutorSession = [PFObject objectWithClassName:@"activeTutors"];
     

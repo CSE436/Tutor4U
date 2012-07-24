@@ -36,6 +36,25 @@
     } else {
         NSLog(@"Info: addMySession() : Uploaded your Tutor Session to Parse....");
     }
+    
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"New Tutor Available", @"alert",
+                          @"Increment", @"badge",
+                          subject.text, @"subject",
+                          myRating.text, @"rating",
+                          hourlyRate.text, @"hourlyRate",
+                          nil];
+    PFPush *push = [[PFPush alloc] init];
+    
+    NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
+    // Add the global channel
+    [channels addObject:@""];
+    
+    [push setChannels:channels];
+    [push setPushToAndroid:false];
+    [push expireAfterTimeInterval:86400];
+    [push setData:data];
+    [push sendPushInBackground];
 }
 
 //----------
