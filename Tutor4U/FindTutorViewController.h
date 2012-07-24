@@ -14,6 +14,9 @@
     NSMutableArray *availableTutors;
     BOOL outstandingSession;
     IBOutlet UITableView* myTableView;
+    IBOutlet UISearchBar *subjectFilter;
+    
+    NSString *filterSubject;
 }
 
 @property (strong, atomic) ParseTransport *parseTransport;

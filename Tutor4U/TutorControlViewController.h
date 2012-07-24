@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "ParseTransport.h"
 
 @interface TutorControlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate> {
     NSMutableArray *studentRequests;
+    ParseTransport *parseTransport;
+    IBOutlet UITableView* myTableView;
+    IBOutlet UISegmentedControl* activeState;
 }
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 -(IBAction)updateTutorProfile:(id)sender;
+- (IBAction)tutorStateChanged:(id)sender;
 
 @end

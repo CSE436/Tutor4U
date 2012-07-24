@@ -75,22 +75,26 @@
         tutorSession = [PFObject objectWithClassName:@"activeTutors"];
     
     [tutorSession setObject:_tutor4u_id forKey:@"Tutor4uID"];
-    if ( _rating )
+    
+    if ( _subject )
         [tutorSession setObject:_subject forKey:@"Subject"];
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"ERROR:  You must state what subject you wish to tutor for" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
         [alert show];
         return 1;
     }
-    if ( _rating ) {
+    
+    if ( _hourlyRate ) {
         [tutorSession setObject:_hourlyRate forKey:@"HourlyRate"];
     } else {
         [tutorSession setObject:[NSNull null] forKey:@"HourlyRate"];
     }
-    if ( _rating )
+    
+    if ( _location )
         [tutorSession setObject:_location forKey:@"Location"];
     else 
         [tutorSession setObject:[NSNull null] forKey:@"Location"];
+    
     if ( _rating )
         [tutorSession setObject:_rating forKey:@"Rating"];
     else {
@@ -176,6 +180,9 @@
 }
 -(int)dropTutor
 {
+    if ( tutorSession == nil ) {
+        tutorSession = [self downloadTutor:[PFUser currentUser].username];
+    }
     [tutorSession deleteInBackground];
     return T4U_SUCCESS;
 }

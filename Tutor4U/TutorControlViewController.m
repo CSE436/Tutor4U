@@ -8,6 +8,7 @@
 
 #import "TutorControlViewController.h"
 #import "DetailedTutorInfoViewController.h"
+#import "AddTutorSession.h"
 
 @interface TutorControlViewController ()
 
@@ -17,14 +18,39 @@
 
 @synthesize mapView;
 
+-(void)refreshData {
+//    studentRequests = (NSMutableArray *)[parseTransport downloadTutors];
+    [myTableView reloadData];
+}
+
+
 -(void)viewWillAppear:(BOOL)animated {
+    parseTransport = [[ParseTransport alloc] init];
+    
+    if ( [parseTransport downloadTutor:[PFUser currentUser].username] ) {
+        activeState.selectedSegmentIndex = 1;
+    } else {
+        activeState.selectedSegmentIndex = 0;
+    }
     
     studentRequests = [[NSMutableArray alloc] initWithCapacity:5];
     [studentRequests addObject:@"Student Request 1"];
     [studentRequests addObject:@"Student Request 2"];
     [studentRequests addObject:@"Student Request 3"];
     [studentRequests addObject:@"Student Request 4"];
-    
+}
+
+- (IBAction)tutorStateChanged:(id)sender {
+    UISegmentedControl* control = (UISegmentedControl*)sender;
+    if ( control.selectedSegmentIndex == 0 ) {
+        NSLog(@"Attempting to Drop Tutor");
+        [parseTransport dropTutor];
+    } else {
+//        myTutorSession
+        AddTutorSession *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
+        [self.navigationController pushViewController:nextView animated:YES];
+    }
+    //NSLog(@"state Changed: %@", control.selectedSegmentIndex);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,6 +61,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {

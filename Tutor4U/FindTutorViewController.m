@@ -20,28 +20,75 @@
 @synthesize addSessionButton;
 @synthesize myTutorSession;
 
+-(void)refreshData {
+    availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
+    if ( [subjectFilter.text length] > 0 ) {
+        for ( PFObject* tutor in [[availableTutors copy] reverseObjectEnumerator] ) {
+            NSString *_subject = [tutor objectForKey:@"Subject"];
+            if ( [[_subject lowercaseString] rangeOfString:filterSubject].location == NSNotFound ) {
+                NSLog(@"Removing Tutor:  %@\t%@",_subject,filterSubject);
+                [availableTutors removeObjectIdenticalTo:tutor];
+            }
+        }
+    }
+    [myTableView reloadData];
+}
 
+-(void)subscribeOnlyTo:(NSString*)newChannel {
+    NSSet *channels = [PFPush getSubscribedChannels:nil];
+    for ( NSString *channel in [channels allObjects] ) {
+        [PFPush unsubscribeFromChannelInBackground:channel];
+    }
+    [PFPush subscribeToChannelInBackground:newChannel];
+    NSLog(@"Subscribing to %@",newChannel);
+}
 
+-(void)doneSearching {
+    filterSubject = subjectFilter.text;
+    [self subscribeOnlyTo:filterSubject];
+    [subjectFilter resignFirstResponder];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
+    subjectFilter.delegate = self;
     availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
     [myTableView reloadData];    // Allows all table view items to be updated to current items
-    /*
-    for(int i=0; i < availableTutors.count; i++) {
-        PFObject *pfObj = [availableTutors objectAtIndex:i];
-        NSString *my_tutor_id = [pfObj objectForKey:@"Tutor4uID"];
-        NSLog(@"Showing Tutor[ %i ] %@ ",i,my_tutor_id);
-    }
-    */
     NSLog(@"FindTutorTabBar : Found [ %i ] Active Tutors", availableTutors.count);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"refreshData" object:nil];
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneSearching)];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    [self.tableView addGestureRecognizer:gestureRecognizer];
 }
+
 -(void)createSession
 {
     NSLog(@"Add Session ");
     [self.navigationController pushViewController:myTutorSession animated:YES];
 }
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    NSLog(@"End Editing");
+    [self refreshData];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Cancel Pushed");
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+                                                                                           target:self
+                                                                                           action:@selector(doneSearching)];
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
+    NSLog(@"search clicked");
+    if ( [searchBar.text length] > 0 ) {
+        filterSubject = [searchBar.text lowercaseString];
+        [self subscribeOnlyTo:filterSubject];
+    }
+    [subjectFilter resignFirstResponder];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -77,6 +124,7 @@
 
 - (void)viewDidUnload
 {
+    subjectFilter = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -109,10 +157,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if ( cell == nil ) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TutorInformationCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TutorInformationCell"];
     }
     // Configure the cell...
-    [[cell textLabel] setText:[[availableTutors objectAtIndex:indexPath.row] objectForKey:@"Tutor4uID"]];
+    NSDictionary* tutor = [availableTutors objectAtIndex:indexPath.row];
+    [[cell textLabel] setText:[tutor objectForKey:@"Tutor4uID"]];
+    [[cell detailTextLabel] setText:[tutor objectForKey:@"Subject"]];
     
     return cell;
 }

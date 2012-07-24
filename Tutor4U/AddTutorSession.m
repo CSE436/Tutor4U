@@ -19,7 +19,6 @@
 @synthesize hourlyRate;
 @synthesize meetingPlace;
 @synthesize myRating;
-
 @synthesize parseTransport;
 
 -(IBAction)addSession {
@@ -55,6 +54,8 @@
     [push expireAfterTimeInterval:86400];
     [push setData:data];
     [push sendPushInBackground];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //----------
