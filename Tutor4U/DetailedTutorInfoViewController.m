@@ -32,7 +32,17 @@
 -(void)viewWillAppear:(BOOL)animated {
     tutorIDField.text = tutorIDString;
     subjectField.text = subjectString;
-    hourlyRate.text = hourlyRateString;
+    
+    if ( hourlyRateString != nil ) 
+        hourlyRate.text = hourlyRateString;
+    else {
+        hourlyRate.text = @"$10.00";
+    }
+    if ( locationString != nil )
+        location.text = locationString;
+    else {
+        location.text = @"Negotiable";
+    }
     [[connectAccept titleLabel] setText:connectAcceptButtonText];
 }
 

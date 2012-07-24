@@ -176,6 +176,11 @@
     NSString *_subject = [myPfObject objectForKey:@"Subject"];
     [nextView setTutorIDString:_tutor_id];
     [nextView setSubjectString:_subject];
+    if ( [myPfObject objectForKey:@"HourlyRate"] != [NSNull null] )
+        [nextView setHourlyRateString:[myPfObject objectForKey:@"HourlyRate"]];
+    
+    if ( [myPfObject objectForKey:@"Location"] != [NSNull null] ) 
+        [nextView setLocationString:[myPfObject objectForKey:@"Location"]];
     
     NSLog(@" Tutor4uID [ %@ ] - Subject[ %@ ]",_tutor_id,_subject);
     [nextView setConnectAcceptButtonText:@"Connect"];
