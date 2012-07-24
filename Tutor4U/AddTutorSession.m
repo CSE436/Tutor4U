@@ -46,9 +46,6 @@
     PFPush *push = [[PFPush alloc] init];
     
     NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
-    // Add the global channel
-//    [channels addObject:@""];
-    
     [push setChannels:channels];
     [push setPushToAndroid:false];
     [push expireAfterTimeInterval:86400];

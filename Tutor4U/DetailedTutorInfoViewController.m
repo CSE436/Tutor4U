@@ -7,6 +7,7 @@
 //
 
 #import "DetailedTutorInfoViewController.h"
+#import "ParseTransport.h"
 
 @interface DetailedTutorInfoViewController ()
 
@@ -25,7 +26,22 @@
 -(void)connectRequest
 {
     NSLog(@"-----Implement a push/point-2-point message to this Tutor------");
+    PFUser* curUser = [PFUser currentUser];
     
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"Student Request", @"alert",
+                          @"Increment", @"badge",
+                          subjectString, @"subject",
+                          curUser, @"studentUser",
+                          nil];
+    PFPush *push = [[PFPush alloc] init];
+    
+    //NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
+    [push setChannels:[[NSArray alloc] initWithObjects:tutorIDString, nil]];
+    [push setPushToAndroid:false];
+    [push expireAfterTimeInterval:86400];
+    [push setData:data];
+    [push sendPushInBackground]; 
 }
 
 
