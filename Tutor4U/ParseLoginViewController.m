@@ -17,6 +17,17 @@
 
 //@synthesize myTabBarController;
 
+
+
+static BOOL viewControllerInForeground = NO;
+
++(BOOL)viewControllerInForeground {
+    return viewControllerInForeground;
+}
++(void)setViewControllerInForeground:(BOOL)newVal {
+    viewControllerInForeground = newVal;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,6 +39,21 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     NSLog(@"Parse Login View Controller");
+    if ( [ParseLoginViewController viewControllerInForeground] == NO ) {
+        logInViewController = [[PFLogInViewController alloc] init];
+        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+        
+        // Create the sign up view controller
+        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        
+        // Assign our sign up controller to be displayed from the login controller
+        [logInViewController setSignUpController:signUpViewController]; 
+
+        [self presentViewController:logInViewController animated:NO completion:NULL];
+        [ParseLoginViewController setViewControllerInForeground:YES];
+    }
+    
 }
 
 -(void)checkEmailVerification {
@@ -60,15 +86,13 @@
 	// Do any additional setup after loading the view.
     PFUser *currentUser = [PFUser currentUser];
     
-    currentUser = nil;
-    [PFUser logOut];
-    
     if ( currentUser ) {
         [self checkEmailVerification];
     } else {
         NSLog(@"Create Parse Login");
         // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        //PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
         // Create the sign up view controller
@@ -80,6 +104,7 @@
 
         
         // Present the log in view controller
+        [ParseLoginViewController setViewControllerInForeground:YES];
         [self presentViewController:logInViewController animated:NO completion:NULL];
     }
 }
@@ -96,26 +121,32 @@
 }
 
 
-
--(void)gotoTabbedView:(NSUInteger)tabNumber {
-    UITabBarController* myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    NSMutableArray *vcOnNavStack = [[NSMutableArray alloc] initWithCapacity:1];
-    [vcOnNavStack addObject:myTabBarController];
-    myTabBarController.selectedIndex = tabNumber;
-    [self.navigationController setViewControllers:[vcOnNavStack copy]];
-}
-
-
-//
-// It works.  But it makes the code from the tabBarController more messy...
 //
 //-(void)gotoTabbedView:(NSUInteger)tabNumber {
+//    UITabBarController* myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
 //    [self dismissViewControllerAnimated:NO completion:NULL];
+//    NSMutableArray *vcOnNavStack = [[NSMutableArray alloc] initWithCapacity:1];
+//    [vcOnNavStack addObject:myTabBarController];
+//    myTabBarController.selectedIndex = tabNumber;
+//    [self.navigationController setViewControllers:[vcOnNavStack copy]];
+//}
+
+
+//
+// It works.  Sort Of
+//
+-(void)gotoTabbedView:(NSUInteger)tabNumber {
+    // This is universal between the two methods
+    [self dismissViewControllerAnimated:NO completion:NULL];
+    
 //    UINavigationController* nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"LoggedInNavController"];
 //    ((UITabBarController*)(nextView.topViewController)).selectedIndex = tabNumber;
 //    [self presentModalViewController:nextView animated:NO];
-//}
+    
+    UITabBarController* nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
+    nextView.selectedIndex = tabNumber;
+    [self.navigationController pushViewController:nextView animated:NO];
+}
 
 
 

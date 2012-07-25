@@ -56,6 +56,10 @@
         location.text = @"Negotiable";
     }
     [[connectAccept titleLabel] setText:connectAcceptButtonText];
+    
+    
+    [self.tabBarController.navigationItem setHidesBackButton:NO];
+    [self.tabBarController.navigationItem setTitle:@"Tutor Information"];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

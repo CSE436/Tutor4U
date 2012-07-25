@@ -7,6 +7,7 @@
 //
 
 #import "AddTutorSession.h"
+#import "ParseLoginViewController.h"
 
 @interface AddTutorSession ()
 
@@ -73,6 +74,14 @@
     parseTransport = [[ParseTransport alloc] init];
 }
 
+-(void)logout {
+    [PFUser logOut];
+    [ParseTransport pushChannelManagement];
+    
+    [ParseLoginViewController setViewControllerInForeground:NO];
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     self.subject.delegate = self;
     self.hourlyRate.delegate = self;
@@ -89,6 +98,14 @@
     [self.hourlyRate addTarget:self
               action:@selector(autoFormatTextField:)
     forControlEvents:UIControlEventEditingChanged];
+    
+    
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+                                                                                               style:UIBarButtonItemStyleDone
+                                                                                              target:self 
+                                                                                              action:@selector(logout)];
+    [self.tabBarController.navigationItem setHidesBackButton:YES];
+    [self.tabBarController.navigationItem setTitle:@"Tutor Control"];
 }
 
 - (void)viewDidUnload

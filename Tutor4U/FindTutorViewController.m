@@ -8,6 +8,7 @@
 
 #import "FindTutorViewController.h"
 #import "DetailedTutorInfoViewController.h"
+#import "ParseLoginViewController.h"
 
 @interface FindTutorViewController ()
 
@@ -61,7 +62,11 @@
 }
 
 -(void)logout {
-    NSLog(@"find tutor logout");
+    [PFUser logOut];
+    [ParseTransport pushChannelManagement];
+    
+    [ParseLoginViewController setViewControllerInForeground:NO];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,15 +78,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"refreshData" object:nil];
     
     
-    [self.navigationItem setHidesBackButton:YES];
-//    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
-//                                                                                               style:UIBarButtonItemStyleDone
-//                                                                                              target:self 
-//                                                                                              action:@selector(logout)];
-    
+    // Used to Hide Keyboard
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneSearching)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:gestureRecognizer];
+    
+    
+    // Add Logout Button
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+                                                                                               style:UIBarButtonItemStyleDone
+                                                                                              target:self 
+                                                                                              action:@selector(logout)];
+    // Hide Back Button
+    [self.tabBarController.navigationItem setHidesBackButton:YES];
+    [self.tabBarController.navigationItem setTitle:@"Find Tutor"];
 }
 
 -(void)createSession

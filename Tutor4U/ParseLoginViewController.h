@@ -12,10 +12,11 @@
 #import "ParseTransport.h"
 
 @interface ParseLoginViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate> {
-    //PFLogInViewController *logInViewController;
+    PFLogInViewController *logInViewController;
 }
 
-
++(BOOL)viewControllerInForeground;
++(void)setViewControllerInForeground:(BOOL)newVal;
 //@property (strong, nonatomic) IBOutlet UITabBarController *myTabBarController;
 
 @end

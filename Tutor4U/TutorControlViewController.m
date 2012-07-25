@@ -81,6 +81,8 @@
     
     if ( [studentRequests count] > 0 )
         [defaults setObject:studentRequests forKey:@"unrespondedToRequests"];
+    
+    [self.tabBarController.navigationItem setTitle:@"Tutor Profile"];
 }
 
 - (IBAction)tutorStateChanged:(id)sender {

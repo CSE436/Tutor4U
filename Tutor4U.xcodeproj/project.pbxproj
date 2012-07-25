@@ -27,7 +27,6 @@
 		A9847EAA15B09B86003087DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9847EA915B09B86003087DB /* main.m */; };
 		A9847EAE15B09B86003087DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9847EAD15B09B86003087DB /* AppDelegate.m */; };
 		A9847EB415B09B86003087DB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9847EB215B09B86003087DB /* MainStoryboard_iPad.storyboard */; };
-		A9847EBF15B09EA4003087DB /* CreateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9847EBE15B09EA4003087DB /* CreateUserViewController.m */; };
 		A986272915BDF22000F858C3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A986272815BDF22000F858C3 /* Parse.framework */; };
 		A99E0EFC15B0A54F00C8A3EE /* FindTutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */; };
 		A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */; };
@@ -68,8 +67,6 @@
 		A9847EAC15B09B86003087DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A9847EAD15B09B86003087DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A9847EB315B09B86003087DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		A9847EBD15B09EA4003087DB /* CreateUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUserViewController.h; sourceTree = "<group>"; };
-		A9847EBE15B09EA4003087DB /* CreateUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUserViewController.m; sourceTree = "<group>"; };
 		A986272815BDF22000F858C3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A99E0EFA15B0A54F00C8A3EE /* FindTutorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindTutorViewController.h; sourceTree = "<group>"; };
 		A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindTutorViewController.m; sourceTree = "<group>"; };
@@ -167,24 +164,12 @@
 				A9847EB215B09B86003087DB /* MainStoryboard_iPad.storyboard */,
 				30F9E1F015B257D800D3F000 /* ParseGateway */,
 				A9847EA415B09B86003087DB /* Supporting Files */,
-				A9847EBD15B09EA4003087DB /* CreateUserViewController.h */,
-				A9847EBE15B09EA4003087DB /* CreateUserViewController.m */,
-				301C602515BC98E10057CDB9 /* AddTutorSession.h */,
-				301C602615BC98E10057CDB9 /* AddTutorSession.m */,
-				A99E0EFA15B0A54F00C8A3EE /* FindTutorViewController.h */,
-				A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */,
-				A99E0F0215B0A76600C8A3EE /* DetailedTutorInfoViewController.h */,
-				A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */,
-				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
-				A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */,
-				309AAED715B9251C00A372C7 /* ProfileViewController.h */,
-				309AAED815B9251C00A372C7 /* ProfileViewController.m */,
 				A9F4908C15BDB3FD00AEA9E5 /* ParseLoginViewController.h */,
 				A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */,
-				A9F4909315BDD09500AEA9E5 /* PhoneNumberFormatter.h */,
-				A9F4909415BDD09500AEA9E5 /* PhoneNumberFormatter.m */,
-				A9D6A1C815BFD82A00A6BC0D /* NotificationQueue.h */,
-				A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */,
+				A9F2500E15C06476002AD5E9 /* Tab 1 */,
+				A9F2500D15C0645A002AD5E9 /* Tab 2 */,
+				A9F2500C15C06448002AD5E9 /* Tab 3 */,
+				A9F2500B15C06420002AD5E9 /* Helper Files */,
 			);
 			path = Tutor4U;
 			sourceTree = "<group>";
@@ -198,6 +183,48 @@
 				A9847EAB15B09B86003087DB /* Tutor4U-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A9F2500B15C06420002AD5E9 /* Helper Files */ = {
+			isa = PBXGroup;
+			children = (
+				A9F4909315BDD09500AEA9E5 /* PhoneNumberFormatter.h */,
+				A9F4909415BDD09500AEA9E5 /* PhoneNumberFormatter.m */,
+				A9D6A1C815BFD82A00A6BC0D /* NotificationQueue.h */,
+				A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */,
+			);
+			name = "Helper Files";
+			sourceTree = "<group>";
+		};
+		A9F2500C15C06448002AD5E9 /* Tab 3 */ = {
+			isa = PBXGroup;
+			children = (
+				309AAED715B9251C00A372C7 /* ProfileViewController.h */,
+				309AAED815B9251C00A372C7 /* ProfileViewController.m */,
+			);
+			name = "Tab 3";
+			sourceTree = "<group>";
+		};
+		A9F2500D15C0645A002AD5E9 /* Tab 2 */ = {
+			isa = PBXGroup;
+			children = (
+				301C602515BC98E10057CDB9 /* AddTutorSession.h */,
+				301C602615BC98E10057CDB9 /* AddTutorSession.m */,
+				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
+				A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */,
+			);
+			name = "Tab 2";
+			sourceTree = "<group>";
+		};
+		A9F2500E15C06476002AD5E9 /* Tab 1 */ = {
+			isa = PBXGroup;
+			children = (
+				A99E0EFA15B0A54F00C8A3EE /* FindTutorViewController.h */,
+				A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */,
+				A99E0F0215B0A76600C8A3EE /* DetailedTutorInfoViewController.h */,
+				A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */,
+			);
+			name = "Tab 1";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +292,6 @@
 			files = (
 				A9847EAA15B09B86003087DB /* main.m in Sources */,
 				A9847EAE15B09B86003087DB /* AppDelegate.m in Sources */,
-				A9847EBF15B09EA4003087DB /* CreateUserViewController.m in Sources */,
 				A99E0EFC15B0A54F00C8A3EE /* FindTutorViewController.m in Sources */,
 				A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */,
 				A99E0F0F15B0B12700C8A3EE /* TutorControlViewController.m in Sources */,

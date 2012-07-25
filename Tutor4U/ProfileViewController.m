@@ -106,9 +106,8 @@
     currentUser = nil;
     [ParseTransport pushChannelManagement];
     
-    UIViewController *parentController = self.parentViewController;
-    [self.parentViewController dismissViewControllerAnimated:NO completion:nil];
-    [parentController.navigationController popToRootViewControllerAnimated:NO];
+    [ParseLoginViewController setViewControllerInForeground:NO];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -123,6 +122,8 @@
     state.delegate = self;
     zipCode.delegate = self;
     email.delegate = self;
+    
+    [self.tabBarController.navigationItem setHidesBackButton:YES];
     
     phoneNumberFormatter = [[PhoneNumberFormatter alloc] init];
     
@@ -141,17 +142,16 @@
     
     if ( currentUser )  {
         [self.tutor4uID setText:currentUser.username];
-//        if ( currentUser.isNew ) {
-//            self.tabBarController.navigationItem.title = @"Please Create Your Profile";
-//        } else {
-//            self.tabBarController.navigationItem.title = @"Update Your Profile";
-//        }
+        if ( currentUser.isNew ) {
+            self.tabBarController.navigationItem.title = @"Create Your Profile";
+        } else {
+            self.tabBarController.navigationItem.title = @"Update Your Profile";
+        }
 //    
-//        self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
-//                                                                                                   style:UIBarButtonItemStyleDone
-//                                                                                                  target:self 
-//                                                                                                  action:@selector(logout)];
-//        
+        self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+                                                                                                   style:UIBarButtonItemStyleDone
+                                                                                                  target:self 
+                                                                                                  action:@selector(logout)];
         self.email.text = currentUser.email;
         
         userProfile = [parseTransport getUserProfile:currentUser.username];
