@@ -92,7 +92,8 @@ static BOOL viewControllerInForeground = NO;
         NSLog(@"Create Parse Login");
         // Create the log in view controller
         //PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-        logInViewController = [[PFLogInViewController alloc] init];
+        //logInViewController = [[PFLogInViewController alloc] init];
+        logInViewController = [[LoginViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
         // Create the sign up view controller
@@ -220,6 +221,7 @@ static BOOL viewControllerInForeground = NO;
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
     NSLog(@"User dismissed the signUpViewController");
+    //exit(0);
 }
 
 
