@@ -40,7 +40,7 @@ static BOOL viewControllerInForeground = NO;
 -(void)viewWillAppear:(BOOL)animated {
     NSLog(@"Parse Login View Controller");
     if ( [ParseLoginViewController viewControllerInForeground] == NO ) {
-        logInViewController = [[PFLogInViewController alloc] init];
+        logInViewController = [[LoginViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
         // Create the sign up view controller
