@@ -11,9 +11,11 @@
 #import "SignUpViewController.h"
 #import "ParseTransport.h"
 
-@interface ParseLoginViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface ParseLoginViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate> {
+    //PFLogInViewController *logInViewController;
+}
 
 
-@property (strong, nonatomic) IBOutlet UITabBarController *myTabBarController;
+//@property (strong, nonatomic) IBOutlet UITabBarController *myTabBarController;
 
 @end

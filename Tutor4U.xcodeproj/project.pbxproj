@@ -33,6 +33,7 @@
 		A99E0EFC15B0A54F00C8A3EE /* FindTutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */; };
 		A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */; };
 		A99E0F0F15B0B12700C8A3EE /* TutorControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */; };
+		A9D6A1CA15BFD82A00A6BC0D /* NotificationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */; };
 		A9F4908E15BDB3FD00AEA9E5 /* ParseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */; };
 		A9F4909515BDD09500AEA9E5 /* PhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4909415BDD09500AEA9E5 /* PhoneNumberFormatter.m */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,8 @@
 		A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedTutorInfoViewController.m; sourceTree = "<group>"; };
 		A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorControlViewController.h; sourceTree = "<group>"; };
 		A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorControlViewController.m; sourceTree = "<group>"; };
+		A9D6A1C815BFD82A00A6BC0D /* NotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationQueue.h; sourceTree = "<group>"; };
+		A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationQueue.m; sourceTree = "<group>"; };
 		A9F4908C15BDB3FD00AEA9E5 /* ParseLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseLoginViewController.h; sourceTree = "<group>"; };
 		A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseLoginViewController.m; sourceTree = "<group>"; };
 		A9F4909315BDD09500AEA9E5 /* PhoneNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberFormatter.h; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */,
 				A9F4909315BDD09500AEA9E5 /* PhoneNumberFormatter.h */,
 				A9F4909415BDD09500AEA9E5 /* PhoneNumberFormatter.m */,
+				A9D6A1C815BFD82A00A6BC0D /* NotificationQueue.h */,
+				A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */,
 			);
 			path = Tutor4U;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				301C602715BC98E10057CDB9 /* AddTutorSession.m in Sources */,
 				A9F4908E15BDB3FD00AEA9E5 /* ParseLoginViewController.m in Sources */,
 				A9F4909515BDD09500AEA9E5 /* PhoneNumberFormatter.m in Sources */,
+				A9D6A1CA15BFD82A00A6BC0D /* NotificationQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

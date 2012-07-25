@@ -15,7 +15,7 @@
 
 @implementation ParseLoginViewController
 
-@synthesize myTabBarController;
+//@synthesize myTabBarController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +35,7 @@
     
     if ( currentUser ) {
         // Subscribe to my personal username
+        NSLog(@"Subscribing to %@",currentUser.username);
         [PFPush subscribeToChannelInBackground:currentUser.username];
         
         if ( [currentUser objectForKey:@"emailVerified"] == nil ) {
@@ -59,8 +60,9 @@
 	// Do any additional setup after loading the view.
     PFUser *currentUser = [PFUser currentUser];
     
-    [PFUser logOut];
     currentUser = nil;
+    [PFUser logOut];
+    
     if ( currentUser ) {
         [self checkEmailVerification];
     } else {
@@ -96,13 +98,25 @@
 
 
 -(void)gotoTabbedView:(NSUInteger)tabNumber {
-    myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
+    UITabBarController* myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
     [self dismissViewControllerAnimated:NO completion:NULL];
     NSMutableArray *vcOnNavStack = [[NSMutableArray alloc] initWithCapacity:1];
     [vcOnNavStack addObject:myTabBarController];
     myTabBarController.selectedIndex = tabNumber;
     [self.navigationController setViewControllers:[vcOnNavStack copy]];
 }
+
+
+//
+// It works.  But it makes the code from the tabBarController more messy...
+//
+//-(void)gotoTabbedView:(NSUInteger)tabNumber {
+//    [self dismissViewControllerAnimated:NO completion:NULL];
+//    UINavigationController* nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"LoggedInNavController"];
+//    ((UITabBarController*)(nextView.topViewController)).selectedIndex = tabNumber;
+//    [self presentModalViewController:nextView animated:NO];
+//}
+
 
 
 

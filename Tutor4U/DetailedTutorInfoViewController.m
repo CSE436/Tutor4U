@@ -15,24 +15,19 @@
 
 @implementation DetailedTutorInfoViewController
 
-
 @synthesize connectButton;
-
-
 @synthesize tutorIDString, subjectString, connectAcceptButtonText, hourlyRateString, locationString;
-
-
 
 -(void)connectRequest
 {
-    NSLog(@"-----Implement a push/point-2-point message to this Tutor------");
+   // NSLog(@"-----Implement a push/point-2-point message to this Tutor------");
     PFUser* curUser = [PFUser currentUser];
     
     NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                           @"Student Request", @"alert",
-                          @"Increment", @"badge",
+                          //@"Increment", @"badge",
                           subjectString, @"subject",
-                          curUser, @"studentUser",
+                          curUser.username, @"studentUser",
                           nil];
     PFPush *push = [[PFPush alloc] init];
     
@@ -42,6 +37,7 @@
     [push expireAfterTimeInterval:86400];
     [push setData:data];
     [push sendPushInBackground]; 
+    NSLog(@"Pushing to channel: %@",tutorIDString);
 }
 
 

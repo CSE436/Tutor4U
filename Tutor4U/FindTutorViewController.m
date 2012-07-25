@@ -60,6 +60,10 @@
     [subjectFilter resignFirstResponder];
 }
 
+-(void)logout {
+    NSLog(@"find tutor logout");
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     subjectFilter.delegate = self;
     availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
@@ -67,6 +71,13 @@
     NSLog(@"FindTutorTabBar : Found [ %i ] Active Tutors", availableTutors.count);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"refreshData" object:nil];
+    
+    
+    [self.navigationItem setHidesBackButton:YES];
+//    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+//                                                                                               style:UIBarButtonItemStyleDone
+//                                                                                              target:self 
+//                                                                                              action:@selector(logout)];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneSearching)];
     gestureRecognizer.cancelsTouchesInView = NO;
@@ -112,9 +123,9 @@
     parseTransport = [[ParseTransport alloc] init];
     myTutorSession = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
     
-    addSessionButton = [[UIBarButtonItem alloc] initWithTitle:@"Add Sesson" style:UIBarButtonItemStylePlain target:self action:@selector(createSession)];  
-    self.navigationController.topViewController.navigationItem.rightBarButtonItem = addSessionButton;
-    [self.navigationController.topViewController setTitle:@"ActiveTutors"]; 
+//    addSessionButton = [[UIBarButtonItem alloc] initWithTitle:@"Add Sesson" style:UIBarButtonItemStylePlain target:self action:@selector(createSession)];  
+//    self.navigationController.topViewController.navigationItem.rightBarButtonItem = addSessionButton;
+//    [self.navigationController.topViewController setTitle:@"ActiveTutors"]; 
 }
 
 - (void)viewDidUnload

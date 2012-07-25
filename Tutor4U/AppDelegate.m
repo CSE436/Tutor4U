@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "NotificationQueue.h"
+#import "ParseTransport.h"
 
 @implementation AppDelegate
 
@@ -26,6 +28,14 @@
     
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
+    NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if ( notification ) {
+        if ( [notification objectForKey:@"curUser"] != nil ) {
+        }
+        NSLog(@"We have a Push Notification!!");
+        //[[NotificationQueue sharedInstance] addMessage:notification];
+    }
+    
     return YES;
 }
 
@@ -35,19 +45,25 @@
     [PFPush storeDeviceToken:newDeviceToken];
     // Subscribe to the global broadcast channel.
     //   No global channel.  We want specific channels
+    
+    [ParseTransport pushChannelManagement];
     //[PFPush subscribeToChannelInBackground:@""];
 }
 		
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"Push Notification Recieved");
-//    
-//    for ( NSString* key in userInfo ) {
-//        NSLog(@"%@:\t%@",key,[userInfo objectForKey:key]);
-//    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil userInfo:userInfo];
-    if ( [[userInfo objectForKey:@"alert"] rangeOfString:@"New Tutor Available"].location != NSNotFound ) {
-        NSLog(@"New Tutor Found Matching Your Filter");
+    NSLog(@"Push Notification Recieved"); 
+    if ( [userInfo objectForKey:@"studentUser"] != nil ) {
+        NSLog(@"Found a studentUser");
+        //
+        [[NotificationQueue sharedInstance] addMessage:userInfo];
+        //
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshStudentRequests" object:nil userInfo:userInfo];
+    } else {
+        NSLog(@"Possibly a tutor message");
+        if ( [[userInfo objectForKey:@"alert"] rangeOfString:@"New Tutor Available"].location != NSNotFound ) {
+            NSLog(@"New Tutor Found Matching Your Filter");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
+        } 
     }
     //[PFPush handlePush:userInfo];
 }

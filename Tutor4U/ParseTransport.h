@@ -37,4 +37,6 @@
 -(int)dropStudent;
 -(void)logout;
 
++(void)pushChannelManagement;
+
 @end

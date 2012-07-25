@@ -9,6 +9,7 @@
 #import "TutorControlViewController.h"
 #import "DetailedTutorInfoViewController.h"
 #import "AddTutorSession.h"
+#import "NotificationQueue.h"
 
 @interface TutorControlViewController ()
 
@@ -23,6 +24,40 @@
     [myTableView reloadData];
 }
 
+-(void)refreshStudentRequestsFromQueue {
+    NotificationQueue *queue = [NotificationQueue sharedInstance];
+    NSLog(@"refreshStudentRequestsFromQueue");
+    while ( [queue count] > 0 ) {
+        
+        NSDictionary* message = [queue popMessage];
+        for ( NSString* key in message ) {
+            NSLog(@"%@:\t%@",key, [message objectForKey:key]);
+        }
+        [self handleNotification:message];
+    }
+}
+
+-(void)handleNotification:(NSDictionary*)newNotification {
+    NSString *studentUsername = [newNotification objectForKey:@"studentUser"];
+    NSLog(@"handleNotification:\t%@",studentUsername);
+    if ( [studentUsername length] > 0 ) {
+        if ( ![studentRequests containsObject:studentUsername] ) {
+            NSLog(@"studentRequests doesn't Contain %@",studentUsername);
+            [studentRequests addObject:studentUsername];
+            NSLog(@"%i",[studentRequests count]);
+        } else {
+            NSLog(@"studentRequests Contains %@",studentUsername);
+        }
+    }
+    NSLog(@"Reloading Tableview Data");
+    [myTableView reloadData];
+}
+
+-(void)refreshStudentRequests:(NSNotification*)notification {
+    NSDictionary *newNotification = [notification userInfo];
+    NSLog(@"Push Notification");
+    [self handleNotification:newNotification];
+}
 
 -(void)viewWillAppear:(BOOL)animated {
     parseTransport = [[ParseTransport alloc] init];
@@ -33,11 +68,19 @@
         activeState.selectedSegmentIndex = 0;
     }
     
-    studentRequests = [[NSMutableArray alloc] initWithCapacity:5];
-    [studentRequests addObject:@"Student Request 1"];
-    [studentRequests addObject:@"Student Request 2"];
-    [studentRequests addObject:@"Student Request 3"];
-    [studentRequests addObject:@"Student Request 4"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
+    
+    //if ( [defaults objectForKey:@"unrespondedToRequests"] )
+    studentRequests = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"unrespondedToRequests"]];
+    
+    if ( [[NotificationQueue sharedInstance] count] > 0 ) {
+        NSLog(@"refreshStudentRequestFroMQueue to Come");
+        [self refreshStudentRequestsFromQueue];
+    }
+    
+    if ( [studentRequests count] > 0 )
+        [defaults setObject:studentRequests forKey:@"unrespondedToRequests"];
 }
 
 - (IBAction)tutorStateChanged:(id)sender {
@@ -95,6 +138,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Student Requests: %i",[studentRequests count]);
     return [studentRequests count];
 }
 

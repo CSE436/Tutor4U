@@ -7,6 +7,8 @@
 //
 
 #import "ProfileViewController.h"
+#import "ParseLoginViewController.h"
+
 
 @interface ProfileViewController ()
 
@@ -99,6 +101,16 @@
     }
 }
 
+-(void)logout {
+    [PFUser logOut];
+    currentUser = nil;
+    [ParseTransport pushChannelManagement];
+    
+    UIViewController *parentController = self.parentViewController;
+    [self.parentViewController dismissViewControllerAnimated:NO completion:nil];
+    [parentController.navigationController popToRootViewControllerAnimated:NO];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     NSLog(@"viewWillAppear");
     tutor4uID.delegate = self;
@@ -129,12 +141,17 @@
     
     if ( currentUser )  {
         [self.tutor4uID setText:currentUser.username];
-        if ( currentUser.isNew ) {
-            self.navigationItem.title = @"Please Create Your Profile";
-        } else {
-            self.navigationItem.title = @"Update Your Profile";
-        }
-        
+//        if ( currentUser.isNew ) {
+//            self.tabBarController.navigationItem.title = @"Please Create Your Profile";
+//        } else {
+//            self.tabBarController.navigationItem.title = @"Update Your Profile";
+//        }
+//    
+//        self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+//                                                                                                   style:UIBarButtonItemStyleDone
+//                                                                                                  target:self 
+//                                                                                                  action:@selector(logout)];
+//        
         self.email.text = currentUser.email;
         
         userProfile = [parseTransport getUserProfile:currentUser.username];

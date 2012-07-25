@@ -18,6 +18,20 @@
     return self;
 }
 
+//
+// Check if we have a current user.
+// If not unsubscribe from all channels
+//
++(void)pushChannelManagement {
+    if ( [PFUser currentUser] == nil ) {
+        NSSet* subscribedChannels = [PFPush getSubscribedChannels:nil];
+        for ( NSString* channel in [subscribedChannels allObjects] ) {
+            [PFPush unsubscribeFromChannelInBackground:channel];
+        }
+    }
+}
+
+
 -(int)setUserProfile:(NSString *)_tutor4u_id :(NSString *)_firstName :(NSString *)_lastName :(NSString *)_phoneNumber
 {
     userProfile =  [self getUserProfile:[PFUser currentUser].username];   
@@ -119,7 +133,6 @@
     return T4U_SUCCESS;
 }
 
-
 -(PFObject *)getUserProfile:(NSString *)_tutor4u_id
 {     
     if(userProfile == nil) {
@@ -140,6 +153,7 @@
     }
     return userAddress;
 }
+
 -(PFObject *)downloadTutor:(NSString *)_tutor4u_id
 {
     PFQuery *query = [PFQuery queryWithClassName:@"activeTutors"];
