@@ -15,10 +15,6 @@
 
 @implementation ParseLoginViewController
 
-//@synthesize myTabBarController;
-
-
-
 static BOOL viewControllerInForeground = NO;
 
 +(BOOL)viewControllerInForeground {
@@ -123,27 +119,11 @@ static BOOL viewControllerInForeground = NO;
 
 
 //
-//-(void)gotoTabbedView:(NSUInteger)tabNumber {
-//    UITabBarController* myTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
-//    [self dismissViewControllerAnimated:NO completion:NULL];
-//    NSMutableArray *vcOnNavStack = [[NSMutableArray alloc] initWithCapacity:1];
-//    [vcOnNavStack addObject:myTabBarController];
-//    myTabBarController.selectedIndex = tabNumber;
-//    [self.navigationController setViewControllers:[vcOnNavStack copy]];
-//}
-
-
-//
 // It works.  Sort Of
 //
 -(void)gotoTabbedView:(NSUInteger)tabNumber {
     // This is universal between the two methods
     [self dismissViewControllerAnimated:NO completion:NULL];
-    
-//    UINavigationController* nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"LoggedInNavController"];
-//    ((UITabBarController*)(nextView.topViewController)).selectedIndex = tabNumber;
-//    [self presentModalViewController:nextView animated:NO];
-    
     UITabBarController* nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
     nextView.selectedIndex = tabNumber;
     [self.navigationController pushViewController:nextView animated:NO];

@@ -90,10 +90,12 @@
     
     [tutorSession setObject:_tutor4u_id forKey:@"Tutor4uID"];
     
-    if ( _subject )
+    NSLog(@"uploadTutor");
+    
+    if ( _subject != nil && [_subject length] > 0 )
         [tutorSession setObject:_subject forKey:@"Subject"];
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"ERROR:  You must state what subject you wish to tutor for" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"ERROR:  You must state what subject you wish to tutor for" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         return 1;
     }
