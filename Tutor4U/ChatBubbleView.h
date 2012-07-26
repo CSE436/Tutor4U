@@ -15,10 +15,15 @@ typedef enum {
     MESSAGE_RECIEVE
 } MessageType;
 
-@interface ChatBubbleView : UIView
+@interface ChatBubbleView : UIView {
+//    NSString *message;
+    NSDictionary* message;
+    MessageType msgType;
+}
 
-@property (nonatomic,readonly) MessageType type;
+//@property (nonatomic,readonly) MessageType type;
 //@property (nonatomic, retain, readonly) NSString* message;
--(void)setMessage:(NSString*)newMessage msgType:(MessageType)messageType;
+//-(void)setMessage:(NSString*)newMessage msgType:(MessageType)messageType;
+-(void)setMessage:(NSDictionary*)newMessage;
 
 @end

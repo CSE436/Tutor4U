@@ -10,9 +10,14 @@
 
 @implementation ChatBubbleCell
 
--(void)setMessage:(NSString*)newMessage msgType:(MessageType)messageType; {
+//-(void)setMessage:(NSString*)newMessage msgType:(MessageType)messageType; {
+//    message = newMessage;
+//    [cellView setMessage:newMessage msgType:messageType];
+//}
+
+-(void)setMessage:(NSDictionary *)newMessage {
     message = newMessage;
-    [cellView setMessage:newMessage msgType:messageType];
+    [cellView setMessage:newMessage];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -40,7 +45,7 @@
     // Configure the view for the selected state
 }
 
-- (CGFloat)calcCellHeight:(int)diff
++ (CGFloat)calcCellHeight:(NSDictionary*)msg diff:(int)diff
 {
     // Calculate text bounds and cell height here
     //
@@ -53,18 +58,20 @@
         label.font = [UIFont systemFontOfSize:14];
     }
     
-    label.text = message;
+    label.text = [msg objectForKey:@"message"];
     CGRect bubbleRect = [label textRectForBounds:bounds limitedToNumberOfLines:10];
     CGFloat ret = bubbleRect.size.height + 5 + 5 + 5; // bubble height
     
-    if (diff > CHAT_BUBBLE_TIMESTAMP_DIFF) {
-        needTimestamp = YES;
-        ret += 26;
-    }
-    else {
-        needTimestamp = NO;
-        ret += 5;
-    }
+    [msg setValue:[NSValue valueWithCGRect:bubbleRect] forKey:@"bubbleRect"];
+//    
+//    if (diff > CHAT_BUBBLE_TIMESTAMP_DIFF) {
+//        needTimestamp = YES;
+//        ret += 26;
+//    }
+//    else {
+//        needTimestamp = NO;
+//        ret += 5;
+//    }
     
     return ret;
 }

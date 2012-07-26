@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="otn-AG-o9R">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
@@ -491,7 +490,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="updateTutorProfile:" destination="Zg1-gR-a0h" eventType="touchUpInside" id="Qef-Fg-g2A"/>
                                     <segue destination="A7F-ns-R1f" kind="push" id="e2Z-26-zkX"/>
                                 </connections>
                             </button>
@@ -559,7 +557,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="sendMessage" destination="ODd-Qd-HnA" eventType="touchUpInside" id="pgn-GI-d6U"/>
+                                            <action selector="sendMessage" destination="ODd-Qd-HnA" eventType="touchUpInside" id="NjP-BU-8H4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -868,81 +866,6 @@
             <point key="canvasLocation" x="1014" y="-13"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AddTutorSession" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddTutorSession.h"/>
-            <relationships>
-                <relationship kind="action" name="addSession"/>
-                <relationship kind="outlet" name="hourlyRate" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="meetingPlace" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="myRating" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="subject" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tutor4uID" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ChatBubbleCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChatBubbleCell.h"/>
-        </class>
-        <class className="DetailedStudentRequestViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailedStudentRequestViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="sendMessage"/>
-                <relationship kind="outlet" name="messageField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="plateView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="sendButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DetailedTutorInfoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailedTutorInfoViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="connectAccept" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="connectButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hourlyRate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="location" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="subjectField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tutorIDField" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FindTutorViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FindTutorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="addSessionButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="myTutorSession" candidateClass="AddTutorSession"/>
-                <relationship kind="outlet" name="subjectFilter" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="ParseLoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ParseLoginViewController.h"/>
-        </class>
-        <class className="ProfileViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="updateUserProfile"/>
-                <relationship kind="outlet" name="apartment" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="state" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="streetAddr" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tutor4uID" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="zipCode" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="TutorControlViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TutorControlViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="tutorStateChanged:"/>
-                <relationship kind="action" name="updateTutorProfile:"/>
-                <relationship kind="outlet" name="activeState" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

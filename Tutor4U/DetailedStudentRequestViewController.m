@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "DetailedStudentRequestViewController.h"
+#import "ParseTransport.h"
 #import "ChatBubbleCell.h"
+#import "DetailedStudentRequestViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface DetailedStudentRequestViewController ()
@@ -32,10 +33,27 @@
     [messageField resignFirstResponder];
 }
 
+-(UIImage*)imageFromColor:(UIColor*)color
+{
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,
+                                   [color CGColor]);
+    //  [[UIColor colorWithRed:222./255 green:227./255 blue: 229./255 alpha:1] CGColor]) ;
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     if ( messages == nil ) {
         messages = [[NSMutableArray alloc] init];
     }
+    
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
     
     // Make tableview all one color
     myTableView.separatorColor = [UIColor colorWithRed:0.859 green:0.886 blue:0.929 alpha:1.0];
@@ -77,30 +95,80 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(IBAction)sendMessage {
+- (IBAction)sendMessage {
+    if ( [messageField.text length] > 0 ) {
+    
+        NSString *username = [PFUser currentUser].username;
+    
+        NSLog(@"%@ -> %@:\n\t%@",username,studentName,messageField.text);
+//    
+        NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSString stringWithFormat:@"New Message From %@",username], @"alert",
+                          username, @"userName",
+                          messageField.text, @"message",
+                          [[NSNumber alloc] initWithInt:MESSAGE_RECIEVE], @"messageType",
+                          nil];
+        PFPush *push = [[PFPush alloc] init];
+    
+        //NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
+        [push setChannels:[[NSArray alloc] initWithObjects:studentName, nil]];
+        [push setPushToAndroid:false];
+        [push expireAfterTimeInterval:86400];
+        [push setData:data];
+        [push sendPushInBackground];
+        
+        NSMutableDictionary *newMessage = [[NSMutableDictionary alloc] initWithDictionary:data];
+        [newMessage removeObjectForKey:@"messageType"];
+        [newMessage setObject:[[NSNumber alloc] initWithInt:MESSAGE_SEND] forKey:@"messageType"];
+        [messages addObject:newMessage];
+        
+        [myTableView reloadData];
+    }
     messageField.text = @"";
     [self hideKeyboard];
 }
 
 #pragma mark UITableViewDataSource
 
+//
+// Called Prior to cellForRow
+//
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    //NSLog(@"heightForRow");
+    NSDictionary *message = [messages objectAtIndex:indexPath.row];
+    CGFloat ret = [ChatBubbleCell calcCellHeight:message diff:0];
+    
+    
+//    CGRect rect = [((NSValue*)[message objectForKey:@"bubbleRect"]) CGRectValue];
+//    NSLog(@"(%f,%f) -> (%f,%f)",rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    
+    [messages removeObjectAtIndex:indexPath.row];
+    [messages insertObject:message atIndex:indexPath.row];
+    
+    return ret;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //NSLog(@"numberOfRows:  %i",[messages count]);
     return [messages count];
 }
 
+//
+//  Called after heightForRowAtIndexPath
+//
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //NSLog(@"cellForRow");
     ChatBubbleCell *cell = (ChatBubbleCell*)[tableView dequeueReusableCellWithIdentifier:@"ChatBubbleCell"];
+    
     if ( cell == nil ) {
         cell = [[ChatBubbleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChatBubbleCell"];
-        NSDictionary *message = [messages objectAtIndex:indexPath.row];
-        [cell setMessage:[message objectForKey:@"message"] msgType:(MessageType)[message objectForKey:@"messageType"]];
-        
     }
-    return nil;
+    
+    NSDictionary *message = [messages objectAtIndex:indexPath.row];
+//    [cell setMessage:[message objectForKey:@"message"] msgType:(MessageType)[[message objectForKey:@"messageType"] intValue]];
+    [cell setMessage:message];
+    
+    return cell;
 }
 
 #pragma mark UITextFieldDelegate

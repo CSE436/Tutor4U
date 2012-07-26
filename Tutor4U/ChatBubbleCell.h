@@ -15,13 +15,16 @@
 
 @interface ChatBubbleCell : UITableViewCell {
     ChatBubbleView*     cellView;
-    NSString*           message;
+//    NSString*           message;
+    NSDictionary*       message;
     BOOL                needTimestamp;
+    CGRect             bubbleRect;
 }
 
 //@property (retain, nonatomic) NSString* message;
--(void)setMessage:(NSString*)newMessage msgType:(MessageType)messageType;
-
+//-(void)setMessage:(NSString*)newMessage msgType:(MessageType)messageType;
+-(void)setMessage:(NSDictionary*)newMessage;
++ (CGFloat)calcCellHeight:(NSDictionary*)msg diff:(int)diff;
 
 
 @end
