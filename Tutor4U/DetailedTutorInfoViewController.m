@@ -31,7 +31,6 @@
                           nil];
     PFPush *push = [[PFPush alloc] init];
     
-    //NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
     [push setChannels:[[NSArray alloc] initWithObjects:tutorIDString, nil]];
     [push setPushToAndroid:false];
     [push expireAfterTimeInterval:86400];
