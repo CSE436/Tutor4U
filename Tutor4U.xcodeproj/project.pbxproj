@@ -32,6 +32,10 @@
 		A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */; };
 		A99E0F0F15B0B12700C8A3EE /* TutorControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */; };
 		A9D6A1CA15BFD82A00A6BC0D /* NotificationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */; };
+		A9EA0BE615C1D34800BA2E92 /* DetailedStudentRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0BE515C1D34800BA2E92 /* DetailedStudentRequestViewController.m */; };
+		A9EA0BEA15C1D65D00BA2E92 /* ChatBubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0BE915C1D65D00BA2E92 /* ChatBubbleCell.m */; };
+		A9EA0BED15C1D6A700BA2E92 /* ChatBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0BEC15C1D6A700BA2E92 /* ChatBubbleView.m */; };
+		A9EA0BF315C1E2A500BA2E92 /* NotificationQueue_Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0BF215C1E2A500BA2E92 /* NotificationQueue_Conversation.m */; };
 		A9F2500915BFFACC002AD5E9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F2500715BFFACC002AD5E9 /* MainStoryboard_iPhone.storyboard */; };
 		A9F4908E15BDB3FD00AEA9E5 /* ParseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */; };
 		A9F4909515BDD09500AEA9E5 /* PhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4909415BDD09500AEA9E5 /* PhoneNumberFormatter.m */; };
@@ -76,6 +80,14 @@
 		A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorControlViewController.m; sourceTree = "<group>"; };
 		A9D6A1C815BFD82A00A6BC0D /* NotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationQueue.h; sourceTree = "<group>"; };
 		A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationQueue.m; sourceTree = "<group>"; };
+		A9EA0BE415C1D34800BA2E92 /* DetailedStudentRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedStudentRequestViewController.h; sourceTree = "<group>"; };
+		A9EA0BE515C1D34800BA2E92 /* DetailedStudentRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedStudentRequestViewController.m; sourceTree = "<group>"; };
+		A9EA0BE815C1D65D00BA2E92 /* ChatBubbleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBubbleCell.h; sourceTree = "<group>"; };
+		A9EA0BE915C1D65D00BA2E92 /* ChatBubbleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBubbleCell.m; sourceTree = "<group>"; };
+		A9EA0BEB15C1D6A700BA2E92 /* ChatBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBubbleView.h; sourceTree = "<group>"; };
+		A9EA0BEC15C1D6A700BA2E92 /* ChatBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBubbleView.m; sourceTree = "<group>"; };
+		A9EA0BF115C1E2A500BA2E92 /* NotificationQueue_Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationQueue_Conversation.h; sourceTree = "<group>"; };
+		A9EA0BF215C1E2A500BA2E92 /* NotificationQueue_Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationQueue_Conversation.m; sourceTree = "<group>"; };
 		A9F2500815BFFACC002AD5E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		A9F4908C15BDB3FD00AEA9E5 /* ParseLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseLoginViewController.h; sourceTree = "<group>"; };
 		A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseLoginViewController.m; sourceTree = "<group>"; };
@@ -185,6 +197,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A9EA0BE715C1D62500BA2E92 /* Chat Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9EA0BE415C1D34800BA2E92 /* DetailedStudentRequestViewController.h */,
+				A9EA0BE515C1D34800BA2E92 /* DetailedStudentRequestViewController.m */,
+				A9EA0BE815C1D65D00BA2E92 /* ChatBubbleCell.h */,
+				A9EA0BE915C1D65D00BA2E92 /* ChatBubbleCell.m */,
+				A9EA0BEB15C1D6A700BA2E92 /* ChatBubbleView.h */,
+				A9EA0BEC15C1D6A700BA2E92 /* ChatBubbleView.m */,
+			);
+			name = "Chat Controllers";
+			sourceTree = "<group>";
+		};
 		A9F2500B15C06420002AD5E9 /* Helper Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +217,8 @@
 				A9F4909415BDD09500AEA9E5 /* PhoneNumberFormatter.m */,
 				A9D6A1C815BFD82A00A6BC0D /* NotificationQueue.h */,
 				A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */,
+				A9EA0BF115C1E2A500BA2E92 /* NotificationQueue_Conversation.h */,
+				A9EA0BF215C1E2A500BA2E92 /* NotificationQueue_Conversation.m */,
 			);
 			name = "Helper Files";
 			sourceTree = "<group>";
@@ -208,6 +235,7 @@
 		A9F2500D15C0645A002AD5E9 /* Tab 2 */ = {
 			isa = PBXGroup;
 			children = (
+				A9EA0BE715C1D62500BA2E92 /* Chat Controllers */,
 				301C602515BC98E10057CDB9 /* AddTutorSession.h */,
 				301C602615BC98E10057CDB9 /* AddTutorSession.m */,
 				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
@@ -303,6 +331,10 @@
 				A9F4908E15BDB3FD00AEA9E5 /* ParseLoginViewController.m in Sources */,
 				A9F4909515BDD09500AEA9E5 /* PhoneNumberFormatter.m in Sources */,
 				A9D6A1CA15BFD82A00A6BC0D /* NotificationQueue.m in Sources */,
+				A9EA0BE615C1D34800BA2E92 /* DetailedStudentRequestViewController.m in Sources */,
+				A9EA0BEA15C1D65D00BA2E92 /* ChatBubbleCell.m in Sources */,
+				A9EA0BED15C1D6A700BA2E92 /* ChatBubbleView.m in Sources */,
+				A9EA0BF315C1E2A500BA2E92 /* NotificationQueue_Conversation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,6 +37,7 @@
     [push setData:data];
     [push sendPushInBackground]; 
     NSLog(@"Pushing to channel: %@",tutorIDString);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

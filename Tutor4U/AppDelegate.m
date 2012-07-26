@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "NotificationQueue.h"
+#import "NotificationQueue_Conversation.h"
 #import "ParseTransport.h"
 
 @implementation AppDelegate
@@ -59,11 +60,14 @@
         //
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshStudentRequests" object:nil userInfo:userInfo];
     } else {
-        NSLog(@"Possibly a tutor message");
         if ( [[userInfo objectForKey:@"alert"] rangeOfString:@"New Tutor Available"].location != NSNotFound ) {
             NSLog(@"New Tutor Found Matching Your Filter");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
-        } 
+        } else if ( [userInfo objectForKey:@"message"] != nil ) {
+            [[NotificationQueue_Conversation sharedInstance] addMessage:userInfo 
+                                                                   user:[userInfo objectForKey:@"userName"] 
+                                                               fromUser:[userInfo objectForKey:@"userName"]];
+        }
     }
     //[PFPush handlePush:userInfo];
 }

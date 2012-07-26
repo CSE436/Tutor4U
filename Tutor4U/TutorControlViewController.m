@@ -7,7 +7,7 @@
 //
 
 #import "TutorControlViewController.h"
-#import "DetailedTutorInfoViewController.h"
+#import "DetailedStudentRequestViewController.h"
 #import "AddTutorSession.h"
 #import "NotificationQueue.h"
 
@@ -167,10 +167,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    DetailedStudentRequestViewController *nextView = [self.storyboard 
+                                                      instantiateViewControllerWithIdentifier:@"DetailedStudentRequestInfo"];
 //    DetailedTutorInfoViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailedTutorInfo"];
-//    [nextView setTutorIDString:[studentRequests objectAtIndex:indexPath.row]];
-//    [nextView setConnectAcceptButtonText:@"Accept"];
-//    [self.navigationController pushViewController:nextView animated:YES];
+    [nextView setStudentName:cell.textLabel.text];
+    [self.navigationController pushViewController:nextView animated:YES];
 }
 
 @end

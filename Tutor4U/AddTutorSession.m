@@ -39,7 +39,7 @@
     
     NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                           @"New Tutor Available", @"alert",
-                          @"Increment", @"badge",
+                          //@"Increment", @"badge",
                           subject.text, @"subject",
                           myRating.text, @"rating",
                           hourlyRate.text, @"hourlyRate",
