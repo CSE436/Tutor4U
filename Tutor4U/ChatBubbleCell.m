@@ -17,6 +17,10 @@
 
 -(void)setMessage:(NSDictionary *)newMessage {
     message = newMessage;
+    if ( cellView == nil ) {
+        cellView = [[ChatBubbleView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:cellView];
+    }
     [cellView setMessage:newMessage];
 }
 

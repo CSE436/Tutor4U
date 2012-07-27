@@ -20,6 +20,8 @@
 		30F9E1E515B256C500D3F000 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D415B2552B00D3F000 /* QuartzCore.framework */; };
 		30F9E1EE15B257B400D3F000 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F9E1EA15B257B400D3F000 /* LoginViewController.m */; };
 		30F9E1EF15B257B400D3F000 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F9E1EC15B257B400D3F000 /* SignUpViewController.m */; };
+		A912978E15C27FE20028626F /* Balloon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A912978C15C27FE20028626F /* Balloon_1.png */; };
+		A912978F15C27FE20028626F /* Balloon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A912978D15C27FE20028626F /* Balloon_2.png */; };
 		A9847E9E15B09B86003087DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9847E9D15B09B86003087DB /* UIKit.framework */; };
 		A9847EA015B09B86003087DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9847E9F15B09B86003087DB /* Foundation.framework */; };
 		A9847EA215B09B86003087DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9847EA115B09B86003087DB /* CoreGraphics.framework */; };
@@ -60,6 +62,8 @@
 		30F9E1EA15B257B400D3F000 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		30F9E1EB15B257B400D3F000 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		30F9E1EC15B257B400D3F000 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		A912978C15C27FE20028626F /* Balloon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon_1.png; sourceTree = "<group>"; };
+		A912978D15C27FE20028626F /* Balloon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon_2.png; sourceTree = "<group>"; };
 		A9847E9915B09B86003087DB /* Tutor4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutor4U.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9847E9D15B09B86003087DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9847E9F15B09B86003087DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,6 +135,15 @@
 			name = ParseGateway;
 			sourceTree = "<group>";
 		};
+		A912978B15C27FE20028626F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A912978C15C27FE20028626F /* Balloon_1.png */,
+				A912978D15C27FE20028626F /* Balloon_2.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		A9847E8E15B09B86003087DB = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +183,7 @@
 		A9847EA315B09B86003087DB /* Tutor4U */ = {
 			isa = PBXGroup;
 			children = (
+				A912978B15C27FE20028626F /* Images */,
 				A9847EAC15B09B86003087DB /* AppDelegate.h */,
 				A9847EAD15B09B86003087DB /* AppDelegate.m */,
 				A9F2500715BFFACC002AD5E9 /* MainStoryboard_iPhone.storyboard */,
@@ -308,6 +322,8 @@
 				A9847EA815B09B86003087DB /* InfoPlist.strings in Resources */,
 				A9847EB415B09B86003087DB /* MainStoryboard_iPad.storyboard in Resources */,
 				A9F2500915BFFACC002AD5E9 /* MainStoryboard_iPhone.storyboard in Resources */,
+				A912978E15C27FE20028626F /* Balloon_1.png in Resources */,
+				A912978F15C27FE20028626F /* Balloon_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

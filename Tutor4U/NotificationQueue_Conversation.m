@@ -32,7 +32,18 @@ static NotificationQueue_Conversation* sharedInstance = nil;
 }
 
 -(void)addMessage:(NSDictionary*)message user:(NSString*)userName fromUser:(NSString*)fromUser {
-    
+    static int messageNumber = 1;
+    NSLog(@"New Message From %@:\t%i",fromUser,messageNumber++);
+    if ( ![userArray containsObject:userName] )
+        [userArray addObject:userName];
+  
+    NSMutableArray *messagesFromUser = [[NSMutableArray alloc] initWithArray:[messageArray objectForKey:userName]];
+    NSLog(@"Before Add:  %i",[messagesFromUser count]);
+    [messagesFromUser addObject:message];
+    NSLog(@"After Add:  %i",[messagesFromUser count]);
+    [messageArray removeObjectForKey:userName];
+    [messageArray setObject:messagesFromUser forKey:userName];
+    NSLog(@"Finish addMessage");
 }
 
 -(NSArray*)getMessages:(NSString*)userName {

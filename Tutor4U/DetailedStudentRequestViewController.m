@@ -9,6 +9,7 @@
 #import "ParseTransport.h"
 #import "ChatBubbleCell.h"
 #import "DetailedStudentRequestViewController.h"
+#import "NotificationQueue_Conversation.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface DetailedStudentRequestViewController ()
@@ -47,6 +48,12 @@
     return img;
 }
 
+-(void)refreshData {
+    NSLog(@"refreshData");
+    messages = [[NSMutableArray alloc] initWithArray:[[NotificationQueue_Conversation sharedInstance] getMessages:studentName]];
+    [myTableView reloadData];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     if ( messages == nil ) {
         messages = [[NSMutableArray alloc] init];
@@ -64,6 +71,8 @@
     gestureRecognizer.cancelsTouchesInView = NO;
     [myTableView addGestureRecognizer:gestureRecognizer];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"refreshConversation" object:nil];
+    
     // Add Border
     [messageField.layer setBorderColor:[UIColor darkGrayColor].CGColor];
     messageField.layer.borderWidth = 1;
@@ -116,13 +125,18 @@
         [push expireAfterTimeInterval:86400];
         [push setData:data];
         [push sendPushInBackground];
-        
+                
         NSMutableDictionary *newMessage = [[NSMutableDictionary alloc] initWithDictionary:data];
         [newMessage removeObjectForKey:@"messageType"];
         [newMessage setObject:[[NSNumber alloc] initWithInt:MESSAGE_SEND] forKey:@"messageType"];
-        [messages addObject:newMessage];
+
+        NSLog(@"Add Message");
+        [[NotificationQueue_Conversation sharedInstance] addMessage:newMessage
+                                                               user:studentName 
+                                                           fromUser:username];
         
-        [myTableView reloadData];
+//        [messages addObject:newMessage];
+        [self refreshData];
     }
     messageField.text = @"";
     [self hideKeyboard];
@@ -141,7 +155,6 @@
     
 //    CGRect rect = [((NSValue*)[message objectForKey:@"bubbleRect"]) CGRectValue];
 //    NSLog(@"(%f,%f) -> (%f,%f)",rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-    
     [messages removeObjectAtIndex:indexPath.row];
     [messages insertObject:message atIndex:indexPath.row];
     
@@ -149,7 +162,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSLog(@"numberOfRows:  %i",[messages count]);
+    NSLog(@"numberOfRows:  %i",[messages count]);
     return [messages count];
 }
 
@@ -157,17 +170,15 @@
 //  Called after heightForRowAtIndexPath
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //NSLog(@"cellForRow");
     ChatBubbleCell *cell = (ChatBubbleCell*)[tableView dequeueReusableCellWithIdentifier:@"ChatBubbleCell"];
     
     if ( cell == nil ) {
         cell = [[ChatBubbleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChatBubbleCell"];
     }
     
-    NSDictionary *message = [messages objectAtIndex:indexPath.row];
-//    [cell setMessage:[message objectForKey:@"message"] msgType:(MessageType)[[message objectForKey:@"messageType"] intValue]];
-    [cell setMessage:message];
     
+    NSDictionary *message = [messages objectAtIndex:indexPath.row];    
+    [cell setMessage:message];
     return cell;
 }
 

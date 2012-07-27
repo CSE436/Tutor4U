@@ -60,11 +60,11 @@
         //
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshStudentRequests" object:nil userInfo:userInfo];
     } else {
-        if ( [userInfo objectForKey:@"message"] != nil ) {
-            NSLog(@"New Message");
-            [[NotificationQueue_Conversation sharedInstance] addMessage:userInfo 
+        if ( [userInfo objectForKey:@"message"] != nil ) {            
+            [[NotificationQueue_Conversation sharedInstance] addMessage:[NSMutableDictionary dictionaryWithDictionary:userInfo]
                                                                    user:[userInfo objectForKey:@"userName"] 
                                                                fromUser:[userInfo objectForKey:@"userName"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshConversation" object:nil];
         } else if ( [userInfo objectForKey:@"hourlyRate"] != nil ) {
             NSLog(@"New Tutor Found Matching Your Filter");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
