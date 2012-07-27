@@ -60,6 +60,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    parseTransport = [[ParseTransport alloc] init];
+    
     if ( [parseTransport downloadTutor:[PFUser currentUser].username] ) {
         activeState.selectedSegmentIndex = 1;
     } else {
@@ -80,8 +82,20 @@
     if ( [studentRequests count] > 0 )
         [defaults setObject:studentRequests forKey:@"unrespondedToRequests"];
     
-    [self.tabBarController.navigationItem setTitle:@"Messaging Center"];
-    //Just high the join button if you are not on availableTutors screen - 
+    [self.tabBarController.navigationItem setTitle:@"Tutor Profile"];
+}
+
+- (IBAction)tutorStateChanged:(id)sender {
+    UISegmentedControl* control = (UISegmentedControl*)sender;
+    if ( control.selectedSegmentIndex == 0 ) {
+        NSLog(@"Attempting to Drop Tutor");
+        [parseTransport dropTutor];
+    } else {
+//        myTutorSession
+        AddTutorSession *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
+        [self.navigationController pushViewController:nextView animated:YES];
+    }
+    //NSLog(@"state Changed: %@", control.selectedSegmentIndex);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -97,7 +111,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    parseTransport = [[ParseTransport alloc] init];
 }
 
 - (void)viewDidUnload
@@ -143,6 +156,10 @@
     [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
     
     return cell;
+    
+}
+
+-(IBAction)updateTutorProfile:(id)sender {
     
 }
 
