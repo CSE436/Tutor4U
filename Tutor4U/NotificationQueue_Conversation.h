@@ -21,4 +21,7 @@
 -(NSArray*)getUsernames;
 -(NSUInteger)count;
 
+
+-(void)saveToDisk;
+-(void)loadFromDisk;
 @end

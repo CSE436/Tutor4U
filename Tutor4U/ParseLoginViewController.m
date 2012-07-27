@@ -8,6 +8,7 @@
 
 #import "ParseLoginViewController.h"
 #import "ProfileViewController.h"
+#import "NotificationQueue_Conversation.h"
 
 @interface ParseLoginViewController ()
 
@@ -148,7 +149,8 @@ static BOOL viewControllerInForeground = NO;
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    NSLog(@"did Log In - Change this so it doesn't goto profile creation");
+    //NSLog(@"did Log In - Change this so it doesn't goto profile creation");
+    [[NotificationQueue_Conversation sharedInstance] loadFromDisk];
     [self checkEmailVerification];
     //[self gotoTabbedView:2];
 }

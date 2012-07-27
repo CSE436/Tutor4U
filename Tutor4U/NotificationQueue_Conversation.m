@@ -7,6 +7,7 @@
 //
 
 #import "NotificationQueue_Conversation.h"
+#import "ParseTransport.h"
 
 @implementation NotificationQueue_Conversation
 
@@ -32,18 +33,14 @@ static NotificationQueue_Conversation* sharedInstance = nil;
 }
 
 -(void)addMessage:(NSDictionary*)message user:(NSString*)userName fromUser:(NSString*)fromUser {
-    static int messageNumber = 1;
-    NSLog(@"New Message From %@:\t%i",fromUser,messageNumber++);
     if ( ![userArray containsObject:userName] )
         [userArray addObject:userName];
   
     NSMutableArray *messagesFromUser = [[NSMutableArray alloc] initWithArray:[messageArray objectForKey:userName]];
-    NSLog(@"Before Add:  %i",[messagesFromUser count]);
     [messagesFromUser addObject:message];
-    NSLog(@"After Add:  %i",[messagesFromUser count]);
     [messageArray removeObjectForKey:userName];
     [messageArray setObject:messagesFromUser forKey:userName];
-    NSLog(@"Finish addMessage");
+    [self saveToDisk];
 }
 
 -(NSArray*)getMessages:(NSString*)userName {
@@ -60,6 +57,55 @@ static NotificationQueue_Conversation* sharedInstance = nil;
 
 -(NSUInteger)count {
     return [userArray count];
+}
+
+-(NSString*)getDocumentsDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *fileName = [[NSString alloc] initWithFormat:@"Conversations_%@.plist",[PFUser currentUser].username];
+    
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
+    
+   // NSLog(@"%@",documentsDirectory);
+    return path;
+}
+
+-(void)saveToDisk {
+    NSDictionary *toDisk = [[NSDictionary alloc] initWithDictionary:messageArray];
+    
+    if ( [NSKeyedArchiver archiveRootObject:toDisk toFile:[self getDocumentsDirectory]] ) {
+        NSLog(@"Successfully Saved");
+    } else {
+        NSLog(@"Failed to Save");
+    }
+//    
+//    NSLog(@"%@", [toDisk description]); // This Shows Up Fine
+//    [[toDisk description] writeToFile:[documentsDirectory stringByAppendingPathComponent:@"Test.xml"] atomically:YES]; // This saves fine
+//    
+//    if ( [toDisk writeToFile:[self getDocumentsDirectory] atomically:YES] ) {
+//        NSLog(@"Successfully Saved");
+//    } else {
+//        NSLog(@"Failed to Save");
+//    }
+}
+
+-(void)loadFromDisk {
+    NSLog(@"loadFromDisk");
+    
+    messageArray = [NSKeyedUnarchiver unarchiveObjectWithFile: [self getDocumentsDirectory]];
+    messageArray = [[NSMutableDictionary alloc] initWithDictionary:messageArray];
+//    NSDictionary* fromDisk = [[NSDictionary alloc] initWithContentsOfFile:[self getDocumentsDirectory]];
+//    messageArray  = [[NSMutableDictionary alloc] initWithDictionary:fromDisk];
+//    
+//    for ( NSString *key in messageArray ) {
+//        NSLog(@"%@",[messageArray objectForKey:key]);
+//    }
+//    
+//    if ( !messageArray ) {
+//        NSLog(@"Nothing Loaded");
+//        messageArray = [[NSMutableDictionary alloc] init];
+//    }
 }
 
 @end

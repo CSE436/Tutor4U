@@ -49,7 +49,6 @@
 }
 
 -(void)refreshData {
-    NSLog(@"refreshData");
     messages = [[NSMutableArray alloc] initWithArray:[[NotificationQueue_Conversation sharedInstance] getMessages:studentName]];
     [myTableView reloadData];
 }
@@ -58,6 +57,8 @@
     if ( messages == nil ) {
         messages = [[NSMutableArray alloc] init];
     }
+    
+    [self refreshData];
     
     myTableView.delegate = self;
     myTableView.dataSource = self;
@@ -130,10 +131,11 @@
         [newMessage removeObjectForKey:@"messageType"];
         [newMessage setObject:[[NSNumber alloc] initWithInt:MESSAGE_SEND] forKey:@"messageType"];
 
-        NSLog(@"Add Message");
         [[NotificationQueue_Conversation sharedInstance] addMessage:newMessage
                                                                user:studentName 
                                                            fromUser:username];
+        
+//        [[NotificationQueue_Conversation sharedInstance] saveToDisk];
         
 //        [messages addObject:newMessage];
         [self refreshData];
@@ -162,7 +164,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"numberOfRows:  %i",[messages count]);
     return [messages count];
 }
 

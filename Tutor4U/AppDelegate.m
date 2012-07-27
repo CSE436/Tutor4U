@@ -29,6 +29,10 @@
     
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
+    if ( [PFUser currentUser] ) {
+        [[NotificationQueue_Conversation sharedInstance] loadFromDisk];
+    }
+    
     NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if ( notification ) {
         if ( [notification objectForKey:@"curUser"] != nil ) {
@@ -65,6 +69,7 @@
                                                                    user:[userInfo objectForKey:@"userName"] 
                                                                fromUser:[userInfo objectForKey:@"userName"]];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshConversation" object:nil];
+//            [[NotificationQueue_Conversation sharedInstance] saveToDisk];
         } else if ( [userInfo objectForKey:@"hourlyRate"] != nil ) {
             NSLog(@"New Tutor Found Matching Your Filter");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
@@ -92,12 +97,15 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[NotificationQueue_Conversation sharedInstance] saveToDisk];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
+//    if ( [PFUser currentUser] )
+//        [[NotificationQueue_Conversation sharedInstance] loadFromDisk];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
