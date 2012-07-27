@@ -26,9 +26,9 @@
     NSInteger ret = [parseTransport uploadTutor:[PFUser currentUser].username :subject.text :hourlyRate.text :meetingPlace.text :myRating.text];
 
     NSUserDefaults *std = [NSUserDefaults standardUserDefaults];
-    [std setValue:subject.text forKey:@"lastSubject"];
-    [std setValue:hourlyRate.text forKey:@"hourlyRate"];
-    [std setValue:meetingPlace.text forKey:@"location"];
+    [std setValue:subject.text forKey:[[NSString alloc] initWithFormat:@"lastSubject_%@",[PFUser currentUser]]];
+    [std setValue:hourlyRate.text forKey:[[NSString alloc] initWithFormat:@"hourlyRate_%@",[PFUser currentUser]]];
+    [std setValue:meetingPlace.text forKey:[[NSString alloc] initWithFormat:@"location_%@",[PFUser currentUser]]];
 
     if(ret != T4U_SUCCESS) {
         //Notify user of this problem - 
@@ -90,9 +90,9 @@
     self.myRating.enabled = NO;
     
     NSUserDefaults *std = [NSUserDefaults standardUserDefaults];
-    subject.text = (NSString*)[std objectForKey:@"lastSubject"];
-    hourlyRate.text = (NSString*)[std objectForKey:@"hourlyRate"];
-    meetingPlace.text = (NSString*)[std objectForKey:@"location"];
+    subject.text = (NSString*)[std objectForKey:[[NSString alloc] initWithFormat:@"lastSubject_%@",[PFUser currentUser]]];
+    hourlyRate.text = (NSString*)[std objectForKey:[[NSString alloc] initWithFormat:@"hourlyRate_%@",[PFUser currentUser]]];
+    meetingPlace.text = (NSString*)[std objectForKey:[[NSString alloc] initWithFormat:@"location_%@",[PFUser currentUser]]];
     
     phoneNumberFormatter = [[PhoneNumberFormatter alloc] init];
     [self.hourlyRate addTarget:self

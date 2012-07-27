@@ -71,7 +71,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshTutorResponses" object:nil];
     
-    studentRequests = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"unrespondedToRequests"]];
+    studentRequests = [[NSMutableArray alloc] 
+                       initWithArray:[defaults 
+                                      objectForKey:[[NSString alloc] 
+                                                    initWithFormat:@"unrespondedToRequests_%@",[PFUser currentUser].username]]];
     
     if ( [[NotificationQueue sharedInstance] count] > 0 ) {
         NSLog(@"refreshStudentRequestFroMQueue to Come");
@@ -79,7 +82,7 @@
     }
     
     if ( [studentRequests count] > 0 )
-        [defaults setObject:studentRequests forKey:@"unrespondedToRequests"];
+        [defaults setObject:studentRequests forKey:[[NSString alloc] initWithFormat:@"unrespondedToRequests_%@",[PFUser currentUser].username]];
     
     [self.tabBarController.navigationItem setTitle:@"Tutor Profile"];
 }

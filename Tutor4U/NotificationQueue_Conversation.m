@@ -79,15 +79,6 @@ static NotificationQueue_Conversation* sharedInstance = nil;
     } else {
         NSLog(@"Failed to Save");
     }
-//    
-//    NSLog(@"%@", [toDisk description]); // This Shows Up Fine
-//    [[toDisk description] writeToFile:[documentsDirectory stringByAppendingPathComponent:@"Test.xml"] atomically:YES]; // This saves fine
-//    
-//    if ( [toDisk writeToFile:[self getDocumentsDirectory] atomically:YES] ) {
-//        NSLog(@"Successfully Saved");
-//    } else {
-//        NSLog(@"Failed to Save");
-//    }
 }
 
 -(void)loadFromDisk {
@@ -95,17 +86,6 @@ static NotificationQueue_Conversation* sharedInstance = nil;
     
     messageArray = [NSKeyedUnarchiver unarchiveObjectWithFile: [self getDocumentsDirectory]];
     messageArray = [[NSMutableDictionary alloc] initWithDictionary:messageArray];
-//    NSDictionary* fromDisk = [[NSDictionary alloc] initWithContentsOfFile:[self getDocumentsDirectory]];
-//    messageArray  = [[NSMutableDictionary alloc] initWithDictionary:fromDisk];
-//    
-//    for ( NSString *key in messageArray ) {
-//        NSLog(@"%@",[messageArray objectForKey:key]);
-//    }
-//    
-//    if ( !messageArray ) {
-//        NSLog(@"Nothing Loaded");
-//        messageArray = [[NSMutableDictionary alloc] init];
-//    }
 }
 
 @end
