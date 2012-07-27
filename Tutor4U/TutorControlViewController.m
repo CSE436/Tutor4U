@@ -10,17 +10,13 @@
 #import "DetailedStudentRequestViewController.h"
 #import "AddTutorSession.h"
 #import "NotificationQueue.h"
+#import "NotificationQueue_Conversation.h"
 
 @interface TutorControlViewController ()
 
 @end
 
 @implementation TutorControlViewController
-
--(void)refreshData {
-//    studentRequests = (NSMutableArray *)[parseTransport downloadTutors];
-    [myTableView reloadData];
-}
 
 -(void)refreshStudentRequestsFromQueue {
     NotificationQueue *queue = [NotificationQueue sharedInstance];
@@ -33,6 +29,13 @@
         }
         [self handleNotification:message];
     }
+}
+
+-(void)refreshTutorResponsesFromQueue {
+    NotificationQueue_Conversation *queue = [NotificationQueue_Conversation sharedInstance];
+    NSLog(@"refreshTutorResponsesFromQueue");
+    tutorResponses = [queue getUsernames];
+    
 }
 
 -(void)handleNotification:(NSDictionary*)newNotification {
@@ -57,11 +60,16 @@
     [self handleNotification:newNotification];
 }
 
+-(void)refreshTutorResponses:(NSNotification*)notification {
+    [self refreshTutorResponsesFromQueue];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     parseTransport = [[ParseTransport alloc] init];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshTutorResponses" object:nil];
     
     studentRequests = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"unrespondedToRequests"]];
     
@@ -113,11 +121,21 @@
 {
     //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if ( section == 0 ) {
+        return @"Tutor Responses";
+    }
+    return @"Student Requests";
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ( section == 0 ) {
+        return [tutorResponses count];
+    }
     NSLog(@"Student Requests: %i",[studentRequests count]);
     return [studentRequests count];
 }
@@ -131,7 +149,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StudentRequestCell"];
     }
     // Configure the cell...
-    [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
+    if ( indexPath.section == 0 ) {
+        [[cell textLabel] setText:[tutorResponses objectAtIndex:indexPath.row]];
+    } else
+        [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
     
     return cell;
     

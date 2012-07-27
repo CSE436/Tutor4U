@@ -10,6 +10,7 @@
 
 @interface NotificationQueue_Conversation : NSObject {
     NSMutableDictionary *messageArray;
+    NSMutableArray      *userArray;
 }
 
 +(NotificationQueue_Conversation*)sharedInstance;
@@ -17,5 +18,7 @@
 -(NSArray*)getMessages:(NSString*)userName;
 -(NSUInteger)count:(NSString*)userName;
 
+-(NSArray*)getUsernames;
+-(NSUInteger)count;
 
 @end

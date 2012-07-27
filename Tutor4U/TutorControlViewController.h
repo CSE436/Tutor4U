@@ -11,8 +11,9 @@
 #import "ParseTransport.h"
 
 @interface TutorControlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    NSMutableArray *studentRequests;
-    ParseTransport *parseTransport;
-    IBOutlet UITableView* myTableView;
+    NSMutableArray          *studentRequests;
+    NSArray                 *tutorResponses;
+    ParseTransport          *parseTransport;
+    IBOutlet UITableView    *myTableView;
 }
 @end

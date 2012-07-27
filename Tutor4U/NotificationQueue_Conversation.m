@@ -32,6 +32,7 @@ static NotificationQueue_Conversation* sharedInstance = nil;
 }
 
 -(void)addMessage:(NSDictionary*)message user:(NSString*)userName fromUser:(NSString*)fromUser {
+    
 }
 
 -(NSArray*)getMessages:(NSString*)userName {
@@ -40,6 +41,14 @@ static NotificationQueue_Conversation* sharedInstance = nil;
 
 -(NSUInteger)count:(NSString*)userName {
     return [((NSArray*)[messageArray objectForKey:userName]) count];
+}
+
+-(NSArray*)getUsernames {
+    return userArray;
+}
+
+-(NSUInteger)count {
+    return [userArray count];
 }
 
 @end
