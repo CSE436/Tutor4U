@@ -70,13 +70,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
-    if ( [parseTransport downloadTutor:[PFUser currentUser].username] ) {
-        activeState.selectedSegmentIndex = 0;
-    } else {
-        activeState.selectedSegmentIndex = 1;
-    }
-    
     subjectFilter.delegate = self;
     availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
     [myTableView reloadData];    // Allows all table view items to be updated to current items
@@ -88,50 +81,22 @@
     // Used to Hide Keyboard
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneSearching)];
     gestureRecognizer.cancelsTouchesInView = NO;
-    //[self.tableView addGestureRecognizer:gestureRecognizer];
+    [self.tableView addGestureRecognizer:gestureRecognizer];
     
     
-    // Add Tutor Session  Button - 
-    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Join" 
-                                                                                              style:UIBarButtonItemStyleDone
-                                                                                             target:self 
-                                                                                             action:@selector(addSession)];
-    
-    [self.tabBarController.navigationItem setTitle:@"Available Tutors"];
-}
--(void)viewWillDisappear:(BOOL)animated {
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    // Add Logout Button
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+                                                                                               style:UIBarButtonItemStyleDone
+                                                                                              target:self 
+                                                                                              action:@selector(logout)];
+    // Hide Back Button
     [self.tabBarController.navigationItem setHidesBackButton:YES];
-}
-
-
--(IBAction)tutorStateChanged:(id)sender {
-    UISegmentedControl* control = (UISegmentedControl*)sender;
-    if ( control.selectedSegmentIndex == 1 ) {
-        NSLog(@"Attempting to Drop Tutor");
-        [parseTransport dropTutor];
-    } else {
-        //        myTutorSession
-        AddTutorSession *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
-        [self.navigationController pushViewController:nextView animated:YES];
-    }
-    //NSLog(@"state Changed: %@", control.selectedSegmentIndex);
+    [self.tabBarController.navigationItem setTitle:@"Find Tutor"];
 }
 
 -(void)createSession
 {
     [self.navigationController pushViewController:myTutorSession animated:YES];
-}
-
--(void)addSession {
-    if ( outstandingSession ) {
-        NSLog(@"Attempting to Drop Tutor");
-        [parseTransport dropTutor];
-    } else {
-        //        myTutorSession
-        AddTutorSession *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
-        [self.navigationController pushViewController:nextView animated:YES];
-    }
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
@@ -152,9 +117,9 @@
     [subjectFilter resignFirstResponder];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -168,19 +133,14 @@
     parseTransport = [[ParseTransport alloc] init];
     myTutorSession = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
     
-    // Add Logout Button
-    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
-                                                                                               style:UIBarButtonItemStyleDone
-                                                                                              target:self 
-                                                                                              action:@selector(logout)];
+//    addSessionButton = [[UIBarButtonItem alloc] initWithTitle:@"Add Sesson" style:UIBarButtonItemStylePlain target:self action:@selector(createSession)];  
+//    self.navigationController.topViewController.navigationItem.rightBarButtonItem = addSessionButton;
+//    [self.navigationController.topViewController setTitle:@"ActiveTutors"]; 
 }
 
 - (void)viewDidUnload
 {
     subjectFilter = nil;
-    activeState = nil;
-    subjectFilter = nil;
-    myTableView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
