@@ -196,9 +196,7 @@
 }
 -(int)dropTutor
 {
-    if ( tutorSession == nil ) {
-        tutorSession = [self downloadTutor:[PFUser currentUser].username];
-    }
+    tutorSession = [self downloadTutor:[PFUser currentUser].username];
     [tutorSession deleteInBackground];
     return T4U_SUCCESS;
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="otn-AG-o9R">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
@@ -438,7 +439,7 @@
             </objects>
             <point key="canvasLocation" x="1951" y="-599"/>
         </scene>
-        <!--Tutor Control View Controller - Tutor Control-->
+        <!--Tutor Control View Controller - Message Center-->
         <scene sceneID="mE3-bU-F5g">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhn-yl-OyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -447,19 +448,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5Ds-qI-QOo">
-                                <rect key="frame" x="38" y="302" width="244" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Not Available"/>
-                                    <segment title="Available"/>
-                                </segments>
-                                <connections>
-                                    <action selector="tutorStateChanged:" destination="Zg1-gR-a0h" eventType="valueChanged" id="Itp-n0-QbG"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5EP-Sb-iwG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -478,33 +468,17 @@
                                     <outlet property="delegate" destination="Zg1-gR-a0h" id="y7w-ce-Tys"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lup-0E-EPu">
-                                <rect key="frame" x="38" y="257" width="244" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="View My Tutor Profile">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="A7F-ns-R1f" kind="push" id="e2Z-26-zkX"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tutor Control" id="Vsd-Yl-sMZ"/>
+                    <tabBarItem key="tabBarItem" title="Message Center" id="Vsd-Yl-sMZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="activeState" destination="5Ds-qI-QOo" id="VEV-re-aUc"/>
                         <outlet property="myTableView" destination="5EP-Sb-iwG" id="l9B-Yh-W07"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1570" y="605"/>
+            <point key="canvasLocation" x="1570" y="587"/>
         </scene>
         <!--Detailed Student Request View Controller-->
         <scene sceneID="mlP-9J-nTG">
@@ -576,63 +550,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2105" y="605"/>
-        </scene>
-        <!--Find Tutor View Controller - Find Tutor-->
-        <scene sceneID="QRy-1Q-Wgn">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fAY-E6-aVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="lDy-l8-jIa" customClass="FindTutorViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1tU-uA-Dsm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Filter By Subject" id="3tF-cH-IHH">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet"/>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TutorInformationCell" textLabel="vq0-Ml-XBN" detailTextLabel="hUD-MO-jcg" style="IBUITableViewCellStyleSubtitle" id="N5x-zN-nhX">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vq0-Ml-XBN">
-                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hUD-MO-jcg">
-                                            <rect key="frame" x="10" y="24" width="36" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="lDy-l8-jIa" id="qvZ-46-RRq"/>
-                            <outlet property="delegate" destination="lDy-l8-jIa" id="5Yq-Q5-jmi"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Find Tutor" id="quD-ig-7JM"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="myTableView" destination="1tU-uA-Dsm" id="Cz3-M5-udo"/>
-                        <outlet property="subjectFilter" destination="3tF-cH-IHH" id="Pcz-5Q-ZU0"/>
-                    </connections>
-                </tableViewController>
-            </objects>
-            <point key="canvasLocation" x="1570" y="-13"/>
+            <point key="canvasLocation" x="1951" y="587"/>
         </scene>
         <!--Detailed Tutor Info View Controller-->
         <scene sceneID="eVj-8f-8PR">
@@ -726,7 +644,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1951" y="-13"/>
+            <point key="canvasLocation" x="2315" y="-13"/>
         </scene>
         <!--Add Tutor Session-->
         <scene sceneID="I0Q-FL-JVZ">
@@ -734,7 +652,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doT-Ru-Wjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="myTutorSession" id="A7F-ns-R1f" customClass="AddTutorSession" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ugr-cm-G2x">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6vb-NP-3cm">
@@ -827,7 +745,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2105" y="1289"/>
+            <point key="canvasLocation" x="1951" y="-13"/>
         </scene>
         <!--Parse Login View Controller-->
         <scene sceneID="YKb-kT-t2B">
@@ -857,7 +775,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="lDy-l8-jIa" kind="relationship" relationship="viewControllers" id="3qJ-wR-6wH"/>
+                        <segue destination="HB9-Oj-G7G" kind="relationship" relationship="viewControllers" id="wbV-Yx-ZAx"/>
                         <segue destination="Zg1-gR-a0h" kind="relationship" relationship="viewControllers" id="dUv-6p-3FF"/>
                         <segue destination="AH4-yk-NLC" kind="relationship" relationship="viewControllers" id="tpE-9L-Z6W"/>
                     </connections>
@@ -865,7 +783,141 @@
             </objects>
             <point key="canvasLocation" x="1014" y="-13"/>
         </scene>
+        <!--Find Tutor View Controller - Find Tutor-->
+        <scene sceneID="OEk-Lm-pR1">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4mU-BA-X7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="HB9-Oj-G7G" customClass="FindTutorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5sM-Q4-CnF">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HZk-Os-em6">
+                                <rect key="frame" x="38" y="302" width="244" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Not Available"/>
+                                    <segment title="Available"/>
+                                </segments>
+                                <connections>
+                                    <action selector="tutorStateChanged:" destination="HB9-Oj-G7G" eventType="valueChanged" id="dBq-Qw-17o"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T4j-Zc-CjG">
+                                <rect key="frame" x="0.0" y="45" width="320" height="249"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StudentRequestCell" id="sOE-S1-suB">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="HB9-Oj-G7G" id="K9L-53-Eds"/>
+                                    <outlet property="delegate" destination="HB9-Oj-G7G" id="gKS-0g-7ky"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" id="j3k-Q1-7EP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HB9-Oj-G7G" id="Fg1-Zo-rrQ"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Find Tutor" id="SQZ-h5-znQ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="activeState" destination="HZk-Os-em6" id="q6m-bf-xj5"/>
+                        <outlet property="myTableView" destination="T4j-Zc-CjG" id="Bdp-R7-xRh"/>
+                        <outlet property="subjectFilter" destination="j3k-Q1-7EP" id="FJ4-Ss-gWQ"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1570" y="-13"/>
+        </scene>
     </scenes>
+    <classes>
+        <class className="AddTutorSession" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddTutorSession.h"/>
+            <relationships>
+                <relationship kind="action" name="addSession"/>
+                <relationship kind="outlet" name="hourlyRate" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="meetingPlace" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myRating" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="subject" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tutor4uID" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ChatBubbleCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChatBubbleCell.h"/>
+        </class>
+        <class className="DetailedStudentRequestViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailedStudentRequestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sendMessage"/>
+                <relationship kind="outlet" name="messageField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="plateView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="sendButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="DetailedTutorInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailedTutorInfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="connectAccept" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="connectButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="hourlyRate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="location" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subjectField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tutorIDField" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FindTutorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FindTutorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activeState" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="addSessionButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="myTutorSession" candidateClass="AddTutorSession"/>
+                <relationship kind="outlet" name="subjectFilter" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="ParseLoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ParseLoginViewController.h"/>
+        </class>
+        <class className="ProfileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="updateUserProfile"/>
+                <relationship kind="outlet" name="apartment" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="state" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="streetAddr" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tutor4uID" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="zipCode" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TutorControlViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TutorControlViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

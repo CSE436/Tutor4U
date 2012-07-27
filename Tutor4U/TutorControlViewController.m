@@ -17,8 +17,6 @@
 
 @implementation TutorControlViewController
 
-@synthesize mapView;
-
 -(void)refreshData {
 //    studentRequests = (NSMutableArray *)[parseTransport downloadTutors];
     [myTableView reloadData];
@@ -62,16 +60,9 @@
 -(void)viewWillAppear:(BOOL)animated {
     parseTransport = [[ParseTransport alloc] init];
     
-    if ( [parseTransport downloadTutor:[PFUser currentUser].username] ) {
-        activeState.selectedSegmentIndex = 1;
-    } else {
-        activeState.selectedSegmentIndex = 0;
-    }
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
     
-    //if ( [defaults objectForKey:@"unrespondedToRequests"] )
     studentRequests = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"unrespondedToRequests"]];
     
     if ( [[NotificationQueue sharedInstance] count] > 0 ) {
@@ -83,19 +74,6 @@
         [defaults setObject:studentRequests forKey:@"unrespondedToRequests"];
     
     [self.tabBarController.navigationItem setTitle:@"Tutor Profile"];
-}
-
-- (IBAction)tutorStateChanged:(id)sender {
-    UISegmentedControl* control = (UISegmentedControl*)sender;
-    if ( control.selectedSegmentIndex == 0 ) {
-        NSLog(@"Attempting to Drop Tutor");
-        [parseTransport dropTutor];
-    } else {
-//        myTutorSession
-        AddTutorSession *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
-        [self.navigationController pushViewController:nextView animated:YES];
-    }
-    //NSLog(@"state Changed: %@", control.selectedSegmentIndex);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -156,10 +134,6 @@
     [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
     
     return cell;
-    
-}
-
--(IBAction)updateTutorProfile:(id)sender {
     
 }
 

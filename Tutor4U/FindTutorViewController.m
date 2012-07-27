@@ -21,6 +21,32 @@
 @synthesize addSessionButton;
 @synthesize myTutorSession;
 
+
+- (IBAction)tutorStateChanged:(id)sender {
+    UISegmentedControl* control = (UISegmentedControl*)sender;
+    if ( control.selectedSegmentIndex == 0 ) {
+        NSLog(@"Attempting to Drop Tutor");
+        [parseTransport dropTutor];
+    } else {
+        //        myTutorSession
+        AddTutorSession *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
+        [self.navigationController pushViewController:nextView animated:YES];
+    }
+    
+    NSDictionary* objectToRemove = nil;
+    for ( NSDictionary *tutor in availableTutors ) {
+        //if ( [[tutor objectForKey:@"Tutor4uID"] compare:[PFUser currentUser].username options:] != NSNotFound ) {
+        if ( [((NSString*)[tutor objectForKey:@"Tutor4uID"]) caseInsensitiveCompare:[PFUser currentUser].username] == NSOrderedSame ) {
+            objectToRemove = tutor;
+        }
+    }
+    
+    if ( objectToRemove )
+        [availableTutors removeObject:objectToRemove];
+    [myTableView reloadData];
+}
+
+
 -(void)refreshData {
     availableTutors = (NSMutableArray *)[parseTransport downloadTutors];
     if ( [subjectFilter.text length] > 0 ) {
@@ -37,6 +63,7 @@
 
 -(void)subscribeOnlyTo:(NSString*)newChannel {
 
+    newChannel = [newChannel lowercaseString];
     NSLog(@"subscribeOnlyTo");
     if ( ![newChannel compare:currentChannel] && currentChannel != nil ) {
         NSLog(@"Already Subscribed");
@@ -81,7 +108,8 @@
     // Used to Hide Keyboard
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneSearching)];
     gestureRecognizer.cancelsTouchesInView = NO;
-    [self.tableView addGestureRecognizer:gestureRecognizer];
+    [myTableView addGestureRecognizer:gestureRecognizer];
+    //[self.tableView addGestureRecognizer:gestureRecognizer];
     
     
     // Add Logout Button
@@ -92,6 +120,13 @@
     // Hide Back Button
     [self.tabBarController.navigationItem setHidesBackButton:YES];
     [self.tabBarController.navigationItem setTitle:@"Find Tutor"];
+    
+    
+    if ( [parseTransport downloadTutor:[PFUser currentUser].username] ) {
+        activeState.selectedSegmentIndex = 1;
+    } else {
+        activeState.selectedSegmentIndex = 0;
+    }
 }
 
 -(void)createSession
@@ -117,14 +152,14 @@
     [subjectFilter resignFirstResponder];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {

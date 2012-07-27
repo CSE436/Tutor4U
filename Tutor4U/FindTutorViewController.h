@@ -10,11 +10,13 @@
 #import "ParseTransport.h"
 #import "AddTutorSession.h"
 
-@interface FindTutorViewController : UITableViewController <UISearchBarDelegate> {
+@interface FindTutorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
     NSMutableArray *availableTutors;
     BOOL outstandingSession;
     IBOutlet UITableView* myTableView;
     IBOutlet UISearchBar *subjectFilter;
+    
+    IBOutlet UISegmentedControl* activeState;
     
     NSString *filterSubject;
     NSString *currentChannel;
