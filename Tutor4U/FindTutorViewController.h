@@ -10,11 +10,12 @@
 #import "ParseTransport.h"
 #import "AddTutorSession.h"
 
-@interface FindTutorViewController : UITableViewController <UISearchBarDelegate> {
+@interface FindTutorViewController : UIViewController <UISearchBarDelegate> {
     NSMutableArray *availableTutors;
-    BOOL outstandingSession;
-    IBOutlet UITableView* myTableView;
+    BOOL outstandingSession;    
+    IBOutlet UITableView *myTableView;
     IBOutlet UISearchBar *subjectFilter;
+    IBOutlet UISegmentedControl *activeState;
     
     NSString *filterSubject;
     NSString *currentChannel;
@@ -24,7 +25,10 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addSessionButton;
 @property (strong, nonatomic) IBOutlet AddTutorSession *myTutorSession;
 
+-(IBAction)tutorStateChanged:(id)sender;
 
 -(void)createSession;
+-(void)addSession;
+
 
 @end
