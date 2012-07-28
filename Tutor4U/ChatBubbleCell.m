@@ -10,17 +10,13 @@
 
 @implementation ChatBubbleCell
 
-//-(void)setMessage:(NSString*)newMessage msgType:(MessageType)messageType; {
-//    message = newMessage;
-//    [cellView setMessage:newMessage msgType:messageType];
-//}
-
 -(void)setMessage:(NSDictionary *)newMessage {
     message = newMessage;
     if ( cellView == nil ) {
         cellView = [[ChatBubbleView alloc] initWithFrame:CGRectZero];
         [self.contentView addSubview:cellView];
     }
+//    NSLog(@"CellMessage:  %@",[message objectForKey:@"message"]);
     [cellView setMessage:newMessage];
 }
 

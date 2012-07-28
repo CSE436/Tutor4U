@@ -51,6 +51,8 @@
 -(void)refreshData {
     messages = [[NSMutableArray alloc] initWithArray:[[NotificationQueue_Conversation sharedInstance] getMessages:studentName]];
     [myTableView reloadData];
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0];
+    [myTableView scrollToRowAtIndexPath:ipath atScrollPosition:UITableViewScrollPositionNone animated:NO];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -58,10 +60,11 @@
         messages = [[NSMutableArray alloc] init];
     }
     
-    [self refreshData];
     
     myTableView.delegate = self;
     myTableView.dataSource = self;
+    
+    [self refreshData];
     
     // Make tableview all one color
     myTableView.separatorColor = [UIColor colorWithRed:0.859 green:0.886 blue:0.929 alpha:1.0];
@@ -150,13 +153,9 @@
 // Called Prior to cellForRow
 //
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //NSLog(@"heightForRow");
     NSDictionary *message = [messages objectAtIndex:indexPath.row];
     CGFloat ret = [ChatBubbleCell calcCellHeight:message diff:0];
     
-    
-//    CGRect rect = [((NSValue*)[message objectForKey:@"bubbleRect"]) CGRectValue];
-//    NSLog(@"(%f,%f) -> (%f,%f)",rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     [messages removeObjectAtIndex:indexPath.row];
     [messages insertObject:message atIndex:indexPath.row];
     
@@ -177,8 +176,7 @@
         cell = [[ChatBubbleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChatBubbleCell"];
     }
     
-    
-    NSDictionary *message = [messages objectAtIndex:indexPath.row];    
+    NSDictionary *message = [messages objectAtIndex:indexPath.row];
     [cell setMessage:message];
     return cell;
 }
@@ -194,17 +192,20 @@
     [UIView setAnimationDidStopSelector:@selector(finishedAnimation)];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     
-    CGFloat oldHeight = plateView.frame.origin.y;
     CGRect frame = self.view.frame;
-    frame.origin.y = 150-oldHeight;
+    frame.origin.y = -216;//150-oldHeight;
     self.view.frame = frame;
+    
+    frame = myTableView.frame;
+    frame.origin.y = 216;
+    frame.size.height = plateView.frame.origin.y - frame.origin.y;
+    myTableView.frame = frame;
     
     [UIView commitAnimations];
 
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    
     [UIView setAnimationsEnabled:YES];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25];
@@ -216,6 +217,12 @@
     CGRect frame = self.view.frame;
     frame.origin.y = 0;
     self.view.frame = frame;
+    
+    
+    frame = myTableView.frame;
+    frame.origin.y = 0;
+    frame.size.height = plateView.frame.origin.y - frame.origin.y;
+    myTableView.frame = frame;
     
     [UIView commitAnimations];
 

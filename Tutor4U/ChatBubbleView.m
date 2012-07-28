@@ -16,6 +16,8 @@ static UIImage* sGrayBubble = nil;
 -(void)setMessage:(NSDictionary*)newMessage {
     message = newMessage;
     msgType = (MessageType)[[message objectForKey:@"messageType"] intValue];
+    [self setNeedsDisplay];
+//    NSLog(@"CellViewMessage:  %@",[message objectForKey:@"message"]);
 }
 
 - (id)initWithFrame:(CGRect)frame

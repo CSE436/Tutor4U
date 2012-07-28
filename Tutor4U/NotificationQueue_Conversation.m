@@ -63,29 +63,33 @@ static NotificationQueue_Conversation* sharedInstance = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString *fileName = [[NSString alloc] initWithFormat:@"Conversations_%@.plist",[PFUser currentUser].username];
-    
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
-    
-   // NSLog(@"%@",documentsDirectory);
-    return path;
+    if ( [PFUser currentUser] ) {
+        NSString *fileName = [[NSString alloc] initWithFormat:@"Conversations_%@.plist",[PFUser currentUser].username];
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
+        return path;
+    }
+    return nil;
 }
 
 -(void)saveToDisk {
     NSDictionary *toDisk = [[NSDictionary alloc] initWithDictionary:messageArray];
-    
-    if ( [NSKeyedArchiver archiveRootObject:toDisk toFile:[self getDocumentsDirectory]] ) {
-        NSLog(@"Successfully Saved");
-    } else {
-        NSLog(@"Failed to Save");
+    NSString* filePath = [self getDocumentsDirectory];
+    if ( filePath ) {
+        if ( [NSKeyedArchiver archiveRootObject:toDisk toFile:filePath] ) {
+            NSLog(@"Successfully Saved");
+        } else {
+            NSLog(@"Failed to Save");
+        }
     }
 }
 
 -(void)loadFromDisk {
     NSLog(@"loadFromDisk");
-    
-    messageArray = [NSKeyedUnarchiver unarchiveObjectWithFile: [self getDocumentsDirectory]];
-    messageArray = [[NSMutableDictionary alloc] initWithDictionary:messageArray];
+    NSString* filePath = [self getDocumentsDirectory];
+    if ( filePath ) {
+        messageArray = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        messageArray = [[NSMutableDictionary alloc] initWithDictionary:messageArray];
+    }
 }
 
 @end
