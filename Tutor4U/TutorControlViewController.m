@@ -84,7 +84,7 @@
     if ( [studentRequests count] > 0 )
         [defaults setObject:studentRequests forKey:[[NSString alloc] initWithFormat:@"unrespondedToRequests_%@",[PFUser currentUser].username]];
     
-    [self.tabBarController.navigationItem setTitle:@"Tutor Profile"];
+    [self.tabBarController.navigationItem setTitle:@"Message Center"];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

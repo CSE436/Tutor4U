@@ -91,6 +91,8 @@
     [plateView.layer setBorderWidth:3];
     
     messageField.delegate = self;
+    
+    [self.navigationItem setTitle:studentName];
 }
 
 - (void)viewDidLoad
