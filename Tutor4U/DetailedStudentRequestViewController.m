@@ -51,8 +51,10 @@
 -(void)refreshData {
     messages = [[NSMutableArray alloc] initWithArray:[[NotificationQueue_Conversation sharedInstance] getMessages:studentName]];
     [myTableView reloadData];
-    NSIndexPath* ipath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0];
-    [myTableView scrollToRowAtIndexPath:ipath atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    if ( [messages count] > 0 ) {
+        NSIndexPath* ipath = [NSIndexPath indexPathForRow:[messages count]-1 inSection:0];
+        [myTableView scrollToRowAtIndexPath:ipath atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
