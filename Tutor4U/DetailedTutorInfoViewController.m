@@ -72,13 +72,14 @@
             stars = (int)(reviewSum / reviewCnt);
         }
     }
-    
+    CGSize box = CGSizeMake(100, 100);
     for(int i =0; i < 5; i++, stars--) {
         if(i == 0) { 
             if(stars > 0) { [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
             else {
                 [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
             }
+            [self.ratingImgView1 sizeThatFits:box];
         } else if(i == 1) { 
             if(stars > 0) { [self.ratingImgView2 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
             else {
