@@ -11,6 +11,11 @@
 		301C602715BC98E10057CDB9 /* AddTutorSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 301C602615BC98E10057CDB9 /* AddTutorSession.m */; };
 		3039483415B5123500477265 /* ParseTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039483315B5123500477265 /* ParseTransport.m */; };
 		309AAED915B9251C00A372C7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309AAED815B9251C00A372C7 /* ProfileViewController.m */; };
+		30C2BB4215C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4115C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg */; };
+		30C2BB4415C4AFE4009AFB8E /* iTutor-4U-splush.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4315C4AFE4009AFB8E /* iTutor-4U-splush.jpg */; };
+		30C2BB4715C4B781009AFB8E /* iTutor-4u-no-star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4515C4B781009AFB8E /* iTutor-4u-no-star.jpg */; };
+		30C2BB4815C4B781009AFB8E /* iTutor-4u-star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4615C4B781009AFB8E /* iTutor-4u-star.jpg */; };
+		30C2BB4B15C4D702009AFB8E /* TutorRatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */; };
 		30F9E1D815B2553F00D3F000 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D715B2553F00D3F000 /* SystemConfiguration.framework */; };
 		30F9E1DE15B255B300D3F000 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D915B255B300D3F000 /* AudioToolbox.framework */; };
 		30F9E1DF15B255B300D3F000 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1DA15B255B300D3F000 /* CFNetwork.framework */; };
@@ -51,6 +56,12 @@
 		3039483315B5123500477265 /* ParseTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseTransport.m; sourceTree = "<group>"; };
 		309AAED715B9251C00A372C7 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		309AAED815B9251C00A372C7 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		30C2BB4115C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4U-Text-Logo.jpg"; sourceTree = "<group>"; };
+		30C2BB4315C4AFE4009AFB8E /* iTutor-4U-splush.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4U-splush.jpg"; sourceTree = "<group>"; };
+		30C2BB4515C4B781009AFB8E /* iTutor-4u-no-star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4u-no-star.jpg"; sourceTree = "<group>"; };
+		30C2BB4615C4B781009AFB8E /* iTutor-4u-star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4u-star.jpg"; sourceTree = "<group>"; };
+		30C2BB4915C4D702009AFB8E /* TutorRatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorRatingViewController.h; sourceTree = "<group>"; };
+		30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorRatingViewController.m; sourceTree = "<group>"; };
 		30F9E1D415B2552B00D3F000 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		30F9E1D715B2553F00D3F000 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		30F9E1D915B255B300D3F000 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -140,6 +151,10 @@
 			children = (
 				A912978C15C27FE20028626F /* Balloon_1.png */,
 				A912978D15C27FE20028626F /* Balloon_2.png */,
+				30C2BB4115C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg */,
+				30C2BB4315C4AFE4009AFB8E /* iTutor-4U-splush.jpg */,
+				30C2BB4515C4B781009AFB8E /* iTutor-4u-no-star.jpg */,
+				30C2BB4615C4B781009AFB8E /* iTutor-4u-star.jpg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -250,8 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				A9EA0BE715C1D62500BA2E92 /* Chat Controllers */,
-				301C602515BC98E10057CDB9 /* AddTutorSession.h */,
-				301C602615BC98E10057CDB9 /* AddTutorSession.m */,
 				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
 				A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */,
 			);
@@ -265,6 +278,10 @@
 				A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */,
 				A99E0F0215B0A76600C8A3EE /* DetailedTutorInfoViewController.h */,
 				A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */,
+				301C602515BC98E10057CDB9 /* AddTutorSession.h */,
+				301C602615BC98E10057CDB9 /* AddTutorSession.m */,
+				30C2BB4915C4D702009AFB8E /* TutorRatingViewController.h */,
+				30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */,
 			);
 			name = "Tab 1";
 			sourceTree = "<group>";
@@ -324,6 +341,10 @@
 				A9F2500915BFFACC002AD5E9 /* MainStoryboard_iPhone.storyboard in Resources */,
 				A912978E15C27FE20028626F /* Balloon_1.png in Resources */,
 				A912978F15C27FE20028626F /* Balloon_2.png in Resources */,
+				30C2BB4215C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg in Resources */,
+				30C2BB4415C4AFE4009AFB8E /* iTutor-4U-splush.jpg in Resources */,
+				30C2BB4715C4B781009AFB8E /* iTutor-4u-no-star.jpg in Resources */,
+				30C2BB4815C4B781009AFB8E /* iTutor-4u-star.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +372,7 @@
 				A9EA0BEA15C1D65D00BA2E92 /* ChatBubbleCell.m in Sources */,
 				A9EA0BED15C1D6A700BA2E92 /* ChatBubbleView.m in Sources */,
 				A9EA0BF315C1E2A500BA2E92 /* NotificationQueue_Conversation.m in Sources */,
+				30C2BB4B15C4D702009AFB8E /* TutorRatingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

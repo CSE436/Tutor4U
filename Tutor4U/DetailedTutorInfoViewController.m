@@ -15,8 +15,16 @@
 
 @implementation DetailedTutorInfoViewController
 
+@synthesize ratingImgView1;
+@synthesize ratingImgView2;
+@synthesize ratingImgView3;
+@synthesize ratingImgView4;
+@synthesize ratingImgView5;
+
 @synthesize connectButton;
-@synthesize tutorIDString, subjectString, connectAcceptButtonText, hourlyRateString, locationString;
+@synthesize reviewButton;
+
+@synthesize tutorIDString, subjectString, connectAcceptButtonText, hourlyRateString, locationString, tutorRatingString;
 
 -(void)connectRequest
 {
@@ -39,11 +47,60 @@
     NSLog(@"Pushing to channel: %@",tutorIDString);
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)tutorReview
+{
+    TutorRatingViewController *myRating = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorRating"];
+    
+    [myRating setUserNameString:tutorIDString];
+    [myRating setSubjectString:subjectString];
+    [self.navigationController pushViewController:myRating animated:YES];
+    // NSLog(@"----Rating tutor--------");
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated {
     tutorIDField.text = tutorIDString;
     subjectField.text = subjectString;
+    
+    tutorRating = [parseTransport getUserRating:tutorIDString];
+    
+    int stars = 0;
+    if(tutorRating != nil) {
+        int reviewSum = [[tutorRating objectForKey:@"SumOfReviews"] intValue];
+        int reviewCnt = [[tutorRating objectForKey:@"ReviewsCount"] intValue];
+        if(reviewCnt > 0) {
+            stars = (int)(reviewSum / reviewCnt);
+        }
+    }
+    
+    for(int i =0; i < 5; i++, stars--) {
+        if(i == 0) { 
+            if(stars > 0) { [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            else {
+                [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+            }
+        } else if(i == 1) { 
+            if(stars > 0) { [self.ratingImgView2 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            else {
+                [self.ratingImgView2 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+            }
+        } else if(i == 2) { 
+            if(stars > 0) { [self.ratingImgView3 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            else {
+                [self.ratingImgView3 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+            }
+        } else if(i == 3) { 
+            if(stars > 0) { [self.ratingImgView4 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            else {
+                [self.ratingImgView4 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+            }
+        } else if(i == 4) { 
+            if(stars > 0) { [self.ratingImgView5 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            else {
+                [self.ratingImgView5 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+            }
+        }
+    }
     
     if ( hourlyRateString != nil ) 
         hourlyRate.text = hourlyRateString;
@@ -75,8 +132,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    parseTransport = [[ParseTransport alloc] init];
+
     
     [connectButton addTarget:self action:@selector(connectRequest) forControlEvents:UIControlEventTouchUpInside];
+    [reviewButton addTarget:self action:@selector(tutorReview) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 - (void)viewDidUnload
@@ -84,6 +145,18 @@
     subjectField = nil;
     tutorIDField = nil;
     [self setConnectButton:nil];
+    [self setRatingImgView1:nil];
+    [self setRatingImgView2:nil];
+    [self setRatingImgView3:nil];
+    [self setRatingImgView3:nil];
+    [self setRatingImgView4:nil];
+    [self setRatingImgView5:nil];
+    [self setRatingImgView1:nil];
+    [self setRatingImgView2:nil];
+    [self setRatingImgView3:nil];
+    [self setRatingImgView4:nil];
+    [self setRatingImgView5:nil];
+    [self setReviewButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

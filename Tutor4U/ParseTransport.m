@@ -82,6 +82,46 @@
     return T4U_SUCCESS;
 }
 
+-(int)setUserRating:(NSString *)_tutor4u_id :(NSNumber *)_summedReviews :(NSNumber *)_totalReviews
+{
+    userRating = [self getUserRating:[PFUser currentUser].username];
+    if ( userRating == nil )
+        userRating = [PFObject objectWithClassName:@"tutorRating"];
+    [userRating setObject:_tutor4u_id forKey:@"Tutor4uID"];
+    if ( _summedReviews )
+        [userRating setObject:_summedReviews forKey:@"SumOfReviews"];
+    else 
+        [userRating setObject:[NSNull null] forKey:@"SumOfReviews"];
+    
+    if ( _totalReviews )
+        [userRating setObject:_totalReviews forKey:@"ReviewsCount"];
+    else 
+        [userRating setObject:[NSNull null] forKey:@"ReviewsCount"];
+    [userRating save];
+    
+    return T4U_SUCCESS;
+}
+-(int)setTutorRating:(NSString *)_tutor4u_id :(NSNumber *)_summedReviews :(NSNumber *)_totalReviews
+{
+    PFObject *tutorRating = [self getUserRating:_tutor4u_id];
+    if ( tutorRating == nil) 
+        tutorRating = [PFObject objectWithClassName:@"tutorRating"];
+    [tutorRating setObject:_tutor4u_id forKey:@"Tutor4uID"];
+    if ( _summedReviews )
+        [tutorRating setObject:_summedReviews forKey:@"SumOfReviews"];
+    else 
+        [tutorRating setObject:[NSNull null] forKey:@"SumOfReviews"];
+    
+    if ( _totalReviews )
+        [tutorRating setObject:_totalReviews forKey:@"ReviewsCount"];
+    else 
+        [tutorRating setObject:[NSNull null] forKey:@"ReviewsCount"];
+    [tutorRating save];
+    
+    return T4U_SUCCESS;
+}
+
+
 -(int)uploadTutor:(NSString *)_tutor4u_id :(NSString *)_subject :(NSString *)_hourlyRate :(NSString *)_location :(NSString *)_rating
 {
     tutorSession = [self downloadTutor:_tutor4u_id];
@@ -154,6 +194,24 @@
         userAddress = [query getFirstObject];
     }
     return userAddress;
+}
+
+-(PFObject *)getUserRating:(NSString *)_tutor4u_id
+{
+    if(userRating == nil) {
+        PFQuery *query = [PFQuery queryWithClassName:@"tutorRating"];
+        [query whereKey:@"Tutor4uID" equalTo:_tutor4u_id];
+        userRating = [query getFirstObject];
+    }
+    return userRating;
+}
+
+-(PFObject *)getTutorRating:(NSString *)_tutor4u_id
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"tutorRating"];
+    [query whereKey:@"Tutor4uID" equalTo:_tutor4u_id];
+    PFObject *tutorRating = [query getFirstObject];
+    return tutorRating;
 }
 
 -(PFObject *)downloadTutor:(NSString *)_tutor4u_id

@@ -20,9 +20,12 @@
     [super viewDidLoad];
     
     [self.logInView.dismissButton setHidden:YES];
+    
+    //[self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"iTutor-4U-splush.jpg"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iTutor-4U-Text-Logo.jpg"]]];
+    //self.logInView.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iTutor4U-logo.ldsp"]];
+    
     return;
-    //[self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MainBG.png"]]];
-    //[self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo.png"]]];
     
     // Set buttons appearance
     [self.logInView.dismissButton setImage:[UIImage imageNamed:@"Exit.png"] forState:UIControlStateNormal];
