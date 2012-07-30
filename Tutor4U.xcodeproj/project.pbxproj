@@ -229,6 +229,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A9AC0BEF15C70D3F0026698D /* Messaging Center */ = {
+			isa = PBXGroup;
+			children = (
+				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
+				A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */,
+				A9AC0BEB15C704D40026698D /* MessageCenterCell.h */,
+				A9AC0BEC15C704D40026698D /* MessageCenterCell.m */,
+				30C2BB4915C4D702009AFB8E /* TutorRatingViewController.h */,
+				30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */,
+			);
+			name = "Messaging Center";
+			sourceTree = "<group>";
+		};
 		A9EA0BE715C1D62500BA2E92 /* Chat Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,12 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				A9EA0BE715C1D62500BA2E92 /* Chat Controllers */,
-				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
-				A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */,
-				A9AC0BEB15C704D40026698D /* MessageCenterCell.h */,
-				A9AC0BEC15C704D40026698D /* MessageCenterCell.m */,
-				30C2BB4915C4D702009AFB8E /* TutorRatingViewController.h */,
-				30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */,
+				A9AC0BEF15C70D3F0026698D /* Messaging Center */,
 			);
 			name = "Tab 2";
 			sourceTree = "<group>";

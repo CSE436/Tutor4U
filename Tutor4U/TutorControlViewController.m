@@ -189,6 +189,11 @@
     DetailedStudentRequestViewController *nextView = [self.storyboard 
                                                       instantiateViewControllerWithIdentifier:@"DetailedStudentRequestInfo"];
     [nextView setStudentName:cell.textLabel.text];
+
+    // Changes back bbutton on next view
+    [self.tabBarController.navigationItem setTitle:@"Messages"];
+    
+//    [self.navigationItem.backBarButtonItem setTitle:@"Messages"];
     [self.navigationController pushViewController:nextView animated:YES];
 }
 

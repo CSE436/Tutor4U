@@ -57,6 +57,10 @@
     }
 }
 
+-(void)connectWithTutor {
+    NSLog(@"Create Alertview to connect or reject");
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     if ( messages == nil ) {
         messages = [[NSMutableArray alloc] init];
@@ -93,6 +97,13 @@
     messageField.delegate = self;
     
     [self.navigationItem setTitle:studentName];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Accept/Reject" 
+                                                                                               style:UIBarButtonItemStyleDone  
+                                                                                              target:self 
+                                                                                              action:@selector(connectWithTutor)];
+//    [connectReject setTitle:@"Accept/Reject"];
+//    self.navigationItem.rightBarButtonItem = connectReject;
 }
 
 - (void)viewDidLoad
