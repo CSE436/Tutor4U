@@ -63,6 +63,7 @@
     NSLog(@"Rating In progress : Punctuality[ %i ], Knowledge[ %i ], ability[ %i ]", (int)punctualitySlider.value, (int)knowledgeSlider.value, (int)abilitySlider.value);
     NSLog(@"Rating In progress : SumOfReviews[ %i ], ReviewCount[ %i ], Stars[ %i ] ",reviewSum, reviewCnt, stars);
     
+    //[self.tabBarController.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

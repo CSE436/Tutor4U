@@ -72,6 +72,7 @@
     
     TutorRatingViewController *myRating = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorRating"];
     [myRating setUserNameString:tutorName];
+    [self.navigationController popToViewController:self.tabBarController animated:NO];
     [self.navigationController pushViewController:myRating animated:YES];
 }
 
@@ -190,10 +191,10 @@
                                                       instantiateViewControllerWithIdentifier:@"DetailedStudentRequestInfo"];
     [nextView setStudentName:cell.textLabel.text];
 
-    // Changes back bbutton on next view
-    [self.tabBarController.navigationItem setTitle:@"Messages"];
+    // Changes back button on next view
+    NSLog(@"%@",self.navigationController.viewControllers);
     
-//    [self.navigationItem.backBarButtonItem setTitle:@"Messages"];
+    [self.tabBarController.navigationItem setTitle:@"Messages"];
     [self.navigationController pushViewController:nextView animated:YES];
 }
 

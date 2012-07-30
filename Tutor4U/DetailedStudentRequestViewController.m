@@ -59,6 +59,8 @@
 
 -(void)connectWithTutor {
     NSLog(@"Create Alertview to connect or reject");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Accept / Reject" message:@"Do you wish to meet with this student?" delegate:self cancelButtonTitle:@"Reject" otherButtonTitles:@"Accept", nil];
+    [alert show];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -160,6 +162,11 @@
     }
     messageField.text = @"";
     [self hideKeyboard];
+}
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSLog(@"Selected %@",[alertView buttonTitleAtIndex:buttonIndex]);
 }
 
 #pragma mark UITableViewDataSource

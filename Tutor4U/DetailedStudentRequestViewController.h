@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailedStudentRequestViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface DetailedStudentRequestViewController : UIViewController 
+        <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate> {
     NSMutableArray          *messages;
     IBOutlet UITableView    *myTableView;
     IBOutlet UITextField    *messageField;
