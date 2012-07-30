@@ -58,7 +58,11 @@
     [self addSubview:buttonRate];
     
     CGRect frame = self.textLabel.frame;
-    frame.origin.x = buttonFrame.origin.x + buttonFrame.size.width + 5;
+    
+    if ( !buttonRate.hidden ) {
+        frame.origin.x = buttonFrame.origin.x + buttonFrame.size.width + 5;
+    }
+    
     frame.size.width -= frame.origin.x;
     self.textLabel.frame = frame;
 }

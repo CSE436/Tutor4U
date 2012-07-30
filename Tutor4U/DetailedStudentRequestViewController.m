@@ -18,7 +18,7 @@
 
 @implementation DetailedStudentRequestViewController
 
-@synthesize studentName;
+@synthesize studentName,fromType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -134,9 +134,10 @@
 //    
         NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSString stringWithFormat:@"New Message From %@",username], @"alert",
-                          username, @"userName",
-                          messageField.text, @"message",
-                          [[NSNumber alloc] initWithInt:MESSAGE_RECIEVE], @"messageType",
+                              username, @"userName",
+                              messageField.text, @"message",
+                              fromType, @"fromType",
+                              [[NSNumber alloc] initWithInt:MESSAGE_RECIEVE], @"messageType",
                           nil];
         PFPush *push = [[PFPush alloc] init];
     

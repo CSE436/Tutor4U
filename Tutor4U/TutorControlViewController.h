@@ -13,7 +13,7 @@
 
 @interface TutorControlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     NSMutableArray          *studentRequests;
-    NSArray                 *tutorResponses;
+    NSArray                 *tutorResponses, *studentResponses;
     ParseTransport          *parseTransport;
     IBOutlet UITableView    *myTableView;
 }

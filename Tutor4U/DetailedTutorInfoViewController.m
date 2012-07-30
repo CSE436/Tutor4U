@@ -36,6 +36,7 @@
                           //@"Increment", @"badge",
                           subjectString, @"subject",
                           curUser.username, @"studentUser",
+                          @"student",@"fromType",   // Student response to tutor (student Requests)
                           nil];
     PFPush *push = [[PFPush alloc] init];
     
@@ -103,12 +104,12 @@
         }
     }
     
-    if ( hourlyRateString != nil ) 
+    if ( [hourlyRateString length] > 0 ) 
         hourlyRate.text = hourlyRateString;
     else {
         hourlyRate.text = @"$10.00";
     }
-    if ( locationString != nil )
+    if ( [locationString length] > 0 )
         location.text = locationString;
     else {
         location.text = @"Negotiable";

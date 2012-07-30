@@ -26,9 +26,6 @@
 @synthesize subjectString;
 @synthesize userNameString;
 
-
-
-
 -(IBAction) sliderValueChanged:(UISlider *)sender
 {
     //NSLog(@"Rating In progress : Punctuality[ %i ], Knowledge[ %i ], ability[ %i ]", (int)punctualitySlider.value, (int)knowledgeSlider.value, (int)abilitySlider.value);

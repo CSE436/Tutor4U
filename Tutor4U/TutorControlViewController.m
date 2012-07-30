@@ -36,8 +36,13 @@
 -(void)refreshTutorResponsesFromQueue {
     NotificationQueue_Conversation *queue = [NotificationQueue_Conversation sharedInstance];
     NSLog(@"refreshTutorResponsesFromQueue");
-    tutorResponses = [queue getUsernames];
+    tutorResponses = [queue getUsernames_tutor];
+    studentResponses = [queue getUsernames_student];
     
+    NSLog(@"Number Of Requests: {%i,%i}",[tutorResponses count], [studentResponses count]);
+    
+    [self cleanupRequests];
+    [myTableView reloadData];
 }
 
 -(void)handleNotification:(NSDictionary*)newNotification {
@@ -52,6 +57,8 @@
             NSLog(@"studentRequests Contains %@",studentUsername);
         }
     }
+    [self cleanupRequests];
+    
     NSLog(@"Reloading Tableview Data");
     [myTableView reloadData];
 }
@@ -76,15 +83,28 @@
     [self.navigationController pushViewController:myRating animated:YES];
 }
 
+-(void)cleanupRequests {
+    NSMutableArray *entriesToRemove = [[NSMutableArray alloc] init];
+    for ( NSString *entry in studentRequests ) {
+        if ( [[NotificationQueue_Conversation sharedInstance] hasUsername:entry] ) {
+            NSLog(@"Deleting %@",entry);
+            [entriesToRemove addObject:entry];
+        }
+    }
+    
+    for ( NSString *entry in entriesToRemove ) {
+        [studentRequests removeObject:entry];
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated {
 
     [myTableView deselectRowAtIndexPath:myTableView.indexPathForSelectedRow animated:NO];
-    
     parseTransport = [[ParseTransport alloc] init];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshTutorResponses" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshResponses" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateTutor:) name:@"RateTutor" object:nil];
     
     
@@ -93,12 +113,19 @@
                                       objectForKey:[[NSString alloc] 
                                                     initWithFormat:@"unrespondedToRequests_%@",[PFUser currentUser].username]]];
     
+    [self cleanupRequests];
+    
+    tutorResponses = [[NSArray alloc] init];
+    studentResponses = [[NSArray alloc] init];
+    
+    [self refreshTutorResponsesFromQueue];
+    
     if ( [[NotificationQueue sharedInstance] count] > 0 ) {
         NSLog(@"refreshStudentRequestFroMQueue to Come");
         [self refreshStudentRequestsFromQueue];
     }
     
-    if ( [studentRequests count] > 0 )
+    if ( [studentRequests count] > 0 ) 
         [defaults setObject:studentRequests forKey:[[NSString alloc] initWithFormat:@"unrespondedToRequests_%@",[PFUser currentUser].username]];
     
     [self.tabBarController.navigationItem setTitle:@"Message Center"];
@@ -141,12 +168,14 @@
 {
     //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if ( section == 0 ) {
         return @"Tutor Responses";
+    } else if ( section == 1 ) {
+        return @"Student Responses";
     }
     return @"Student Requests";
 }
@@ -155,8 +184,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ( section == 0 ) {
         return [tutorResponses count];
+    } else if ( section == 1 ) {
+        return [studentResponses count];
     }
-    NSLog(@"Student Requests: %i",[studentRequests count]);
     return [studentRequests count];
 }
 
@@ -171,10 +201,13 @@
     // Configure the cell...
     if ( indexPath.section == 0 ) {
         [[cell textLabel] setText:[tutorResponses objectAtIndex:indexPath.row]];
-        [cell setDisplayRate:NO];
+        [cell setDisplayRate:YES];
+    } else if ( indexPath.section == 1 ) {
+        [[cell textLabel] setText:[studentResponses objectAtIndex:indexPath.row]];
+        [cell setDisplayRate:YES];
     } else {
         [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
-        [cell setDisplayRate:YES];
+        [cell setDisplayRate:NO];
     }
     
     return cell;
@@ -190,6 +223,12 @@
     DetailedStudentRequestViewController *nextView = [self.storyboard 
                                                       instantiateViewControllerWithIdentifier:@"DetailedStudentRequestInfo"];
     [nextView setStudentName:cell.textLabel.text];
+    
+    if ( indexPath.section == 0 ) {
+        [nextView setFromType:@"student"]; // Response from student to tutor
+    } else {
+        [nextView setFromType:@"tutor"]; // Response from tutor to student
+    }
 
     // Changes back button on next view
     NSLog(@"%@",self.navigationController.viewControllers);

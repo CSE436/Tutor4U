@@ -29,12 +29,31 @@ static NotificationQueue_Conversation* sharedInstance = nil;
 -(id)init {
     self = [super init];
     messageArray = [[NSMutableDictionary alloc] init];
+    userArray_tutor = [[NSMutableArray alloc] init];
+    userArray_student = [[NSMutableArray alloc] init];
     return self;
 }
 
+-(BOOL)hasUsername:(NSString*)username {
+    //NSLog(@"%@",[messageArray objectForKey:username]);
+    if ( [[messageArray objectForKey:username] count] > 0 )
+        return YES;
+    return NO;
+}
+
 -(void)addMessage:(NSDictionary*)message user:(NSString*)userName fromUser:(NSString*)fromUser {
-    if ( ![userArray containsObject:userName] )
-        [userArray addObject:userName];
+    
+    if ( [(NSString*)[message objectForKey:@"fromType"] caseInsensitiveCompare:@"student"] == NSOrderedSame ) {
+        if ( ![userArray_student containsObject:userName] ) {
+            NSLog(@"Adding %@ to Students",userName);
+            [userArray_student addObject:userName];
+        }
+    } else {
+        if ( ![userArray_tutor containsObject:userName] ) {
+            NSLog(@"Adding %@ to Tutors",userName);
+            [userArray_tutor addObject:userName];
+        }
+    }
   
     NSMutableArray *messagesFromUser = [[NSMutableArray alloc] initWithArray:[messageArray objectForKey:userName]];
     [messagesFromUser addObject:message];
@@ -51,44 +70,74 @@ static NotificationQueue_Conversation* sharedInstance = nil;
     return [((NSArray*)[messageArray objectForKey:userName]) count];
 }
 
--(NSArray*)getUsernames {
-    return userArray;
+-(NSArray*)getUsernames_tutor {
+    return userArray_tutor;
 }
 
--(NSUInteger)count {
-    return [userArray count];
+-(NSArray*)getUsernames_student {
+    return userArray_student;    
+}
+
+-(NSUInteger)count_tutor {
+    return [userArray_tutor count];
+}
+
+-(NSUInteger)count_student {
+    return [userArray_student count];
 }
 
 -(NSString*)getDocumentsDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    if ( [PFUser currentUser] ) {
-        NSString *fileName = [[NSString alloc] initWithFormat:@"Conversations_%@.plist",[PFUser currentUser].username];
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
-        return path;
-    }
-    return nil;
+    return documentsDirectory;
 }
 
 -(void)saveToDisk {
     NSDictionary *toDisk = [[NSDictionary alloc] initWithDictionary:messageArray];
     NSString* filePath = [self getDocumentsDirectory];
     if ( filePath ) {
-        if ( [NSKeyedArchiver archiveRootObject:toDisk toFile:filePath] ) {
-            NSLog(@"Successfully Saved");
-        } else {
-            NSLog(@"Failed to Save");
+        if ( [PFUser currentUser] ) {
+            NSString* userName = [PFUser currentUser].username;
+            NSString *fileName = [[NSString alloc] initWithFormat:@"Conversations_%@.plist",userName];
+            
+            if ( [NSKeyedArchiver archiveRootObject:toDisk toFile:[filePath stringByAppendingPathComponent:fileName]] ) {
+                NSLog(@"Successfully Saved [Conversations]");
+            } else {
+                NSLog(@"Failed to Save [Conversations]");
+            }
+
+            fileName = [[NSString alloc] initWithFormat:@"userArray_tutor_%@.plist",userName];
+            [userArray_tutor writeToFile:[filePath stringByAppendingPathComponent:fileName] atomically:YES];
+
+            
+            fileName = [[NSString alloc] initWithFormat:@"userArray_student_%@.plist",userName];
+            [userArray_student writeToFile:[filePath stringByAppendingPathComponent:fileName] atomically:YES];
         }
     }
 }
+
 
 -(void)loadFromDisk {
     NSLog(@"loadFromDisk");
     NSString* filePath = [self getDocumentsDirectory];
     if ( filePath ) {
-        messageArray = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-        messageArray = [[NSMutableDictionary alloc] initWithDictionary:messageArray];
+        if ( [PFUser currentUser] ) {
+            NSString* userName = [PFUser currentUser].username;
+            NSString *fileName = [[NSString alloc] initWithFormat:@"Conversations_%@.plist",userName];
+            
+            messageArray = [NSKeyedUnarchiver unarchiveObjectWithFile:[filePath stringByAppendingPathComponent:fileName]];
+            messageArray = [[NSMutableDictionary alloc] initWithDictionary:messageArray];
+        
+            fileName = [[NSString alloc] initWithFormat:@"userArray_tutor_%@.plist",userName];
+            userArray_tutor = [[NSMutableArray alloc] initWithContentsOfFile:[filePath stringByAppendingPathComponent:fileName]];
+            // nil can be returned from above.  this initializes the mutable array anyways
+            userArray_tutor = [[NSMutableArray alloc] initWithArray:userArray_tutor];   
+            
+            fileName = [[NSString alloc] initWithFormat:@"userArray_student_%@.plist",userName];
+            userArray_student = [[NSMutableArray alloc] initWithContentsOfFile:[filePath stringByAppendingPathComponent:fileName]];
+            // nil can be returned from above.  this initializes the mutable array anyways
+            userArray_student = [[NSMutableArray alloc] initWithArray:userArray_student];   
+        }
     }
 }
 
