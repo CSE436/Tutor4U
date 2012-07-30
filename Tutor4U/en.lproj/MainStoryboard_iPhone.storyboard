@@ -453,7 +453,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StudentRequestCell" id="sNV-zG-tL4">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StudentRequestCell" id="sNV-zG-tL4" customClass="MessageCenterCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -678,22 +678,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" id="fAh-Xu-GY2">
-                                <rect key="frame" x="9" y="368" width="145" height="39"/>
+                                <rect key="frame" x="9" y="369" width="302" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Connect">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" id="ggU-Yq-Pxm" customClass="reviewButton">
-                                <rect key="frame" x="163" y="368" width="145" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Rate Tutor">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -797,7 +785,6 @@
                         <outlet property="ratingImgView3" destination="eDj-Fc-pIq" id="9e9-Gr-Tl7"/>
                         <outlet property="ratingImgView4" destination="PGR-Jh-BaP" id="Ab7-vC-4n1"/>
                         <outlet property="ratingImgView5" destination="Aiv-sN-zS4" id="5U5-Wy-9Lm"/>
-                        <outlet property="reviewButton" destination="ggU-Yq-Pxm" id="1kn-TS-B5P"/>
                         <outlet property="subjectField" destination="wET-tf-eYO" id="Fxy-hZ-71E"/>
                         <outlet property="tutorIDField" destination="QjN-ST-v10" id="ucF-BE-Ow5"/>
                         <outlet property="view" destination="c1N-3c-WeG" id="b6I-HW-guR"/>
@@ -1057,6 +1044,9 @@
                 <relationship kind="outlet" name="myTutorSession" candidateClass="AddTutorSession"/>
                 <relationship kind="outlet" name="subjectFilter" candidateClass="UISearchBar"/>
             </relationships>
+        </class>
+        <class className="MessageCenterCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessageCenterCell.h"/>
         </class>
         <class className="ParseLoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ParseLoginViewController.h"/>

@@ -11,6 +11,8 @@
 #import "AddTutorSession.h"
 #import "NotificationQueue.h"
 #import "NotificationQueue_Conversation.h"
+#import "MessageCenterCell.h"
+
 
 @interface TutorControlViewController ()
 
@@ -64,12 +66,26 @@
     [self refreshTutorResponsesFromQueue];
 }
 
+-(void)rateTutor:(NSNotification*)notification {
+    NSDictionary *newNotification = [notification userInfo];
+    NSString* tutorName = [newNotification objectForKey:@"tutorName"];
+    
+    TutorRatingViewController *myRating = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorRating"];
+    [myRating setUserNameString:tutorName];
+    [self.navigationController pushViewController:myRating animated:YES];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
+
+    [myTableView deselectRowAtIndexPath:myTableView.indexPathForSelectedRow animated:NO];
+    
     parseTransport = [[ParseTransport alloc] init];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshTutorResponses" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateTutor:) name:@"RateTutor" object:nil];
+    
     
     studentRequests = [[NSMutableArray alloc] 
                        initWithArray:[defaults 
@@ -146,16 +162,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"StudentRequestCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MessageCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if ( cell == nil ) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StudentRequestCell"];
+        cell = [[MessageCenterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StudentRequestCell"];
     }
     // Configure the cell...
     if ( indexPath.section == 0 ) {
         [[cell textLabel] setText:[tutorResponses objectAtIndex:indexPath.row]];
-    } else
+        [cell setDisplayRate:NO];
+    } else {
         [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
+        [cell setDisplayRate:YES];
+    }
     
     return cell;
     
@@ -169,7 +188,6 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     DetailedStudentRequestViewController *nextView = [self.storyboard 
                                                       instantiateViewControllerWithIdentifier:@"DetailedStudentRequestInfo"];
-//    DetailedTutorInfoViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailedTutorInfo"];
     [nextView setStudentName:cell.textLabel.text];
     [self.navigationController pushViewController:nextView animated:YES];
 }

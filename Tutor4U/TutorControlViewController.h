@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "ParseTransport.h"
+#import "TutorRatingViewController.h"
 
 @interface TutorControlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     NSMutableArray          *studentRequests;

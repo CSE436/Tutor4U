@@ -38,6 +38,7 @@
 		A99E0EFC15B0A54F00C8A3EE /* FindTutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0EFB15B0A54F00C8A3EE /* FindTutorViewController.m */; };
 		A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */; };
 		A99E0F0F15B0B12700C8A3EE /* TutorControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */; };
+		A9AC0BED15C704D40026698D /* MessageCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9AC0BEC15C704D40026698D /* MessageCenterCell.m */; };
 		A9D6A1CA15BFD82A00A6BC0D /* NotificationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */; };
 		A9EA0BE615C1D34800BA2E92 /* DetailedStudentRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0BE515C1D34800BA2E92 /* DetailedStudentRequestViewController.m */; };
 		A9EA0BEA15C1D65D00BA2E92 /* ChatBubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0BE915C1D65D00BA2E92 /* ChatBubbleCell.m */; };
@@ -93,6 +94,8 @@
 		A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedTutorInfoViewController.m; sourceTree = "<group>"; };
 		A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorControlViewController.h; sourceTree = "<group>"; };
 		A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorControlViewController.m; sourceTree = "<group>"; };
+		A9AC0BEB15C704D40026698D /* MessageCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCenterCell.h; sourceTree = "<group>"; };
+		A9AC0BEC15C704D40026698D /* MessageCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenterCell.m; sourceTree = "<group>"; };
 		A9D6A1C815BFD82A00A6BC0D /* NotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationQueue.h; sourceTree = "<group>"; };
 		A9D6A1C915BFD82A00A6BC0D /* NotificationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationQueue.m; sourceTree = "<group>"; };
 		A9EA0BE415C1D34800BA2E92 /* DetailedStudentRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedStudentRequestViewController.h; sourceTree = "<group>"; };
@@ -267,6 +270,10 @@
 				A9EA0BE715C1D62500BA2E92 /* Chat Controllers */,
 				A99E0F0D15B0B12700C8A3EE /* TutorControlViewController.h */,
 				A99E0F0E15B0B12700C8A3EE /* TutorControlViewController.m */,
+				A9AC0BEB15C704D40026698D /* MessageCenterCell.h */,
+				A9AC0BEC15C704D40026698D /* MessageCenterCell.m */,
+				30C2BB4915C4D702009AFB8E /* TutorRatingViewController.h */,
+				30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */,
 			);
 			name = "Tab 2";
 			sourceTree = "<group>";
@@ -280,8 +287,6 @@
 				A99E0F0315B0A76600C8A3EE /* DetailedTutorInfoViewController.m */,
 				301C602515BC98E10057CDB9 /* AddTutorSession.h */,
 				301C602615BC98E10057CDB9 /* AddTutorSession.m */,
-				30C2BB4915C4D702009AFB8E /* TutorRatingViewController.h */,
-				30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */,
 			);
 			name = "Tab 1";
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				A9EA0BED15C1D6A700BA2E92 /* ChatBubbleView.m in Sources */,
 				A9EA0BF315C1E2A500BA2E92 /* NotificationQueue_Conversation.m in Sources */,
 				30C2BB4B15C4D702009AFB8E /* TutorRatingViewController.m in Sources */,
+				A9AC0BED15C704D40026698D /* MessageCenterCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
