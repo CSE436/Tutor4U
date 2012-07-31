@@ -130,9 +130,6 @@ static BOOL viewControllerInForeground = NO;
     [self.navigationController pushViewController:nextView animated:NO];
 }
 
-
-
-
 #pragma mark - PFLogInViewControllerDelegate
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.

@@ -210,6 +210,7 @@
     if ( cell == nil ) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TutorInformationCell"];
     }
+    
     // Configure the cell...
     NSDictionary* tutor = [availableTutors objectAtIndex:indexPath.row];
     [[cell textLabel] setText:[tutor objectForKey:@"Tutor4uID"]];

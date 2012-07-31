@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ParseTransport.h"
 
-@interface TutorRatingViewController : UIViewController {
+@interface TutorRatingViewController : UIViewController <UITextFieldDelegate> {
     
     ParseTransport *parseTransport;
     PFObject *tutorRating;

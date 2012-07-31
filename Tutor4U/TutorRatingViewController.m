@@ -78,13 +78,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    subjectTextField.delegate = self;
+    
     parseTransport = [[ParseTransport alloc] init];
     [tutorUserName setText:userNameString];
-    //subjectTextField.text = subjectString;
-    
     [sendReviewButton addTarget:self action:@selector(sendReview) forControlEvents:UIControlEventTouchUpInside];
-
 }
 
 - (void)viewDidUnload
@@ -109,6 +110,45 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView setAnimationsEnabled:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(finishedAnimation)];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    CGFloat oldHeight = textField.frame.origin.y;
+    CGRect frame = self.view.frame;
+    frame.origin.y = 48-oldHeight;
+    self.view.frame = frame;
+    
+    [UIView commitAnimations];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView setAnimationsEnabled:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView  setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(finishedAnimation)];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0;
+    self.view.frame = frame;
+    
+    [UIView commitAnimations];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 @end
