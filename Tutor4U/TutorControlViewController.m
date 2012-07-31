@@ -226,8 +226,10 @@
     
     if ( indexPath.section == 0 ) {
         [nextView setFromType:@"student"]; // Response from student to tutor
+        [nextView setToType:@"tutor"];
     } else {
         [nextView setFromType:@"tutor"]; // Response from tutor to student
+        [nextView setToType:@"student"];
     }
 
     // Changes back button on next view

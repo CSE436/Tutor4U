@@ -19,7 +19,7 @@
 
 @implementation DetailedStudentRequestViewController
 
-@synthesize studentName,fromType;
+@synthesize studentName,fromType, toType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -138,6 +138,9 @@
     
         NSString *username = [PFUser currentUser].username;
     
+        
+        NSLog(@"From:\t%@\nTo:\t%@",fromType,toType);
+        
         NSLog(@"%@ -> %@:\n\t%@",username,studentName,messageField.text);
 //    
         NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -147,6 +150,7 @@
                               fromType, @"fromType",
                               [[NSNumber alloc] initWithInt:MESSAGE_RECIEVE], @"messageType",
                           nil];
+        
         PFPush *push = [[PFPush alloc] init];
     
         //NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
@@ -159,7 +163,10 @@
         NSMutableDictionary *newMessage = [[NSMutableDictionary alloc] initWithDictionary:data];
         [newMessage removeObjectForKey:@"messageType"];
         [newMessage setObject:[[NSNumber alloc] initWithInt:MESSAGE_SEND] forKey:@"messageType"];
-
+        
+        [newMessage removeObjectForKey:@"fromType"];
+        [newMessage setObject:toType forKey:@"fromType"];
+        
         [[NotificationQueue_Conversation sharedInstance] addMessage:newMessage
                                                                user:studentName 
                                                            fromUser:username];

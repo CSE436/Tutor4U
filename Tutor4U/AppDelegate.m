@@ -63,6 +63,12 @@
         [[NotificationQueue sharedInstance] addMessage:userInfo];
         //
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshStudentRequests" object:nil userInfo:userInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Request"
+                                                        message:[userInfo objectForKey:@"message"] 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     } else {
         if ( [userInfo objectForKey:@"message"] != nil ) {
             NSLog(@"Message To %@ Request/Response",[userInfo objectForKey:@"fromType"]);
@@ -71,6 +77,7 @@
                                                                fromUser:[userInfo objectForKey:@"userName"]];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshConversation" object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshResponses" object:nil];
+            
 //            [[NotificationQueue_Conversation sharedInstance] saveToDisk];
         } else if ( [userInfo objectForKey:@"hourlyRate"] != nil ) {
             NSLog(@"New Tutor Found Matching Your Filter");
