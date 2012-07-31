@@ -75,6 +75,53 @@
         } else if ( [userInfo objectForKey:@"hourlyRate"] != nil ) {
             NSLog(@"New Tutor Found Matching Your Filter");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:nil];
+        } else {
+            handshakeProtocol currentHandshake = (handshakeProtocol)[[userInfo objectForKey:@"handShake"] intValue];
+            NSString *msg = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+            NSLog(@"Handshake Notification");
+            studentName = [userInfo objectForKey:@"userName"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Meeting Request" 
+                                               message:msg 
+                                              delegate:self 
+                                     cancelButtonTitle:@"Reject" 
+                                     otherButtonTitles:@"Accept", nil];
+            if ( currentHandshake == HANDSHAKE_CONNECT_STAGE ) {
+                // Initial Handshake
+                NSLog(@"HANDSHAKE_CONNECT");
+                currentStage = HANDSHAKE_CONNECT_STAGE;
+            } else if ( currentHandshake == HANDSHAKE_RESPONSE_CONFIRM ) {
+                // Accept
+                NSLog(@"HANDSHAKE_CONFIRM");
+//                [alert setTitle:@"Meeting Response"];
+                currentStage = HANDSHAKE_RESPONSE_CONFIRM;
+                alert = [[UIAlertView alloc] initWithTitle:@"Meeting Response" 
+                                                   message:@"Meeting has been confirmed" 
+                                                  delegate:self 
+                                         cancelButtonTitle:@"OK" 
+                                         otherButtonTitles:nil];
+            } else if ( currentHandshake == HANDSHAKE_REJECT ) {
+                // Reject
+                NSLog(@"HANDSHAKE_REJECT");
+                currentStage = HANDSHAKE_REJECT;
+                
+                alert = [[UIAlertView alloc] initWithTitle:@"Meeting Response" 
+                                                   message:msg 
+                                                  delegate:self 
+                                         cancelButtonTitle:@"OK" 
+                                         otherButtonTitles:nil];
+                
+            } else if ( currentHandshake == HANDSHAKE_FINISHED ) {
+                NSLog(@"HANDSHAKE_FINISHED");
+                currentStage = HANDSHAKE_FINISHED;
+                alert = [[UIAlertView alloc] initWithTitle:@"Meeting Response" 
+                                                  message:@"Meeting has been confirmed" 
+                                                 delegate:self 
+                                        cancelButtonTitle:@"OK" 
+                                        otherButtonTitles:nil];
+
+            }
+            [alert show];
+            //[PFPush handlePush:userInfo];
         }
     }
     //[PFPush handlePush:userInfo];
@@ -122,6 +169,44 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ( currentStage == HANDSHAKE_REJECT || currentStage == HANDSHAKE_FINISHED || currentStage == HANDSHAKE_RESPONSE_CONFIRM ) {
+        return;
+    }
+    
+    NSLog(@"Selected %@\t%i",[alertView buttonTitleAtIndex:buttonIndex],buttonIndex);
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                 [PFUser currentUser].username, @"userName",
+                                 nil];
+    
+    
+    if ( buttonIndex == 0 ) {
+        // Reject
+        [data setObject:[[NSNumber alloc] initWithInt:HANDSHAKE_REJECT] forKey:@"handShake"];
+        [data setObject:[NSString stringWithFormat:@"%@ has declined your meeting request",[PFUser currentUser].username] forKey:@"alert"];
+    } else {
+        // Accept
+        if ( currentStage == HANDSHAKE_RESPONSE_CONFIRM ) {
+            [data setObject:[[NSNumber alloc] initWithInt:HANDSHAKE_FINISHED] forKey:@"handShake"];
+        } else {
+            [data setObject:[[NSNumber alloc] initWithInt:HANDSHAKE_RESPONSE_CONFIRM] forKey:@"handShake"];
+        }
+        [data setObject:[NSString stringWithFormat:@"%@ has accepted to meet",[PFUser currentUser].username] forKey:@"alert"];
+    }
+    
+    PFPush *push = [[PFPush alloc] init];
+    
+    //NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
+    [push setChannels:[[NSArray alloc] initWithObjects:studentName, nil]];
+    [push setPushToAndroid:false];
+    [push expireAfterTimeInterval:86400];
+    [push setData:data];
+    [push sendPushInBackground];
 }
 
 @end

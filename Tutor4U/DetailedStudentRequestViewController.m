@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "ParseTransport.h"
 #import "ChatBubbleCell.h"
 #import "DetailedStudentRequestViewController.h"
@@ -59,7 +60,14 @@
 
 -(void)connectWithTutor {
     NSLog(@"Create Alertview to connect or reject");
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Accept / Reject" message:@"Do you wish to meet with this student?" delegate:self cancelButtonTitle:@"Reject" otherButtonTitles:@"Accept", nil];
+    
+    NSString *msg;
+    if ( [fromType caseInsensitiveCompare:@"tutor"] == NSOrderedSame ) {
+        msg = [[NSString alloc] initWithFormat:@"Do you wish to meet with this %@?",@"student"];
+    } else {
+        msg = [[NSString alloc] initWithFormat:@"Do you wish to meet with this %@?",@"tutor"];
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Accept / Reject" message:msg delegate:self cancelButtonTitle:@"Reject" otherButtonTitles:@"Accept", nil];
     [alert show];
 }
 
@@ -167,7 +175,31 @@
 
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    NSLog(@"Selected %@",[alertView buttonTitleAtIndex:buttonIndex]);
+    NSLog(@"Selected %@\t%i",[alertView buttonTitleAtIndex:buttonIndex],buttonIndex);
+    
+    NSDictionary *data;
+    
+    if ( buttonIndex == 0 ) {
+        data = [NSDictionary dictionaryWithObjectsAndKeys:
+                [NSString stringWithFormat:@"%@ has declined to meet",[PFUser currentUser].username], @"alert",
+                [PFUser currentUser].username, @"userName",
+                [[NSNumber alloc] initWithInt:HANDSHAKE_REJECT], @"handShake",
+                nil];
+    } else {
+        data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSString stringWithFormat:@"%@ has requested to meet",[PFUser currentUser].username], @"alert",
+                          [PFUser currentUser].username, @"userName",
+                          [[NSNumber alloc] initWithInt:HANDSHAKE_CONNECT_STAGE], @"handShake",
+                          nil];
+    }
+    PFPush *push = [[PFPush alloc] init];
+    
+    //NSMutableArray *channels = [NSMutableArray arrayWithArray:[subject.text componentsSeparatedByString:@","]];
+    [push setChannels:[[NSArray alloc] initWithObjects:studentName, nil]];
+    [push setPushToAndroid:false];
+    [push expireAfterTimeInterval:86400];
+    [push setData:data];
+    [push sendPushInBackground];
 }
 
 #pragma mark UITableViewDataSource

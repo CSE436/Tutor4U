@@ -204,7 +204,7 @@
         [cell setDisplayRate:YES];
     } else if ( indexPath.section == 1 ) {
         [[cell textLabel] setText:[studentResponses objectAtIndex:indexPath.row]];
-        [cell setDisplayRate:YES];
+        [cell setDisplayRate:NO];
     } else {
         [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
         [cell setDisplayRate:NO];
