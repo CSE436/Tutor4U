@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+typedef enum {
+    HANDSHAKE_CONNECT_STAGE,
+    HANDSHAKE_RESPONSE_CONFIRM,
+    HANDSHAKE_REJECT,
+    HANDSHAKE_FINISHED
+} handshakeProtocol;
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate> {
+    handshakeProtocol   currentStage;
+    NSString            *studentName;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

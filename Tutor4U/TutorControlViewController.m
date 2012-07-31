@@ -204,7 +204,7 @@
         [cell setDisplayRate:YES];
     } else if ( indexPath.section == 1 ) {
         [[cell textLabel] setText:[studentResponses objectAtIndex:indexPath.row]];
-        [cell setDisplayRate:YES];
+        [cell setDisplayRate:NO];
     } else {
         [[cell textLabel] setText:[studentRequests objectAtIndex:indexPath.row]];
         [cell setDisplayRate:NO];
@@ -226,8 +226,10 @@
     
     if ( indexPath.section == 0 ) {
         [nextView setFromType:@"student"]; // Response from student to tutor
+        [nextView setToType:@"tutor"];
     } else {
         [nextView setFromType:@"tutor"]; // Response from tutor to student
+        [nextView setToType:@"student"];
     }
 
     // Changes back button on next view

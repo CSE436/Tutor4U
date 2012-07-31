@@ -19,6 +19,7 @@
 
 @property (retain,nonatomic) NSString* studentName;
 @property (retain,nonatomic) NSString* fromType;
+@property (retain,nonatomic) NSString* toType;
 
 -(IBAction)sendMessage;
 
