@@ -76,30 +76,30 @@
     CGSize box = CGSizeMake(100, 100);
     for(int i =0; i < 5; i++, stars--) {
         if(i == 0) { 
-            if(stars > 0) { [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            if(stars > 0) { [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-star.png"]]; } 
             else {
-                [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+                [self.ratingImgView1 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.png"]];
             }
             [self.ratingImgView1 sizeThatFits:box];
         } else if(i == 1) { 
-            if(stars > 0) { [self.ratingImgView2 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            if(stars > 0) { [self.ratingImgView2 setImage:[UIImage imageNamed:@"iTutor-4u-star.png"]]; } 
             else {
-                [self.ratingImgView2 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+                [self.ratingImgView2 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.png"]];
             }
         } else if(i == 2) { 
-            if(stars > 0) { [self.ratingImgView3 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            if(stars > 0) { [self.ratingImgView3 setImage:[UIImage imageNamed:@"iTutor-4u-star.png"]]; } 
             else {
-                [self.ratingImgView3 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+                [self.ratingImgView3 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.png"]];
             }
         } else if(i == 3) { 
-            if(stars > 0) { [self.ratingImgView4 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            if(stars > 0) { [self.ratingImgView4 setImage:[UIImage imageNamed:@"iTutor-4u-star.png"]]; } 
             else {
-                [self.ratingImgView4 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+                [self.ratingImgView4 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.png"]];
             }
         } else if(i == 4) { 
-            if(stars > 0) { [self.ratingImgView5 setImage:[UIImage imageNamed:@"iTutor-4u-star.jpg"]]; } 
+            if(stars > 0) { [self.ratingImgView5 setImage:[UIImage imageNamed:@"iTutor-4u-star.png"]]; } 
             else {
-                [self.ratingImgView5 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.jpg"]];
+                [self.ratingImgView5 setImage:[UIImage imageNamed:@"iTutor-4u-no-star.png"]];
             }
         }
     }

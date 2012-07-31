@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LogInViewController.h"
-#import "SignUpViewController.h"
 #import "ParseTransport.h"
+#import "LoginViewController.h"
 
 @interface ParseLoginViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate> {
     PFLogInViewController *logInViewController;

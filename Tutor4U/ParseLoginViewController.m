@@ -96,6 +96,7 @@ static BOOL viewControllerInForeground = NO;
         // Create the sign up view controller
         PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        [signUpViewController.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iTutor-4u-logo.png"]]];
         
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController]; 

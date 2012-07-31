@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3009AFED15C794A600CD2D25 /* iTutor-4u-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFEB15C794A600CD2D25 /* iTutor-4u-icon.png */; };
+		3009AFEE15C794A600CD2D25 /* iTutor-4u-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFEC15C794A600CD2D25 /* iTutor-4u-logo.png */; };
+		3009AFF215C7964F00CD2D25 /* iTutor-4u-no-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFF015C7964F00CD2D25 /* iTutor-4u-no-star.png */; };
+		3009AFF315C7964F00CD2D25 /* iTutor-4u-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFF115C7964F00CD2D25 /* iTutor-4u-star.png */; };
+		3009AFF715C7997D00CD2D25 /* iTutor-4U-splush.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFF615C7997D00CD2D25 /* iTutor-4U-splush.png */; };
+		3009AFFA15C7A3E500CD2D25 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3009AFF915C7A3E500CD2D25 /* LoginViewController.m */; };
 		301C602015BC83370057CDB9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301C601F15BC83370057CDB9 /* MapKit.framework */; };
 		301C602715BC98E10057CDB9 /* AddTutorSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 301C602615BC98E10057CDB9 /* AddTutorSession.m */; };
 		3039483415B5123500477265 /* ParseTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039483315B5123500477265 /* ParseTransport.m */; };
 		309AAED915B9251C00A372C7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309AAED815B9251C00A372C7 /* ProfileViewController.m */; };
-		30C2BB4215C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4115C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg */; };
-		30C2BB4415C4AFE4009AFB8E /* iTutor-4U-splush.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4315C4AFE4009AFB8E /* iTutor-4U-splush.jpg */; };
-		30C2BB4715C4B781009AFB8E /* iTutor-4u-no-star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4515C4B781009AFB8E /* iTutor-4u-no-star.jpg */; };
-		30C2BB4815C4B781009AFB8E /* iTutor-4u-star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30C2BB4615C4B781009AFB8E /* iTutor-4u-star.jpg */; };
 		30C2BB4B15C4D702009AFB8E /* TutorRatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */; };
 		30F9E1D815B2553F00D3F000 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D715B2553F00D3F000 /* SystemConfiguration.framework */; };
 		30F9E1DE15B255B300D3F000 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D915B255B300D3F000 /* AudioToolbox.framework */; };
@@ -23,8 +25,6 @@
 		30F9E1E115B255B300D3F000 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1DC15B255B300D3F000 /* MobileCoreServices.framework */; };
 		30F9E1E215B255B300D3F000 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1DD15B255B300D3F000 /* Security.framework */; };
 		30F9E1E515B256C500D3F000 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F9E1D415B2552B00D3F000 /* QuartzCore.framework */; };
-		30F9E1EE15B257B400D3F000 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F9E1EA15B257B400D3F000 /* LoginViewController.m */; };
-		30F9E1EF15B257B400D3F000 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F9E1EC15B257B400D3F000 /* SignUpViewController.m */; };
 		A912978E15C27FE20028626F /* Balloon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A912978C15C27FE20028626F /* Balloon_1.png */; };
 		A912978F15C27FE20028626F /* Balloon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A912978D15C27FE20028626F /* Balloon_2.png */; };
 		A9847E9E15B09B86003087DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9847E9D15B09B86003087DB /* UIKit.framework */; };
@@ -50,6 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3009AFEB15C794A600CD2D25 /* iTutor-4u-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-icon.png"; sourceTree = "<group>"; };
+		3009AFEC15C794A600CD2D25 /* iTutor-4u-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-logo.png"; sourceTree = "<group>"; };
+		3009AFF015C7964F00CD2D25 /* iTutor-4u-no-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-no-star.png"; sourceTree = "<group>"; };
+		3009AFF115C7964F00CD2D25 /* iTutor-4u-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-star.png"; sourceTree = "<group>"; };
+		3009AFF615C7997D00CD2D25 /* iTutor-4U-splush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4U-splush.png"; sourceTree = "<group>"; };
+		3009AFF815C7A3E500CD2D25 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		3009AFF915C7A3E500CD2D25 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		301C601F15BC83370057CDB9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		301C602515BC98E10057CDB9 /* AddTutorSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTutorSession.h; sourceTree = "<group>"; };
 		301C602615BC98E10057CDB9 /* AddTutorSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTutorSession.m; sourceTree = "<group>"; };
@@ -57,10 +64,6 @@
 		3039483315B5123500477265 /* ParseTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseTransport.m; sourceTree = "<group>"; };
 		309AAED715B9251C00A372C7 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		309AAED815B9251C00A372C7 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		30C2BB4115C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4U-Text-Logo.jpg"; sourceTree = "<group>"; };
-		30C2BB4315C4AFE4009AFB8E /* iTutor-4U-splush.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4U-splush.jpg"; sourceTree = "<group>"; };
-		30C2BB4515C4B781009AFB8E /* iTutor-4u-no-star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4u-no-star.jpg"; sourceTree = "<group>"; };
-		30C2BB4615C4B781009AFB8E /* iTutor-4u-star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iTutor-4u-star.jpg"; sourceTree = "<group>"; };
 		30C2BB4915C4D702009AFB8E /* TutorRatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorRatingViewController.h; sourceTree = "<group>"; };
 		30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorRatingViewController.m; sourceTree = "<group>"; };
 		30F9E1D415B2552B00D3F000 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -70,10 +73,6 @@
 		30F9E1DB15B255B300D3F000 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		30F9E1DC15B255B300D3F000 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		30F9E1DD15B255B300D3F000 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		30F9E1E915B257B400D3F000 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		30F9E1EA15B257B400D3F000 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		30F9E1EB15B257B400D3F000 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		30F9E1EC15B257B400D3F000 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		A912978C15C27FE20028626F /* Balloon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon_1.png; sourceTree = "<group>"; };
 		A912978D15C27FE20028626F /* Balloon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon_2.png; sourceTree = "<group>"; };
 		A9847E9915B09B86003087DB /* Tutor4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutor4U.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,10 +138,10 @@
 		30F9E1F015B257D800D3F000 /* ParseGateway */ = {
 			isa = PBXGroup;
 			children = (
-				30F9E1E915B257B400D3F000 /* LoginViewController.h */,
-				30F9E1EA15B257B400D3F000 /* LoginViewController.m */,
-				30F9E1EB15B257B400D3F000 /* SignUpViewController.h */,
-				30F9E1EC15B257B400D3F000 /* SignUpViewController.m */,
+				3009AFF815C7A3E500CD2D25 /* LoginViewController.h */,
+				3009AFF915C7A3E500CD2D25 /* LoginViewController.m */,
+				A9F4908C15BDB3FD00AEA9E5 /* ParseLoginViewController.h */,
+				A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */,
 				3039483215B5123500477265 /* ParseTransport.h */,
 				3039483315B5123500477265 /* ParseTransport.m */,
 			);
@@ -154,10 +153,11 @@
 			children = (
 				A912978C15C27FE20028626F /* Balloon_1.png */,
 				A912978D15C27FE20028626F /* Balloon_2.png */,
-				30C2BB4115C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg */,
-				30C2BB4315C4AFE4009AFB8E /* iTutor-4U-splush.jpg */,
-				30C2BB4515C4B781009AFB8E /* iTutor-4u-no-star.jpg */,
-				30C2BB4615C4B781009AFB8E /* iTutor-4u-star.jpg */,
+				3009AFEB15C794A600CD2D25 /* iTutor-4u-icon.png */,
+				3009AFEC15C794A600CD2D25 /* iTutor-4u-logo.png */,
+				3009AFF015C7964F00CD2D25 /* iTutor-4u-no-star.png */,
+				3009AFF115C7964F00CD2D25 /* iTutor-4u-star.png */,
+				3009AFF615C7997D00CD2D25 /* iTutor-4U-splush.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -208,8 +208,6 @@
 				A9847EB215B09B86003087DB /* MainStoryboard_iPad.storyboard */,
 				30F9E1F015B257D800D3F000 /* ParseGateway */,
 				A9847EA415B09B86003087DB /* Supporting Files */,
-				A9F4908C15BDB3FD00AEA9E5 /* ParseLoginViewController.h */,
-				A9F4908D15BDB3FD00AEA9E5 /* ParseLoginViewController.m */,
 				A9F2500E15C06476002AD5E9 /* Tab 1 */,
 				A9F2500D15C0645A002AD5E9 /* Tab 2 */,
 				A9F2500C15C06448002AD5E9 /* Tab 3 */,
@@ -354,10 +352,11 @@
 				A9F2500915BFFACC002AD5E9 /* MainStoryboard_iPhone.storyboard in Resources */,
 				A912978E15C27FE20028626F /* Balloon_1.png in Resources */,
 				A912978F15C27FE20028626F /* Balloon_2.png in Resources */,
-				30C2BB4215C4AA8A009AFB8E /* iTutor-4U-Text-Logo.jpg in Resources */,
-				30C2BB4415C4AFE4009AFB8E /* iTutor-4U-splush.jpg in Resources */,
-				30C2BB4715C4B781009AFB8E /* iTutor-4u-no-star.jpg in Resources */,
-				30C2BB4815C4B781009AFB8E /* iTutor-4u-star.jpg in Resources */,
+				3009AFED15C794A600CD2D25 /* iTutor-4u-icon.png in Resources */,
+				3009AFEE15C794A600CD2D25 /* iTutor-4u-logo.png in Resources */,
+				3009AFF215C7964F00CD2D25 /* iTutor-4u-no-star.png in Resources */,
+				3009AFF315C7964F00CD2D25 /* iTutor-4u-star.png in Resources */,
+				3009AFF715C7997D00CD2D25 /* iTutor-4U-splush.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,8 +372,6 @@
 				A99E0EFC15B0A54F00C8A3EE /* FindTutorViewController.m in Sources */,
 				A99E0F0415B0A76600C8A3EE /* DetailedTutorInfoViewController.m in Sources */,
 				A99E0F0F15B0B12700C8A3EE /* TutorControlViewController.m in Sources */,
-				30F9E1EE15B257B400D3F000 /* LoginViewController.m in Sources */,
-				30F9E1EF15B257B400D3F000 /* SignUpViewController.m in Sources */,
 				3039483415B5123500477265 /* ParseTransport.m in Sources */,
 				309AAED915B9251C00A372C7 /* ProfileViewController.m in Sources */,
 				301C602715BC98E10057CDB9 /* AddTutorSession.m in Sources */,
@@ -387,6 +384,7 @@
 				A9EA0BF315C1E2A500BA2E92 /* NotificationQueue_Conversation.m in Sources */,
 				30C2BB4B15C4D702009AFB8E /* TutorRatingViewController.m in Sources */,
 				A9AC0BED15C704D40026698D /* MessageCenterCell.m in Sources */,
+				3009AFFA15C7A3E500CD2D25 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

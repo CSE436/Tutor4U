@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailedTutorInfoViewController.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "ParseTransport.h"
 #import "PhoneNumberFormatter.h"
 
