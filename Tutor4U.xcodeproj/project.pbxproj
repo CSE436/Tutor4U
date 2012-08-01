@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3009AFED15C794A600CD2D25 /* iTutor-4u-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFEB15C794A600CD2D25 /* iTutor-4u-icon.png */; };
 		3009AFEE15C794A600CD2D25 /* iTutor-4u-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFEC15C794A600CD2D25 /* iTutor-4u-logo.png */; };
 		3009AFF215C7964F00CD2D25 /* iTutor-4u-no-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFF015C7964F00CD2D25 /* iTutor-4u-no-star.png */; };
 		3009AFF315C7964F00CD2D25 /* iTutor-4u-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009AFF115C7964F00CD2D25 /* iTutor-4u-star.png */; };
@@ -52,7 +51,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3009AFEB15C794A600CD2D25 /* iTutor-4u-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-icon.png"; sourceTree = "<group>"; };
 		3009AFEC15C794A600CD2D25 /* iTutor-4u-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-logo.png"; sourceTree = "<group>"; };
 		3009AFF015C7964F00CD2D25 /* iTutor-4u-no-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-no-star.png"; sourceTree = "<group>"; };
 		3009AFF115C7964F00CD2D25 /* iTutor-4u-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-star.png"; sourceTree = "<group>"; };
@@ -62,8 +60,8 @@
 		301C601F15BC83370057CDB9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		301C602515BC98E10057CDB9 /* AddTutorSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTutorSession.h; sourceTree = "<group>"; };
 		301C602615BC98E10057CDB9 /* AddTutorSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTutorSession.m; sourceTree = "<group>"; };
-		302B17BD15C88E91001D4374 /* iTutor-4u-icon-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-icon-retina.png"; sourceTree = "<group>"; };
-		302B17BF15C88ED6001D4374 /* iTutor-4u-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-icon.png"; sourceTree = "<group>"; };
+		302B17BD15C88E91001D4374 /* iTutor-4u-icon-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTutor-4u-icon-retina.png"; path = "../../iTutor-4u-icon-retina.png"; sourceTree = "<group>"; };
+		302B17BF15C88ED6001D4374 /* iTutor-4u-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTutor-4u-icon.png"; path = "../../iTutor-4u-icon.png"; sourceTree = "<group>"; };
 		3039483215B5123500477265 /* ParseTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseTransport.h; sourceTree = "<group>"; };
 		3039483315B5123500477265 /* ParseTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseTransport.m; sourceTree = "<group>"; };
 		309AAED715B9251C00A372C7 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -155,9 +153,10 @@
 		A912978B15C27FE20028626F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				302B17BF15C88ED6001D4374 /* iTutor-4u-icon.png */,
+				302B17BD15C88E91001D4374 /* iTutor-4u-icon-retina.png */,
 				A912978C15C27FE20028626F /* Balloon_1.png */,
 				A912978D15C27FE20028626F /* Balloon_2.png */,
-				3009AFEB15C794A600CD2D25 /* iTutor-4u-icon.png */,
 				3009AFEC15C794A600CD2D25 /* iTutor-4u-logo.png */,
 				3009AFF015C7964F00CD2D25 /* iTutor-4u-no-star.png */,
 				3009AFF115C7964F00CD2D25 /* iTutor-4u-star.png */,
@@ -169,8 +168,6 @@
 		A9847E8E15B09B86003087DB = {
 			isa = PBXGroup;
 			children = (
-				302B17BF15C88ED6001D4374 /* iTutor-4u-icon.png */,
-				302B17BD15C88E91001D4374 /* iTutor-4u-icon-retina.png */,
 				A9847EA315B09B86003087DB /* Tutor4U */,
 				A9847E9C15B09B86003087DB /* Frameworks */,
 				A9847E9A15B09B86003087DB /* Products */,
@@ -358,7 +355,6 @@
 				A9F2500915BFFACC002AD5E9 /* MainStoryboard_iPhone.storyboard in Resources */,
 				A912978E15C27FE20028626F /* Balloon_1.png in Resources */,
 				A912978F15C27FE20028626F /* Balloon_2.png in Resources */,
-				3009AFED15C794A600CD2D25 /* iTutor-4u-icon.png in Resources */,
 				3009AFEE15C794A600CD2D25 /* iTutor-4u-logo.png in Resources */,
 				3009AFF215C7964F00CD2D25 /* iTutor-4u-no-star.png in Resources */,
 				3009AFF315C7964F00CD2D25 /* iTutor-4u-star.png in Resources */,
