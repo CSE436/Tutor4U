@@ -15,6 +15,8 @@
 		3009AFFA15C7A3E500CD2D25 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3009AFF915C7A3E500CD2D25 /* LoginViewController.m */; };
 		301C602015BC83370057CDB9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301C601F15BC83370057CDB9 /* MapKit.framework */; };
 		301C602715BC98E10057CDB9 /* AddTutorSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 301C602615BC98E10057CDB9 /* AddTutorSession.m */; };
+		302B17BE15C88E91001D4374 /* iTutor-4u-icon-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 302B17BD15C88E91001D4374 /* iTutor-4u-icon-retina.png */; };
+		302B17C015C88ED6001D4374 /* iTutor-4u-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 302B17BF15C88ED6001D4374 /* iTutor-4u-icon.png */; };
 		3039483415B5123500477265 /* ParseTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039483315B5123500477265 /* ParseTransport.m */; };
 		309AAED915B9251C00A372C7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309AAED815B9251C00A372C7 /* ProfileViewController.m */; };
 		30C2BB4B15C4D702009AFB8E /* TutorRatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BB4A15C4D702009AFB8E /* TutorRatingViewController.m */; };
@@ -60,6 +62,8 @@
 		301C601F15BC83370057CDB9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		301C602515BC98E10057CDB9 /* AddTutorSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTutorSession.h; sourceTree = "<group>"; };
 		301C602615BC98E10057CDB9 /* AddTutorSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTutorSession.m; sourceTree = "<group>"; };
+		302B17BD15C88E91001D4374 /* iTutor-4u-icon-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-icon-retina.png"; sourceTree = "<group>"; };
+		302B17BF15C88ED6001D4374 /* iTutor-4u-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTutor-4u-icon.png"; sourceTree = "<group>"; };
 		3039483215B5123500477265 /* ParseTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseTransport.h; sourceTree = "<group>"; };
 		3039483315B5123500477265 /* ParseTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseTransport.m; sourceTree = "<group>"; };
 		309AAED715B9251C00A372C7 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 		A9847E8E15B09B86003087DB = {
 			isa = PBXGroup;
 			children = (
+				302B17BF15C88ED6001D4374 /* iTutor-4u-icon.png */,
+				302B17BD15C88E91001D4374 /* iTutor-4u-icon-retina.png */,
 				A9847EA315B09B86003087DB /* Tutor4U */,
 				A9847E9C15B09B86003087DB /* Frameworks */,
 				A9847E9A15B09B86003087DB /* Products */,
@@ -357,6 +363,8 @@
 				3009AFF215C7964F00CD2D25 /* iTutor-4u-no-star.png in Resources */,
 				3009AFF315C7964F00CD2D25 /* iTutor-4u-star.png in Resources */,
 				3009AFF715C7997D00CD2D25 /* iTutor-4U-splush.png in Resources */,
+				302B17BE15C88E91001D4374 /* iTutor-4u-icon-retina.png in Resources */,
+				302B17C015C88ED6001D4374 /* iTutor-4u-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +432,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -439,6 +448,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -450,6 +460,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -459,6 +470,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
