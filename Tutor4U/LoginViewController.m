@@ -22,7 +22,7 @@
     [self.logInView.dismissButton setHidden:YES];
     
     //[self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"iTutor-4U-splush.jpg"]]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iTutor-4U-Text-Logo.jpg"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iTutor-4u-logo.png"]]];
     //self.logInView.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iTutor4U-logo.ldsp"]];
     
     return;
