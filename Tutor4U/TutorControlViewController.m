@@ -79,8 +79,13 @@
     
     TutorRatingViewController *myRating = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorRating"];
     [myRating setUserNameString:tutorName];
-    [self.navigationController popToViewController:self.tabBarController animated:NO];
-    [self.navigationController pushViewController:myRating animated:YES];
+    
+    [self.navigationItem setBackBarButtonItem:nil];
+    NSLog(@"%@",[self.tabBarController.navigationController viewControllers]);
+    [self.tabBarController.navigationController pushViewController:myRating animated:YES];
+    //[self.tabBarController.navigationController popToViewController:self.tabBarController animated:NO];
+    //[self.tabBarController.navigationController pushViewController:myRating animated:YES];
+    //[self.navigationController pushViewController:myRating animated:YES];
 }
 
 -(void)cleanupRequests {

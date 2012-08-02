@@ -38,20 +38,22 @@
     }
 }
 -(void)sendReview
-{     
+{   
+    NSLog(@"sendReview");
     tutorRating = [parseTransport getTutorRating:tutorUserName.text];
-    //NSLog(@"sendReview : %@ ",tutorRating);
+    NSLog(@"sendReview : %@ ",tutorRating);
     
     int stars = 0;
     int reviewSum = (int)(punctualitySlider.value + knowledgeSlider.value + abilitySlider.value) / 3;
-    int reviewCnt = 0;
+    int reviewCnt = 1;
 
     if(tutorRating != nil) {
         reviewSum = [[tutorRating objectForKey:@"SumOfReviews"] intValue] + reviewSum;
         reviewCnt = [[tutorRating objectForKey:@"ReviewsCount"] intValue] + 1;
         reviewCnt = ( reviewCnt <= 0) ? 1 : reviewCnt;
-        stars = (int)(reviewSum / reviewCnt);
     }
+    stars = (int)(reviewSum / reviewCnt);
+    NSLog(@"sendRating");
     int ret = [parseTransport setTutorRating:tutorUserName.text :[NSNumber numberWithFloat:reviewSum] :[NSNumber numberWithInt:reviewCnt]];
     if( ret != T4U_SUCCESS ) {
         //post ViewAlert to notify the user - 
@@ -60,6 +62,8 @@
     NSLog(@"Rating In progress : Punctuality[ %i ], Knowledge[ %i ], ability[ %i ]", (int)punctualitySlider.value, (int)knowledgeSlider.value, (int)abilitySlider.value);
     NSLog(@"Rating In progress : SumOfReviews[ %i ], ReviewCount[ %i ], Stars[ %i ] ",reviewSum, reviewCnt, stars);
     
+    
+    [self.tabBarController.navigationController popViewControllerAnimated:YES];
     //[self.tabBarController.navigationController popToRootViewControllerAnimated:YES];
 }
 
