@@ -107,7 +107,8 @@
     [ParseTransport pushChannelManagement];
     
     [ParseLoginViewController setViewControllerInForeground:NO];
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.tabBarController.navigationController popViewControllerAnimated:NO];
+//    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -142,16 +143,16 @@
     
     if ( currentUser )  {
         [self.tutor4uID setText:currentUser.username];
-        if ( currentUser.isNew ) {
-            self.tabBarController.navigationItem.title = @"Create Your Profile";
-        } else {
-            self.tabBarController.navigationItem.title = @"Update Your Profile";
-        }
+//        if ( currentUser.isNew ) {
+//            self.tabBarController.navigationItem.title = @"Create Your Profile";
+//        } else {
+//            self.tabBarController.navigationItem.title = @"Update Your Profile";
+//        }
 //    
-        self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
-                                                                                                   style:UIBarButtonItemStyleDone
-                                                                                                  target:self 
-                                                                                                  action:@selector(logout)];
+//        self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+//                                                                                                   style:UIBarButtonItemStyleDone
+//                                                                                                  target:self 
+//                                                                                                  action:@selector(logout)];
         self.email.text = currentUser.email;
         
         userProfile = [parseTransport getUserProfile:currentUser.username];

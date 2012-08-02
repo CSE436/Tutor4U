@@ -80,12 +80,9 @@
     TutorRatingViewController *myRating = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorRating"];
     [myRating setUserNameString:tutorName];
     
-    [self.navigationItem setBackBarButtonItem:nil];
-    NSLog(@"%@",[self.tabBarController.navigationController viewControllers]);
-    [self.tabBarController.navigationController pushViewController:myRating animated:YES];
-    //[self.tabBarController.navigationController popToViewController:self.tabBarController animated:NO];
-    //[self.tabBarController.navigationController pushViewController:myRating animated:YES];
-    //[self.navigationController pushViewController:myRating animated:YES];
+    
+    [self.tabBarController.navigationItem setTitle:@"Messages"];
+    [self.tabBarController.navigationController pushViewController:myRating animated:NO];
 }
 
 -(void)cleanupRequests {
@@ -104,13 +101,15 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 
+    [super viewWillAppear:animated];
+    
     [myTableView deselectRowAtIndexPath:myTableView.indexPathForSelectedRow animated:NO];
     parseTransport = [[ParseTransport alloc] init];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshResponses" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateTutor:) name:@"RateTutor" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshResponses" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateTutor:) name:@"RateTutor" object:nil];
     
     
     studentRequests = [[NSMutableArray alloc] 
@@ -149,6 +148,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStudentRequests:) name:@"refreshStudentRequests" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTutorResponses:) name:@"refreshResponses" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateTutor:) name:@"RateTutor" object:nil];
+    
 }
 
 - (void)viewDidUnload
@@ -237,11 +241,10 @@
         [nextView setToType:@"student"];
     }
 
-    // Changes back button on next view
-    NSLog(@"%@",self.navigationController.viewControllers);
-    
+    NSLog(@"Selected Cell: %@",cell.textLabel.text);
     [self.tabBarController.navigationItem setTitle:@"Messages"];
-    [self.navigationController pushViewController:nextView animated:YES];
+    [self.tabBarController.navigationController pushViewController:nextView animated:YES];
+//    [self.navigationController pushViewController:nextView animated:YES];
 }
 
 @end

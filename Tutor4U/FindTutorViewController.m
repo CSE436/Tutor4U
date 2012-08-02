@@ -30,7 +30,8 @@
     } else {
         //        myTutorSession
         AddTutorSession *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorSession"];
-        [self.navigationController pushViewController:nextView animated:YES];
+//        [self.navigationController pushViewController:nextView animated:YES];
+        [self.tabBarController.navigationController pushViewController:nextView animated:YES];
     }
     
     NSDictionary* objectToRemove = nil;
@@ -93,7 +94,8 @@
     [ParseTransport pushChannelManagement];
     
     [ParseLoginViewController setViewControllerInForeground:NO];
-    [self.navigationController popViewControllerAnimated:NO];
+//    [self.navigationController popViewControllerAnimated:NO];
+    [self.tabBarController.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,7 +112,6 @@
     gestureRecognizer.cancelsTouchesInView = NO;
     [myTableView addGestureRecognizer:gestureRecognizer];
     //[self.tableView addGestureRecognizer:gestureRecognizer];
-    
     
     // Add Logout Button
     self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
@@ -131,7 +132,8 @@
 
 -(void)createSession
 {
-    [self.navigationController pushViewController:myTutorSession animated:YES];
+    [self.tabBarController.navigationController pushViewController:myTutorSession animated:YES];
+//    [self.navigationController pushViewController:myTutorSession animated:YES];
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
@@ -139,27 +141,14 @@
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
                                                                                            target:self
                                                                                            action:@selector(doneSearching)];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-//    if ( [searchBar.text length] > 0 ) {
-//        filterSubject = [searchBar.text lowercaseString];
-//        [self subscribeOnlyTo:filterSubject];
-//    }
     [subjectFilter resignFirstResponder];
 }
-
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
 
 - (void)viewDidLoad
 {
@@ -225,7 +214,7 @@
 {
     DetailedTutorInfoViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailedTutorInfo"];
     if(availableTutors.count > 0) {
-        NSLog(@"FindTutorTable : row [ %i ] of [ %i ] - %@",indexPath.row, availableTutors.count, [availableTutors objectAtIndex:indexPath.row]);
+//        NSLog(@"FindTutorTable : row [ %i ] of [ %i ] - %@",indexPath.row, availableTutors.count, [availableTutors objectAtIndex:indexPath.row]);
     }
     //[nextView setTutorIDString:[availableTutors objectAtIndex:indexPath.row]];
     PFObject *myPfObject = [availableTutors objectAtIndex:indexPath.row];
@@ -239,11 +228,12 @@
     if ( [myPfObject objectForKey:@"Location"] != [NSNull null] ) 
         [nextView setLocationString:[myPfObject objectForKey:@"Location"]];
     
-    NSLog(@" Tutor4uID [ %@ ] - Subject[ %@ ]",_tutor_id,_subject);
+//    NSLog(@" Tutor4uID [ %@ ] - Subject[ %@ ]",_tutor_id,_subject);
     [nextView setConnectAcceptButtonText:@"Connect"];
-    [self.navigationController pushViewController:nextView animated:YES];
+//    [self.navigationController pushViewController:nextView animated:YES];
+    [self.tabBarController.navigationController pushViewController:nextView animated:YES];
     
-    NSLog(@"FindTutorTable : row [ %i ] of [ %i ] - %@",indexPath.row, availableTutors.count, [[availableTutors objectAtIndex:indexPath.row] objectForKey:@"Tutor4uID"]);
+//    NSLog(@"FindTutorTable : row [ %i ] of [ %i ] - %@",indexPath.row, availableTutors.count, [[availableTutors objectAtIndex:indexPath.row] objectForKey:@"Tutor4uID"]);
     
 }
 

@@ -45,18 +45,15 @@
     [push expireAfterTimeInterval:86400];
     [push setData:data];
     [push sendPushInBackground]; 
-    NSLog(@"Pushing to channel: %@",tutorIDString);
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.tabBarController.navigationController popViewControllerAnimated:YES];
 }
 -(void)tutorReview
 {
+    NSLog(@"tutorReview");
     TutorRatingViewController *myRating = [self.storyboard instantiateViewControllerWithIdentifier:@"myTutorRating"];
-    
     [myRating setUserNameString:tutorIDString];
     [myRating setSubjectString:subjectString];
-    [self.navigationController pushViewController:myRating animated:YES];
-    // NSLog(@"----Rating tutor--------");
-    
+    [self.tabBarController.navigationController pushViewController:myRating animated:YES];    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -115,7 +112,6 @@
         location.text = @"Negotiable";
     }
     [[connectAccept titleLabel] setText:connectAcceptButtonText];
-    
     
     [self.tabBarController.navigationItem setHidesBackButton:NO];
     [self.tabBarController.navigationItem setTitle:@"Tutor Information"];

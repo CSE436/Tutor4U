@@ -64,6 +64,7 @@
     
     
     [self.tabBarController.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
     //[self.tabBarController.navigationController popToRootViewControllerAnimated:YES];
 }
 

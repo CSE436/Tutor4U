@@ -53,7 +53,7 @@
     [push setData:data];
     [push sendPushInBackground];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.tabBarController.navigationController popViewControllerAnimated:YES];
 }
 
 //----------
@@ -79,7 +79,7 @@
     [ParseTransport pushChannelManagement];
     
     [ParseLoginViewController setViewControllerInForeground:NO];
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.tabBarController.navigationController popViewControllerAnimated:NO];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -99,7 +99,7 @@
               action:@selector(autoFormatTextField:)
     forControlEvents:UIControlEventEditingChanged];
     
-    
+
     self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
                                                                                                style:UIBarButtonItemStyleDone
                                                                                               target:self 

@@ -55,7 +55,7 @@ static BOOL viewControllerInForeground = NO;
 
 -(void)checkEmailVerification {
     PFUser *currentUser = [PFUser currentUser];
-    
+    NSLog(@"checkEmailVerification");
     if ( currentUser ) {
         // Subscribe to my personal username
         NSLog(@"Subscribing to %@",currentUser.username);
@@ -125,9 +125,11 @@ static BOOL viewControllerInForeground = NO;
 //
 -(void)gotoTabbedView:(NSUInteger)tabNumber {
     // This is universal between the two methods
+    NSLog(@"gotoTabbedView");
     [self dismissViewControllerAnimated:NO completion:NULL];
     UITabBarController* nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabBarController"];
     nextView.selectedIndex = tabNumber;
+//    [self.tabBarController.navigationController pushViewController:nextView animated:NO];
     [self.navigationController pushViewController:nextView animated:NO];
 }
 
@@ -209,7 +211,8 @@ static BOOL viewControllerInForeground = NO;
 
 - (IBAction)logOutButtonTapAction:(id)sender {
     [PFUser logOut];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.tabBarController.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
